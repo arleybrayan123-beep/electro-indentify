@@ -203,7 +203,80 @@ document.addEventListener('DOMContentLoaded', () => {
         modal.onclick = (e) => { if (e.target === modal) closeBtn.onclick(); };
     };
 
-    // Event Listeners
+    // Navigation Elements
+    const landingPage = document.getElementById('landing-page');
+    const catalogPage = document.getElementById('catalog-page');
+    const catalogGrid = document.getElementById('catalog-grid');
+    const catalogTitle = document.getElementById('catalog-title');
+    const catalogSubtitle = document.getElementById('catalog-subtitle');
+    const backToHome = document.getElementById('back-to-home');
+    const categoryCards = document.querySelectorAll('.equipment-card');
+
+    // Navigation Logic
+    function openCategory(category) {
+        landingPage.style.opacity = '0';
+        setTimeout(() => {
+            landingPage.classList.add('hidden-page');
+            catalogPage.classList.remove('hidden-page');
+            setTimeout(() => catalogPage.style.opacity = '1', 50);
+
+            catalogTitle.innerText = `Catálogo de ${category}`;
+            catalogSubtitle.innerText = `Explora nuestra selección completa de ${category.toLowerCase()}.`;
+
+            const filtered = equipmentData.filter(item =>
+                normalize(item.name).includes(normalize(category)) ||
+                normalize(item.category).includes(normalize(category))
+            );
+
+            displayInCatalog(filtered);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+    }
+
+    function closeCategory() {
+        catalogPage.style.opacity = '0';
+        setTimeout(() => {
+            catalogPage.classList.add('hidden-page');
+            landingPage.classList.remove('hidden-page');
+            setTimeout(() => landingPage.style.opacity = '1', 50);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500);
+    }
+
+    function displayInCatalog(results) {
+        catalogGrid.innerHTML = '';
+        if (results.length === 0) {
+            catalogGrid.innerHTML = '<p class="no-results">Próximamente estaremos agregando más equipos a esta categoría.</p>';
+            return;
+        }
+
+        results.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'result-card glass';
+            card.innerHTML = `
+                <div class="result-info">
+                    <span class="category">${item.category}</span>
+                    <h4>${item.name}</h4>
+                    <p class="ref">Ref: ${item.ref}</p>
+                    <p class="desc">${item.desc}</p>
+                </div>
+                <button class="view-more" onclick="showDetails('${item.ref}')">Ver ficha técnica</button>
+            `;
+            catalogGrid.appendChild(card);
+        });
+    }
+
+    // Event Listeners for Navigation
+    categoryCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const category = card.dataset.category || card.querySelector('h3').innerText;
+            openCategory(category);
+        });
+    });
+
+    backToHome.addEventListener('click', closeCategory);
+
+    // Event Listeners for Search
     mainSearch.addEventListener('input', performSearch);
     searchTrigger.addEventListener('click', (e) => { e.preventDefault(); performSearch(); });
 
