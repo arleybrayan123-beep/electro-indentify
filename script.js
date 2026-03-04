@@ -20,10 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Protoboard", ref: "MB-102", desc: "Placa de pruebas para prototipado rápido sin soldadura.", category: "Prototipado" }
     ];
 
-    // Search Trigger Logic
+    // Search Logic
     function performSearch() {
         const query = mainSearch.value.trim().toLowerCase();
-        const resultsContainer = document.getElementById('search-results');
         const searchUI = document.getElementById('search-ui-results');
 
         if (query.length < 2) {
@@ -67,8 +66,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Event Listeners for Search
     mainSearch.addEventListener('input', performSearch);
-    searchTrigger.addEventListener('click', performSearch);
+    searchTrigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        performSearch();
+    });
 
     // Header Scroll Effect
     window.addEventListener('scroll', () => {
@@ -82,9 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tab Switching Logic
     tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active class from all
             tabBtns.forEach(b => b.classList.remove('active'));
-            // Add to current
             btn.classList.add('active');
 
             const tab = btn.dataset.tab;
@@ -92,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (tab === 'photo') {
                 searchByText.style.display = 'none';
                 searchByPhoto.style.display = 'block';
+                document.getElementById('search-ui-results').style.display = 'none';
             } else {
                 searchByText.style.display = 'block';
                 searchByPhoto.style.display = 'none';
@@ -116,9 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 label.innerText = '¡Dispositivo identificado!';
                 label.style.color = 'var(--accent)';
-                // Simulate setting the main search input value and performing a search
-                const identifiedDevice = "Osciloscopio Digital"; // Example identified device
-                mainSearch.value = identifiedDevice;
+
+                // Simulate identification
+                mainSearch.value = "Osciloscopio Digital";
                 performSearch();
             }, 2000);
         }
