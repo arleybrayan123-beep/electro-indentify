@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Digital Rigol",
             ref: "DS1054Z",
             category: "Osciloscopios",
-            usageImage: "assets/usage_probe.png",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -21,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Memoria": "12 Mpts (24 Mpts opc.)",
                 "Pantalla": "7 pulgadas WVGA (800x480)"
             },
-            usage: [
-                "Conecte la sonda al terminal de prueba de compensación (0.5Vpp, 1kHz).",
-                "Presione 'Auto' para ajustar la escala automáticamente.",
-                "Use los mandos 'Vertical' para amplitud y 'Horizontal' para tiempo.",
-                "Ajuste el 'Trigger' (disparo) para estabilizar la forma de onda."
+            usageSteps: [
+                { text: "Conecte la sonda al terminal de entrada BNC del canal 1.", image: "assets/step1_probe.svg" },
+                { text: "Conecte la punta al terminal de prueba de compensación (0.5Vpp).", image: "assets/step2_cal.svg" },
+                { text: "Ajuste el mando 'Vertical' y 'Horizontal' para centrar la señal.", image: "assets/step3_adjust.svg" },
+                { text: "Capture y analice los valores de Vpp y frecuencia en pantalla.", image: "assets/step4_display.svg" }
             ],
             type: "Digital Storage Oscilloscope (DSO)"
         },
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Tektronix",
             ref: "TBS1052B",
             category: "Osciloscopios",
-            usageImage: "assets/usage_knobs.png",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -42,11 +40,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Contador": "Frecuencímetro de doble canal",
                 "Garantía": "5 años de fábrica"
             },
-            usage: [
-                "Realice la compensación de sondas antes de cualquier medición crítica.",
-                "Seleccione el canal CH1 o CH2 activo.",
-                "Configure el acoplamiento (AC/DC) según la componente de la señal.",
-                "Use 'Single' para capturar eventos transitorios únicos."
+            usageSteps: [
+                { text: "Instale la sonda en el canal activo (CH1 o CH2).", image: "assets/step1_probe.svg" },
+                { text: "Presione 'PROBE CHECK' para compensar la sonda rápidamente.", image: "assets/step2_cal.svg" },
+                { text: "Use los mandos físicos para ajustar escala y posición.", image: "assets/step3_adjust.svg" },
+                { text: "Observe la señal estable; use 'Single' para disparos únicos.", image: "assets/step4_display.svg" }
             ],
             type: "Digital Storage Oscilloscope (DSO)"
         },
@@ -54,20 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Siglent",
             ref: "SDS1202X-E",
             category: "Osciloscopios",
-            usageImage: "assets/usage_waveforms.png",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             specs: {
                 "Ancho de Banda": "200 MHz",
                 "Canales": "2 análogos",
                 "Velocidad de Muestreo": "1 GSa/s",
-                "Tasa de Captura": "100,000 wfm/s (normal) / 400,000 wfm/s (segmentada)",
+                "Tasa de Captura": "100,000 wfm/s",
                 "Decodificación": "I2C, SPI, UART, CAN, LIN"
             },
-            usage: [
-                "Configure 'Peak Detect' para ver picos de ruido rápidos.",
-                "Use el modo 'History' para retroceder en el tiempo y ver señales pasadas.",
-                "Active la decodificación de protocolos en el menú 'Decode'.",
-                "Use 'Segmented Memory' para capturar ráfagas de datos."
+            usageSteps: [
+                { text: "Conecte la sonda de alta frecuencia al terminal BNC.", image: "assets/step1_probe.svg" },
+                { text: "Realice el auto-ajuste para detectar el tipo de señal.", image: "assets/step2_cal.svg" },
+                { text: "Navegue por el menú para configurar la decodificación.", image: "assets/step3_adjust.svg" },
+                { text: "Analice formas de onda complejas con tecnología SPO.", image: "assets/step4_display.svg" }
             ],
             type: "Super Phosphor Oscilloscope (SPO)"
         },
@@ -75,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Portátil Hantek",
             ref: "2D42",
             category: "Osciloscopios",
-            usageImage: "assets/usage_waveforms.png",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             specs: {
                 "Ancho de Banda": "40 MHz",
@@ -84,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Generador": "Generador de formas de onda arbitrarias",
                 "Autonomía": "Batería recargable (hasta 6h)"
             },
-            usage: [
-                "Use el modo 'Auto Test' para diagnósticos rápidos.",
-                "Conmute entre Osciloscopio y Multímetro con una sola tecla.",
-                "Utilice el generador para inyectar señales en la entrada de amplificadores.",
-                "Recargue el equipo por USB tipo C."
+            usageSteps: [
+                { text: "Conecte las puntas según el modo (DSO o DMM).", image: "assets/step1_probe.svg" },
+                { text: "Utilice la función AUTO para pruebas de campo rápidas.", image: "assets/step2_cal.svg" },
+                { text: "Ajuste el generador para inyectar señal si es necesario.", image: "assets/step3_adjust.svg" },
+                { text: "Guarde los resultados en la memoria interna.", image: "assets/step4_display.svg" }
             ],
             type: "Handheld DSO / DMM"
         },
@@ -166,6 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = equipmentData.find(e => e.ref === ref);
         if (!item) return;
 
+        const hasSteps = item.usageSteps && item.usageSteps.length > 0;
+        const steps = hasSteps ? item.usageSteps : (item.usage ? item.usage.map(t => ({ text: t, image: item.usageImage })) : []);
+
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
         modal.innerHTML = `
@@ -189,19 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="usage-section">
-                        <h3><i class="fas fa-tools"></i> Guía Paso a Paso (Monocromo)</h3>
+                        <h3><i class="fas fa-tools"></i> Guía Manual (Paso a Paso)</h3>
                         
                         <div class="step-nav">
-                            ${item.usage ? item.usage.map((_, i) => `<div class="step-dot ${i === 0 ? 'active' : ''}" data-step="${i}"></div>`).join('') : ''}
-                            <span class="step-label">Paso 1 de ${item.usage ? item.usage.length : 0}</span>
+                            ${steps.map((_, i) => `<div class="step-dot ${i === 0 ? 'active' : ''}" data-step="${i}"></div>`).join('')}
+                            <span class="step-label">Paso 1 de ${steps.length}</span>
                         </div>
 
                         <div class="usage-visual">
-                            ${item.usageImage ? `<img src="${item.usageImage}" alt="Guía técnica" class="usage-img">` : ''}
+                            <img src="${steps.length > 0 ? steps[0].image : ''}" alt="Guía técnica" class="usage-img" id="main-step-img">
                         </div>
 
                         <ul class="step-list">
-                            ${item.usage ? item.usage.map((step, i) => `<li class="${i === 0 ? 'active' : ''}" data-step="${i}">${step}</li>`).join('') : '<li>Referirse a la guía oficial.</li>'}
+                            ${steps.map((step, i) => `<li class="${i === 0 ? 'active' : ''}" data-step="${i}">${step.text}</li>`).join('')}
                         </ul>
                         
                         <div class="step-controls" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
@@ -218,17 +217,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Step Navigation Logic
         let currentStep = 0;
-        const totalSteps = item.usage ? item.usage.length : 0;
+        const totalSteps = steps.length;
         const dots = modal.querySelectorAll('.step-dot');
         const listItems = modal.querySelectorAll('.step-list li');
         const label = modal.querySelector('.step-label');
+        const mainImg = modal.querySelector('#main-step-img');
 
         function updateSteps(index) {
             dots.forEach(d => d.classList.remove('active'));
             listItems.forEach(li => li.classList.remove('active'));
             dots[index].classList.add('active');
             listItems[index].classList.add('active');
+
+            // Update Image and Label
+            mainImg.src = steps[index].image;
             label.innerText = `Paso ${index + 1} de ${totalSteps}`;
+
+            // Animation for image update
+            mainImg.classList.remove('animate');
+            void mainImg.offsetWidth; // Trigger reflow
+            mainImg.classList.add('animate');
         }
 
         modal.querySelector('#next-step').onclick = () => {
