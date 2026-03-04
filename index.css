@@ -537,6 +537,27 @@ h1 {
     list-style: none;
 }
 
+.usage-visual {
+    width: 100%;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.usage-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.usage-img:hover {
+    transform: scale(1.03);
+}
+
 .usage-section li {
     padding-left: 1.5rem;
     position: relative;

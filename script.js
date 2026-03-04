@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Digital Rigol",
             ref: "DS1054Z",
             category: "Osciloscopios",
+            usageImage: "assets/usage_probe.png",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Tektronix",
             ref: "TBS1052B",
             category: "Osciloscopios",
+            usageImage: "assets/usage_knobs.png",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -52,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Siglent",
             ref: "SDS1202X-E",
             category: "Osciloscopios",
+            usageImage: "assets/usage_waveforms.png",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             specs: {
                 "Ancho de Banda": "200 MHz",
@@ -72,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Osciloscopio Portátil Hantek",
             ref: "2D42",
             category: "Osciloscopios",
+            usageImage: "assets/usage_waveforms.png",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             specs: {
                 "Ancho de Banda": "40 MHz",
@@ -186,6 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="usage-section">
                         <h3><i class="fas fa-tools"></i> Funcionamiento</h3>
+                        <div class="usage-visual">
+                            ${item.usageImage ? `<img src="${item.usageImage}" alt="Guía de uso visual" class="usage-img animate">` : ''}
+                        </div>
                         <ul>
                             ${item.usage ? item.usage.map(step => `<li>${step}</li>`).join('') : '<li>Referirse a la guía oficial de usuario.</li>'}
                         </ul>
