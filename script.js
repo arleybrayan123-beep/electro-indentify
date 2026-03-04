@@ -116,6 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 label.innerText = '¡Dispositivo identificado!';
                 label.style.color = 'var(--accent)';
+                // Simulate setting the main search input value and performing a search
+                const identifiedDevice = "Osciloscopio Digital"; // Example identified device
+                mainSearch.value = identifiedDevice;
+                performSearch();
             }, 2000);
         }
     });
