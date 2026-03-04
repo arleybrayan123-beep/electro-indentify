@@ -302,70 +302,127 @@ h1 {
     animation: fadeInUp 0.4s ease;
 }
 
+/* Catalog & Search Results Cards - Premium Look */
 .results-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0;
 }
 
 .result-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
+    flex-direction: column;
+    padding: 2.5rem;
     text-align: left;
-    gap: 1rem;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition);
+    height: 100%;
+}
+
+.result-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+}
+
+.result-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.result-card:hover::before {
+    opacity: 1;
 }
 
 .result-info {
     flex: 1;
 }
 
-.result-info .category {
-    font-size: 0.7rem;
+.result-info .category-badge {
+    display: inline-block;
+    font-size: 0.65rem;
     text-transform: uppercase;
     color: var(--accent);
-    letter-spacing: 1px;
-    font-weight: 700;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(0, 242, 255, 0.1);
+    border-radius: 4px;
 }
 
 .result-info h4 {
-    font-size: 1.15rem;
-    margin: 0.25rem 0;
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
-.result-info .ref {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-.result-info .desc {
+.result-info .ref-tag {
     font-size: 0.9rem;
-    margin-top: 0.5rem;
-    color: #bbb;
+    color: var(--text-muted);
+    font-family: 'Courier New', Courier, monospace;
+    display: block;
+    margin-bottom: 1rem;
 }
 
-.view-more {
-    background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent);
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: var(--transition);
+.result-info .desc-preview {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.view-more:hover {
-    background: var(--accent);
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.5rem;
+    margin-top: auto;
+}
+
+.btn-details {
+    background: linear-gradient(135deg, var(--accent) 0%, #00a8ff 100%);
+    border: none;
     color: var(--primary-bg);
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 242, 255, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-details:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px var(--accent-glow);
 }
 
 .no-results {
     color: var(--text-muted);
-    padding: 2rem;
-    font-size: 1rem;
+    padding: 3rem;
+    font-size: 1.1rem;
+    text-align: center;
+    grid-column: 1 / -1;
 }
 
 /* Custom Scrollbar for Results */

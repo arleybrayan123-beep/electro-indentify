@@ -264,15 +264,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         results.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'result-card glass';
+            card.className = 'result-card glass animate';
             card.innerHTML = `
                 <div class="result-info">
-                    <span class="category">${item.category}</span>
+                    <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
-                    <p class="ref">Ref: ${item.ref}</p>
-                    <p class="desc">${item.desc}</p>
+                    <span class="ref-tag">MODELO: ${item.ref}</span>
+                    <p class="desc-preview">${item.desc}</p>
                 </div>
-                <button class="view-more" onclick="showDetails('${item.ref}')">Ver ficha técnica</button>
+                <div class="card-footer">
+                    <button class="btn-details" onclick="showDetails('${item.ref}')">
+                        <i class="fas fa-eye"></i> Detalles Técnicos
+                    </button>
+                </div>
             `;
             catalogGrid.appendChild(card);
         });
