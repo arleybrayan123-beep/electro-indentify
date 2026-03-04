@@ -303,9 +303,9 @@ h1 {
 }
 
 .results-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
 }
 
 .result-card {
