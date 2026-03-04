@@ -539,31 +539,92 @@ h1 {
 
 .usage-visual {
     width: 100%;
-    margin-bottom: 2rem;
-    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--glass-border);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid #333;
+    background: #fff;
+    /* Fondo blanco para estilo esquema */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
 }
 
 .usage-img {
     width: 100%;
-    height: auto;
+    height: 250px;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 10px;
+    filter: grayscale(100%) contrast(120%) brightness(100%);
+    /* Efecto monocromático técnico */
     transition: var(--transition);
 }
 
 .usage-img:hover {
-    transform: scale(1.03);
+    filter: grayscale(100%) contrast(140%) brightness(95%);
+}
+
+/* Step-by-Step Navigation */
+.step-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px;
+}
+
+.step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--glass-border);
+    transition: var(--transition);
+}
+
+.step-dot.active {
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+    transform: scale(1.2);
+}
+
+.step-label {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .usage-section li {
-    padding-left: 1.5rem;
+    padding-left: 2rem;
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
     font-size: 0.95rem;
-    color: #bbb;
+    color: #eee;
+    line-height: 1.4;
+    display: none;
+    /* Hidden by default, controlled by JS steps */
+}
+
+.usage-section li.active {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+}
+
+.usage-section li::before {
+    content: 'STEP';
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    background: rgba(0, 242, 255, 0.1);
+    padding: 2px 4px;
+    border-radius: 2px;
 }
 
 .usage-section li::before {

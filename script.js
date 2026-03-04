@@ -189,13 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="usage-section">
-                        <h3><i class="fas fa-tools"></i> Funcionamiento</h3>
-                        <div class="usage-visual">
-                            ${item.usageImage ? `<img src="${item.usageImage}" alt="Guía de uso visual" class="usage-img animate">` : ''}
+                        <h3><i class="fas fa-tools"></i> Guía Paso a Paso (Monocromo)</h3>
+                        
+                        <div class="step-nav">
+                            ${item.usage ? item.usage.map((_, i) => `<div class="step-dot ${i === 0 ? 'active' : ''}" data-step="${i}"></div>`).join('') : ''}
+                            <span class="step-label">Paso 1 de ${item.usage ? item.usage.length : 0}</span>
                         </div>
-                        <ul>
-                            ${item.usage ? item.usage.map(step => `<li>${step}</li>`).join('') : '<li>Referirse a la guía oficial de usuario.</li>'}
+
+                        <div class="usage-visual">
+                            ${item.usageImage ? `<img src="${item.usageImage}" alt="Guía técnica" class="usage-img">` : ''}
+                        </div>
+
+                        <ul class="step-list">
+                            ${item.usage ? item.usage.map((step, i) => `<li class="${i === 0 ? 'active' : ''}" data-step="${i}">${step}</li>`).join('') : '<li>Referirse a la guía oficial.</li>'}
                         </ul>
+                        
+                        <div class="step-controls" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <button class="btn-back" id="prev-step" style="margin:0; padding: 0.5rem 1rem; font-size: 0.8rem;">Anterior</button>
+                            <button class="btn-details" id="next-step" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Siguiente Paso</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -203,6 +215,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.body.appendChild(modal);
         setTimeout(() => modal.classList.add('active'), 10);
+
+        // Step Navigation Logic
+        let currentStep = 0;
+        const totalSteps = item.usage ? item.usage.length : 0;
+        const dots = modal.querySelectorAll('.step-dot');
+        const listItems = modal.querySelectorAll('.step-list li');
+        const label = modal.querySelector('.step-label');
+
+        function updateSteps(index) {
+            dots.forEach(d => d.classList.remove('active'));
+            listItems.forEach(li => li.classList.remove('active'));
+            dots[index].classList.add('active');
+            listItems[index].classList.add('active');
+            label.innerText = `Paso ${index + 1} de ${totalSteps}`;
+        }
+
+        modal.querySelector('#next-step').onclick = () => {
+            currentStep = (currentStep + 1) % totalSteps;
+            updateSteps(currentStep);
+        };
+
+        modal.querySelector('#prev-step').onclick = () => {
+            currentStep = (currentStep - 1 + totalSteps) % totalSteps;
+            updateSteps(currentStep);
+        };
 
         const closeBtn = modal.querySelector('.close-modal');
         closeBtn.onclick = () => {
