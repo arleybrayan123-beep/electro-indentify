@@ -228,8 +228,16 @@ document.addEventListener('DOMContentLoaded', () => {
             // Lógica de filtrado mejorada (soporta plurales y coincidencia parcial)
             const filtered = equipmentData.filter(item => {
                 const searchKey = normalize(category).replace(/s$/, ''); // Eliminar 's' al final para búsqueda singular
-                return normalize(item.category).includes(searchKey) ||
-                    normalize(item.name).includes(searchKey);
+                const itemCategory = normalize(item.category);
+                const itemName = normalize(item.name);
+
+                // Coincidencia directa por categoría (singular o plural)
+                if (itemCategory.includes(searchKey)) return true;
+
+                // Coincidencia por nombre si el nombre contiene la categoría
+                if (itemName.includes(searchKey)) return true;
+
+                return false;
             });
 
             displayInCatalog(filtered);
