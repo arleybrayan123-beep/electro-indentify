@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Osciloscopio Digital Rigol",
             ref: "DS1054Z",
-            category: "Medición",
+            category: "Osciloscopios",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Osciloscopio Tektronix",
             ref: "TBS1052B",
-            category: "Medición",
+            category: "Osciloscopios",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             specs: {
                 "Ancho de Banda": "50 MHz",
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Osciloscopio Siglent",
             ref: "SDS1202X-E",
-            category: "Medición",
+            category: "Osciloscopios",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             specs: {
                 "Ancho de Banda": "200 MHz",
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Osciloscopio Portátil Hantek",
             ref: "2D42",
-            category: "Medición",
+            category: "Osciloscopios",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             specs: {
                 "Ancho de Banda": "40 MHz",
@@ -91,15 +91,16 @@ document.addEventListener('DOMContentLoaded', () => {
         {
             name: "Multímetro Digital Fluke",
             ref: "117",
-            category: "Medición",
+            category: "Multímetros Digitales",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
             specs: { "Precisión DC": "0.5%", "Cuentas": "6000", "Seguridad": "CAT III 600 V" },
             usage: ["Gire el selector a la magnitud deseada.", "Use 'Auto-V' para detectar AC o DC automáticamente.", "Presione el botón de luz para entornos oscuros."],
             type: "Digital Multimeter"
         },
-        { name: "Fuente de Poder DC", ref: "GPP-4323", category: "Alimentación", desc: "4 canales aislados para experimentos complejos.", specs: { "Voltaje": "0-32V", "Corriente": "0-3A" }, usage: ["Establezca límites de corriente."], type: "DC Power Supply" },
-        { name: "Generador de Funciones", ref: "FY6900", category: "Pruebas", desc: "DDS de doble canal de alta resolución.", specs: { "Frecuencia": "60MHz", "Canales": "2" }, usage: ["Seleccione tipo de onda."], type: "DDS Generator" },
-        { name: "Analizador Lógico", ref: "Logic Pro", category: "Digital", desc: "Analiza hasta 16 canales digitales simultáneamente.", specs: { "Velocidad": "500MS/s", "Conexión": "USB 3.0" }, usage: ["Conecte al puerto USB."], type: "Logic Analyzer" }
+        { name: "Fuente de Poder DC", ref: "GPP-4323", category: "Fuentes de Poder", desc: "4 canales aislados para experimentos complejos.", specs: { "Voltaje": "0-32V", "Corriente": "0-3A" }, usage: ["Establezca límites de corriente."], type: "DC Power Supply" },
+        { name: "Generador de Funciones", ref: "FY6900", category: "Generadores de Funciones", desc: "DDS de doble canal de alta resolución.", specs: { "Frecuencia": "60MHz", "Canales": "2" }, usage: ["Seleccione tipo de onda."], type: "DDS Generator" },
+        { name: "Estación de Soldadura JBC", ref: "CD-2BQE", category: "Estaciones de Soldadura", desc: "Calentamiento instantáneo y precisión profesional.", specs: { "Potencia": "130W", "Temp": "90-450°C" }, usage: ["Encienda la estación.", "Seleccione la boquilla adecuada."], type: "Soldering Station" },
+        { name: "Analizador Lógico", ref: "Logic Pro", category: "Analizadores Lógicos", desc: "Analiza hasta 16 canales digitales simultáneamente.", specs: { "Velocidad": "500MS/s", "Conexión": "USB 3.0" }, usage: ["Conecte al puerto USB."], type: "Logic Analyzer" }
     ];
 
     // Normalización de texto
@@ -121,7 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             normalize(item.name).includes(query) ||
             normalize(item.ref).includes(query) ||
             normalize(item.desc).includes(query) ||
-            (item.type && normalize(item.type).includes(query))
+            (item.type && normalize(item.type).includes(query)) ||
+            normalize(item.category).includes(query)
         );
 
         displayResults(filtered);
@@ -223,10 +225,12 @@ document.addEventListener('DOMContentLoaded', () => {
             catalogTitle.innerText = `Catálogo de ${category}`;
             catalogSubtitle.innerText = `Explora nuestra selección completa de ${category.toLowerCase()}.`;
 
-            const filtered = equipmentData.filter(item =>
-                normalize(item.name).includes(normalize(category)) ||
-                normalize(item.category).includes(normalize(category))
-            );
+            // Lógica de filtrado mejorada (soporta plurales y coincidencia parcial)
+            const filtered = equipmentData.filter(item => {
+                const searchKey = normalize(category).replace(/s$/, ''); // Eliminar 's' al final para búsqueda singular
+                return normalize(item.category).includes(searchKey) ||
+                    normalize(item.name).includes(searchKey);
+            });
 
             displayInCatalog(filtered);
             window.scrollTo({ top: 0, behavior: 'smooth' });
