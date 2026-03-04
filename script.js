@@ -6,22 +6,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainSearch = document.getElementById('main-search');
     const searchTrigger = document.getElementById('search-trigger');
 
-    // Search Trigger Logic
-    searchTrigger.addEventListener('click', () => {
-        const query = mainSearch.value.trim();
-        if (query) {
-            // Simulated search action
-            const originalIcon = searchTrigger.innerHTML;
-            searchTrigger.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    // Data - Equipos Electrónicos
+    const equipmentData = [
+        { name: "Osciloscopio Digital", ref: "SDS1202X-E", desc: "Instrumento de medición para visualizar señales eléctricas.", category: "Medición" },
+        { name: "Multímetro Digital", ref: "Fluke 117", desc: "Mide voltaje, corriente y resistencia con alta precisión.", category: "Medición" },
+        { name: "Fuente de Poder DC", ref: "GPP-4323", desc: "Suministra energía constante a circuitos electrónicos.", category: "Alimentación" },
+        { name: "Generador de Funciones", ref: "FY6900", desc: "Genera ondas senoidales, cuadradas y triangulares.", category: "Pruebas" },
+        { name: "Estación de Soldadura", ref: "Hakko FX-888D", desc: "Herramienta para soldar componentes electrónicos.", category: "Montaje" },
+        { name: "Analizador Lógico", ref: "Saleae Logic Pro", desc: "Captura y analiza protocolos de comunicación digital.", category: "Digital" },
+        { name: "Capacímetro", ref: "CM-7115A", desc: "Mide la capacitancia de condensadores.", category: "Componentes" },
+        { name: "Frecuencímetro", ref: "SF-401", desc: "Mide la frecuencia de señales repetitivas.", category: "Medición" },
+        { name: "Sonda de Osciloscopio", ref: "P6100", desc: "Punta de prueba para conectar señales al osciloscopio.", category: "Accesorios" },
+        { name: "Protoboard", ref: "MB-102", desc: "Placa de pruebas para prototipado rápido sin soldadura.", category: "Prototipado" }
+    ];
 
-            setTimeout(() => {
-                alert(`Buscando especificaciones para: ${query}`);
-                searchTrigger.innerHTML = originalIcon;
-            }, 1000);
-        } else {
-            mainSearch.focus();
+    // Search Trigger Logic
+    function performSearch() {
+        const query = mainSearch.value.trim().toLowerCase();
+        const resultsContainer = document.getElementById('search-results');
+        const searchUI = document.getElementById('search-ui-results');
+
+        if (query.length < 2) {
+            searchUI.style.display = 'none';
+            return;
         }
-    });
+
+        const filtered = equipmentData.filter(item =>
+            item.name.toLowerCase().includes(query) ||
+            item.ref.toLowerCase().includes(query)
+        );
+
+        displayResults(filtered);
+    }
+
+    function displayResults(results) {
+        const searchUI = document.getElementById('search-ui-results');
+        const resultsGrid = document.getElementById('results-grid');
+
+        resultsGrid.innerHTML = '';
+        searchUI.style.display = 'block';
+
+        if (results.length === 0) {
+            resultsGrid.innerHTML = '<p class="no-results">No se encontraron dispositivos que coincidan.</p>';
+            return;
+        }
+
+        results.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'result-card glass';
+            card.innerHTML = `
+                <div class="result-info">
+                    <span class="category">${item.category}</span>
+                    <h4>${item.name}</h4>
+                    <p class="ref">Ref: ${item.ref}</p>
+                    <p class="desc">${item.desc}</p>
+                </div>
+                <button class="view-more">Ver especificaciones</button>
+            `;
+            resultsGrid.appendChild(card);
+        });
+    }
+
+    mainSearch.addEventListener('input', performSearch);
+    searchTrigger.addEventListener('click', performSearch);
 
     // Header Scroll Effect
     window.addEventListener('scroll', () => {
