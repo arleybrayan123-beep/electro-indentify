@@ -70,48 +70,65 @@
                     <p>Base de datos completa de aparatos electrónicos de laboratorio.</p>
                 </div>
 
-                <div class="equipment-grid">
-                    <div class="equipment-card glass neon-border" data-category="Osciloscopios">
-                        <i class="fas fa-wave-square"></i>
-                        <h3>Osciloscopios</h3>
-                        <p>Visualización y análisis de señales eléctricas en el tiempo. Esencial para depuración de
-                            circuitos.</p>
-                    </div>
-                    <div class="equipment-card glass neon-border" data-category="Multímetros Digitales">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Multímetros Digitales</h3>
-                        <p>Medición precisa de voltaje, corriente y resistencia. La herramienta básica de todo
-                            ingeniero.
-                        </p>
-                    </div>
-                    <div class="equipment-card glass neon-border" data-category="Fuentes de Poder">
-                        <i class="fas fa-plug"></i>
-                        <h3>Fuentes de Poder</h3>
-                        <p>Suministro controlado de energía DC. Regulables y con protección para circuitos
-                            experimentales.
-                        </p>
-                    </div>
-                    <div class="equipment-card glass neon-border" data-category="Generadores de Funciones">
+                <div class="equipment-grid single-main-card">
+                    <div class="equipment-card glass neon-border main-category-card"
+                        data-main-category="Aparatos Electrónicos">
                         <i class="fas fa-microchip"></i>
-                        <h3>Generadores de Funciones</h3>
-                        <p>Producción de ondas senoidales, cuadradas y triangulares para pruebas de respuesta en
-                            frecuencia.
-                        </p>
-                    </div>
-                    <div class="equipment-card glass neon-border" data-category="Estaciones de Soldadura">
-                        <i class="fas fa-thermometer-half"></i>
-                        <h3>Estaciones de Soldadura</h3>
-                        <p>Control térmico preciso para montaje y reparación de componentes SMD y TH.</p>
-                    </div>
-                    <div class="equipment-card glass neon-border" data-category="Analizadores Lógicos">
-                        <i class="fas fa-project-diagram"></i>
-                        <h3>Analizadores Lógicos</h3>
-                        <p>Captura y visualización de señales digitales de múltiples canales para protocolos de
-                            comunicación.</p>
+                        <h3>Aparatos Electrónicos</h3>
+                        <p>Explora nuestra base de datos de instrumentación de laboratorio: osciloscopios, multímetros,
+                            fuentes de poder y más.</p>
+                        <span class="subcategory-count">6 subcategorías</span>
                     </div>
                 </div>
             </section>
         </main>
+    </div>
+
+    <!-- Subcategory Page -->
+    <div id="subcategory-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container catalog-container">
+            <button id="back-to-home-from-sub" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1 id="subcategory-title">Aparatos Electrónicos</h1>
+                <p id="subcategory-subtitle">Selecciona una subcategoría para explorar.</p>
+            </div>
+            <div class="equipment-grid" id="subcategory-grid">
+                <div class="equipment-card glass neon-border" data-category="Osciloscopios">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>Osciloscopios</h3>
+                    <p>Visualización y análisis de señales eléctricas en el tiempo.</p>
+                </div>
+                <div class="equipment-card glass neon-border" data-category="Multímetros Digitales">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Multímetros Digitales</h3>
+                    <p>Medición precisa de voltaje, corriente y resistencia.</p>
+                </div>
+                <div class="equipment-card glass neon-border" data-category="Fuentes de Poder">
+                    <i class="fas fa-plug"></i>
+                    <h3>Fuentes de Poder</h3>
+                    <p>Suministro controlado de energía DC y AC variable.</p>
+                </div>
+                <div class="equipment-card glass neon-border" data-category="Generadores de Señales">
+                    <i class="fas fa-broadcast-tower"></i>
+                    <h3>Generadores de Señales</h3>
+                    <p>Producción de ondas senoidales, cuadradas y de RF.</p>
+                </div>
+                <div class="equipment-card glass neon-border" data-category="Estaciones de Soldadura">
+                    <i class="fas fa-thermometer-half"></i>
+                    <h3>Estaciones de Soldadura</h3>
+                    <p>Control térmico preciso para montaje de componentes SMD y TH.</p>
+                </div>
+                <div class="equipment-card glass neon-border" data-category="Analizadores Lógicos">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Analizadores Lógicos</h3>
+                    <p>Captura y decodificación de señales digitales y protocolos.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Catalog Page (Initially Hidden) -->
@@ -132,7 +149,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=3.0.0"></script>
+    <script src="script.js?v=4.0.0"></script>
 </body>
 
 </html>
