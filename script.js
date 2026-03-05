@@ -97,10 +97,105 @@
             ref: "117",
             category: "Multímetros Digitales",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
-            imageUrl: "https://www.fluke-direct.com/images/products/cache/fluke/117/main/fluke-117-digital-multimeter-with-non-contact-voltage.jpg",
-            specs: { "Precisión DC": "0.5%", "Cuentas": "6000", "Seguridad": "CAT III 600 V" },
-            usageSteps: ["Gire el selector a la magnitud deseada.", "Use 'Auto-V' para detectar AC o DC automáticamente.", "Presione el botón de luz para entornos oscuros."],
-            type: "Digital Multimeter"
+            videoUrl: "https://www.youtube.com/watch?v=uMSFrv1UVMc",
+            imageUrl: "https://m.media-amazon.com/images/I/71rBvB9t+YL._AC_SL1500_.jpg",
+            specs: {
+                "Precisión DC": "0.5%",
+                "Cuentas": "6000",
+                "Seguridad": "CAT III 600 V",
+                "VoltAlert": "Detección de voltaje sin contacto"
+            },
+            usageSteps: [
+                "Gire el selector a la magnitud deseada.",
+                "Use la función 'Auto-V/LoZ' para evitar lecturas falsas.",
+                "Acerque la punta superior a un cable para usar VoltAlert.",
+                "Presione el botón de luz de luz para entornos oscuros."
+            ],
+            type: "Multímetro Digital de Electricista"
+        },
+        {
+            name: "Multímetro Industrial Fluke",
+            ref: "87V",
+            category: "Multímetros Digitales",
+            desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
+            videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
+            imageUrl: "https://m.media-amazon.com/images/I/71N14227iKL._AC_SL1500_.jpg",
+            specs: {
+                "Precisión DC": "0.05%",
+                "Resolución": "20000 cuentas",
+                "Filtro paso bajo": "Medición precisa en variadores",
+                "Temperatura": "Termopar tipo K integrado"
+            },
+            usageSteps: [
+                "Seleccione la magnitud y ajuste manual/automático con RANGE.",
+                "Usa MIN/MAX para capturar lecturas extremas intermitentes.",
+                "Presiona el botón amarillo para acceder a las funciones secundarias.",
+                "Regula el Pitido con continuidad ajustando umbrales rápidos."
+            ],
+            type: "Multímetro Industrial True-RMS"
+        },
+        {
+            name: "Multímetro de Banco/Laboratorio UNI-T",
+            ref: "UT61E+",
+            category: "Multímetros Digitales",
+            desc: "Excelente relación calidad-precio con alta precisión y conexión a PC para adquisición de datos.",
+            videoUrl: "https://www.youtube.com/watch?v=zIFYZ5AwDUI",
+            imageUrl: "https://m.media-amazon.com/images/I/61k2cQW+4aL._AC_SX679_.jpg",
+            specs: {
+                "Precisión DC": "0.05%",
+                "Resolución": "22000 cuentas",
+                "Conectividad": "Cable USB aislado ópticamente",
+                "True RMS": "Ancho de banda 45Hz~10kHz"
+            },
+            usageSteps: [
+                "Encienda el dispositivo seleccionando la variable en el dial.",
+                "Conecte el cable óptico en la ranura para registrar datos en PC.",
+                "Presione 'PEAK' para retener picos transitorios rápidos.",
+                "Use el software UNI-T para visualizar gráficas en tiempo real."
+            ],
+            type: "Multímetro True-RMS + Datalogger"
+        },
+        {
+            name: "Multímetro Avanzado Brymen",
+            ref: "BM869s",
+            category: "Multímetros Digitales",
+            desc: "Alta gama y precisión, doble display y especificaciones superlativas para electrónica de potencia.",
+            videoUrl: "https://www.youtube.com/watch?v=rX_H5sI6iMg",
+            imageUrl: "https://m.media-amazon.com/images/I/71a6B7e+TlL._AC_SL1500_.jpg",
+            specs: {
+                "Precisión DC": "0.02%",
+                "Cuentas": "500.000 / 50.000",
+                "Pantalla": "Doble display con barra analógica",
+                "Temperatura": "T1, T2 y diferencial T1-T2"
+            },
+            usageSteps: [
+                "Configure la doble lectura pulsando el botón SELECT.",
+                "Conecte ambos termopares para observar deltas (T1-T2).",
+                "Utilice la alta resolución para calibraciones finas.",
+                "Habilite el filtro VFD para medidas de variadores de motor."
+            ],
+            type: "Multímetro de Precisión Doble Display"
+        },
+        {
+            name: "Multímetro de Electricista Klein Tools",
+            ref: "MM400",
+            category: "Multímetros Digitales",
+            desc: "Multímetro hiper-resistente, fácil de usar y diseñado desde la perspectiva del trabajo de campo.",
+            videoUrl: "https://www.youtube.com/watch?v=jW0T0RjC79Y",
+            imageUrl: "https://m.media-amazon.com/images/I/61MvT7u7uRL._AC_SL1000_.jpg",
+            specs: {
+                "Cuentas": "4000",
+                "Durabilidad": "Caídas desde 1 m (3.3 pies)",
+                "Medición Acústica": "Continuidad Audible Rápida",
+                "Seguridad": "CAT III 600 V"
+            },
+            usageSteps: [
+                "Asegúrese de apagar el circuito antes de medir resistencias.",
+                "Ajuste el selector a la señal de tensión o corriente requerida.",
+                "Use 'HOLD' para mantener lectura en lugares sin visión.",
+                "Use los soportes traseros para las puntas durante almacenamiento."
+            ],
+            type: "Multímetro de Campo/Trabajo Pesado"
         }
     ];
 
