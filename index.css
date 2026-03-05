@@ -306,8 +306,12 @@ h1 {
 }
 
 /* Modificadores de velocidad para variedad visual */
+.neon-border.fast::before {
+    animation-duration: 2s;
+}
+
 .neon-border.slow::before {
-    animation-duration: 5s;
+    animation-duration: 6s;
 }
 
 /* --- Refactorización de Componentes --- */
