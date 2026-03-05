@@ -101,6 +101,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const normalize = (text) => text ? text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
 
+    // Función Debounce para optimizar rendimiento
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
     function performSearch() {
         const query = normalize(mainSearch.value.trim());
         const searchUI = document.getElementById('search-ui-results');
@@ -117,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (results.length === 0) { resultsGrid.innerHTML = '<p class="no-results">No se encontraron dispositivos.</p>'; return; }
         results.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'result-card glass';
+            card.className = 'result-card glass neon-border';
             card.innerHTML = `<div class="result-info"><span class="category-badge">${item.category}</span><h4>${item.name}</h4><p class="ref-tag">Ref: ${item.ref}</p><p class="desc-preview">${item.desc}</p></div><button class="btn-details" onclick="showDetails('${item.ref}')">Ver ficha técnica</button>`;
             resultsGrid.appendChild(card);
         });
@@ -129,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
         modal.innerHTML = `
-            <div class="modal-content glass">
+            <div class="modal-content glass neon-border slow">
                 <button class="close-modal">&times;</button>
                 <div class="modal-body">
                     <div class="specs-section">
@@ -166,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         catalogGrid.innerHTML = '';
         filtered.forEach(item => {
             const card = document.createElement('div');
-            card.className = 'result-card glass animate';
+            card.className = 'result-card glass neon-border animate';
             card.innerHTML = `<div class="result-info"><span class="category-badge">${item.category}</span><h4>${item.name}</h4><span class="ref-tag">MODELO: ${item.ref}</span><p class="desc-preview">${item.desc}</p></div><div class="card-footer"><button class="btn-details" onclick="showDetails('${item.ref}')"><i class="fas fa-eye"></i> Detalles Técnicos</button></div>`;
             catalogGrid.appendChild(card);
         });
@@ -176,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     categoryCards.forEach(card => card.addEventListener('click', () => openCategory(card.dataset.category || card.querySelector('h3').innerText)));
     backToHome.addEventListener('click', () => { catalogPage.style.opacity = '0'; setTimeout(() => { catalogPage.classList.add('hidden-page'); landingPage.classList.remove('hidden-page'); setTimeout(() => landingPage.style.opacity = '1', 50); }, 500); });
-    mainSearch.addEventListener('input', performSearch);
+    mainSearch.addEventListener('input', debounce(performSearch, 300));
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
     tabBtns.forEach(btn => btn.addEventListener('click', () => { tabBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); const isPhoto = btn.dataset.tab === 'photo'; searchByText.style.display = isPhoto ? 'none' : 'block'; searchByPhoto.style.display = isPhoto ? 'block' : 'none'; }));
 });
