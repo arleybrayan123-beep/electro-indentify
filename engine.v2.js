@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "DS1054Z",
             category: "Osciloscopios",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
+            videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -21,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Pantalla": "7 pulgadas WVGA (800x480)"
             },
             usageSteps: [
-                { text: "Conecte la sonda al terminal de entrada BNC del canal 1.", image: "assets/step1_probe.svg" },
-                { text: "Conecte la punta al terminal de prueba de compensación (0.5Vpp).", image: "assets/step2_cal.svg" },
-                { text: "Ajuste el mando 'Vertical' y 'Horizontal' para centrar la señal.", image: "assets/step3_adjust.svg" },
-                { text: "Capture y analice los valores de Vpp y frecuencia en pantalla.", image: "assets/step4_display.svg" }
+                "Conecte la sonda al terminal de entrada BNC del canal 1.",
+                "Conecte la punta al terminal de prueba de compensación (0.5Vpp).",
+                "Ajuste el mando 'Vertical' y 'Horizontal' para centrar la señal.",
+                "Capture y analice los valores de Vpp y frecuencia en pantalla."
             ],
             type: "Digital Storage Oscilloscope (DSO)"
         },
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "TBS1052B",
             category: "Osciloscopios",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
+            videoUrl: "https://www.youtube.com/watch?v=TCCdMGBlSko",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "2 análogos",
@@ -41,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Garantía": "5 años de fábrica"
             },
             usageSteps: [
-                { text: "Instale la sonda en el canal activo (CH1 o CH2).", image: "assets/step1_probe.svg" },
-                { text: "Presione 'PROBE CHECK' para compensar la sonda rápidamente.", image: "assets/step2_cal.svg" },
-                { text: "Use los mandos físicos para ajustar escala y posición.", image: "assets/step3_adjust.svg" },
-                { text: "Observe la señal estable; use 'Single' para disparos únicos.", image: "assets/step4_display.svg" }
+                "Instale la sonda en el canal activo (CH1 o CH2).",
+                "Presione 'PROBE CHECK' para compensar la sonda rápidamente.",
+                "Use los mandos físicos para ajustar escala y posición.",
+                "Observe la señal estable; use 'Single' para disparos únicos."
             ],
             type: "Digital Storage Oscilloscope (DSO)"
         },
@@ -53,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "SDS1202X-E",
             category: "Osciloscopios",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
+            videoUrl: "https://www.youtube.com/watch?v=zQsrt3ND0JM",
             specs: {
                 "Ancho de Banda": "200 MHz",
                 "Canales": "2 análogos",
@@ -61,10 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Decodificación": "I2C, SPI, UART, CAN, LIN"
             },
             usageSteps: [
-                { text: "Conecte la sonda de alta frecuencia al terminal BNC.", image: "assets/step1_probe.svg" },
-                { text: "Realice el auto-ajuste para detectar el tipo de señal.", image: "assets/step2_cal.svg" },
-                { text: "Navegue por el menú para configurar la decodificación.", image: "assets/step3_adjust.svg" },
-                { text: "Analice formas de onda complejas con tecnología SPO.", image: "assets/step4_display.svg" }
+                { text: "Conecte la sonda de alta frecuencia al terminal BNC." },
+                { text: "Realice el auto-ajuste para detectar el tipo de señal." },
+                { text: "Navegue por el menú para configurar la decodificación." },
+                { text: "Analice formas de onda complejas con tecnología SPO." }
+            ],
+            usageSteps: [
+                "Conecte la sonda de alta frecuencia al terminal BNC.",
+                "Realice el auto-ajuste para detectar el tipo de señal.",
+                "Navegue por el menú para configurar la decodificación.",
+                "Analice formas de onda complejas con tecnología SPO."
             ],
             type: "Super Phosphor Oscilloscope (SPO)"
         },
@@ -73,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "2D42",
             category: "Osciloscopios",
             desc: "Instrumento multifunción para servicio técnico de campo.",
+            videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -81,10 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Autonomía": "Batería recargable (hasta 6h)"
             },
             usageSteps: [
-                { text: "Conecte las puntas según el modo (DSO o DMM).", image: "assets/step1_probe.svg" },
-                { text: "Utilice la función AUTO para pruebas de campo rápidas.", image: "assets/step2_cal.svg" },
-                { text: "Ajuste el generador para inyectar señal si es necesario.", image: "assets/step3_adjust.svg" },
-                { text: "Guarde los resultados en la memoria interna.", image: "assets/step4_display.svg" }
+                "Conecte las puntas según el modo (DSO o DMM).",
+                "Utilice la función AUTO para pruebas de campo rápidas.",
+                "Ajuste el generador para inyectar señal si es necesario.",
+                "Guarde los resultados en la memoria interna."
             ],
             type: "Handheld DSO / DMM"
         },
@@ -162,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = equipmentData.find(e => e.ref === ref);
         if (!item) return;
 
-        const hasSteps = item.usageSteps && item.usageSteps.length > 0;
-        const steps = hasSteps ? item.usageSteps : (item.usage ? item.usage.map(t => ({ text: t, image: item.usageImage })) : []);
-
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
         modal.innerHTML = `
@@ -186,27 +193,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             `).join('') : '<p>Consultar manual para más detalles.</p>'}
                         </div>
+
+                        ${item.videoUrl ? `
+                        <div class="video-cta" style="margin-top: 2rem;">
+                            <a href="${item.videoUrl}" target="_blank" class="btn-details" style="display: flex; align-items: center; justify-content: center; gap: 0.8rem; text-decoration: none; width: 100%;">
+                                <i class="fab fa-youtube fa-lg"></i> Ver Video Tutorial
+                            </a>
+                        </div>
+                        ` : ''}
                     </div>
                     <div class="usage-section">
-                        <h3><i class="fas fa-tools"></i> Guía Manual (Paso a Paso)</h3>
-                        
-                        <div class="step-nav">
-                            ${steps.map((_, i) => `<div class="step-dot ${i === 0 ? 'active' : ''}" data-step="${i}"></div>`).join('')}
-                            <span class="step-label">Paso 1 de ${steps.length}</span>
-                        </div>
-
-                        <div class="usage-visual">
-                            <img src="${steps.length > 0 ? steps[0].image : ''}" alt="Guía técnica" class="usage-img" id="main-step-img">
-                        </div>
-
-                        <ul class="step-list">
-                            ${steps.map((step, i) => `<li class="${i === 0 ? 'active' : ''}" data-step="${i}">${step.text}</li>`).join('')}
+                        <h3><i class="fas fa-tools"></i> Instrucciones de Uso</h3>
+                        <ul class="usage-list">
+                            ${item.usageSteps ? item.usageSteps.map(step => `<li>${step}</li>`).join('') : (item.usage ? item.usage.map(step => `<li>${step}</li>`).join('') : '<li>Referirse a la guía oficial.</li>')}
                         </ul>
-                        
-                        <div class="step-controls" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
-                            <button class="btn-back" id="prev-step" style="margin:0; padding: 0.5rem 1rem; font-size: 0.8rem;">Anterior</button>
-                            <button class="btn-details" id="next-step" style="padding: 0.5rem 1rem; font-size: 0.8rem;">Siguiente Paso</button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -214,40 +214,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.body.appendChild(modal);
         setTimeout(() => modal.classList.add('active'), 10);
-
-        // Step Navigation Logic
-        let currentStep = 0;
-        const totalSteps = steps.length;
-        const dots = modal.querySelectorAll('.step-dot');
-        const listItems = modal.querySelectorAll('.step-list li');
-        const label = modal.querySelector('.step-label');
-        const mainImg = modal.querySelector('#main-step-img');
-
-        function updateSteps(index) {
-            dots.forEach(d => d.classList.remove('active'));
-            listItems.forEach(li => li.classList.remove('active'));
-            dots[index].classList.add('active');
-            listItems[index].classList.add('active');
-
-            // Update Image and Label
-            mainImg.src = steps[index].image;
-            label.innerText = `Paso ${index + 1} de ${totalSteps}`;
-
-            // Animation for image update
-            mainImg.classList.remove('animate');
-            void mainImg.offsetWidth; // Trigger reflow
-            mainImg.classList.add('animate');
-        }
-
-        modal.querySelector('#next-step').onclick = () => {
-            currentStep = (currentStep + 1) % totalSteps;
-            updateSteps(currentStep);
-        };
-
-        modal.querySelector('#prev-step').onclick = () => {
-            currentStep = (currentStep - 1 + totalSteps) % totalSteps;
-            updateSteps(currentStep);
-        };
 
         const closeBtn = modal.querySelector('.close-modal');
         closeBtn.onclick = () => {
