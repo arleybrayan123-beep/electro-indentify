@@ -184,13 +184,16 @@ h1 {
 
 .search-btn {
     position: absolute;
-    right: 10px;
+    right: 5px;
+    /* Reducido para mejor integración */
     top: 50%;
     transform: translateY(-50%);
     background: var(--accent);
     border: none;
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    /* Incrementado para balance visual */
+    height: calc(100% - 10px);
+    /* Coincide con la altura interna del input */
     border-radius: 10px;
     color: var(--primary-bg);
     cursor: pointer;
