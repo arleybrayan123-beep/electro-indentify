@@ -160,7 +160,7 @@
             ref: "BM869s",
             category: "Multímetros Digitales",
             desc: "Alta gama y precisión, doble display y especificaciones superlativas para electrónica de potencia.",
-            videoUrl: "https://www.youtube.com/watch?v=rX_H5sI6iMg",
+            videoUrl: "https://www.youtube.com/watch?v=aSrq3UJt4qU",
             imageUrl: "https://brymen.eu/wp-content/uploads/2021/12/BM869s.jpg",
             specs: {
                 "Precisión DC": "0.02%",
@@ -181,7 +181,7 @@
             ref: "MM400",
             category: "Multímetros Digitales",
             desc: "Multímetro hiper-resistente, fácil de usar y diseñado desde la perspectiva del trabajo de campo.",
-            videoUrl: "https://www.youtube.com/watch?v=jW0T0RjC79Y",
+            videoUrl: "https://www.youtube.com/watch?v=3Se87lYg5O0",
             imageUrl: "https://data.kleintools.com/sites/all/product_assets/png/klein/mm400.png",
             specs: {
                 "Cuentas": "4000",
@@ -196,6 +196,91 @@
                 "Use los soportes traseros para las puntas durante almacenamiento."
             ],
             type: "Multímetro de Campo/Trabajo Pesado"
+        },
+        // CATEGORIA FUENTES DE PODER
+        {
+            name: "Fuente de Poder DC Lineal Programable Rigol",
+            ref: "DP832",
+            category: "Fuentes de Poder",
+            desc: "Estándar en laboratorios académicos e industriales por su diseño lineal de bajo ruido y tres canales aislados.",
+            videoUrl: "https://www.youtube.com/watch?v=we2FwdLs8a8",
+            imageUrl: "https://assets.testequity.com/te1/product-images/large/Rigol-DP832-Front.jpg",
+            specs: {
+                "Canales": "3 (30V/3A, 30V/3A, 5V/3A)",
+                "Potencia Total": "195 vatios",
+                "Ruido y Ripple": "<350 μVrms / 2 mVpp",
+                "Conectividad": "USB, LAN, RS232"
+            },
+            usageSteps: [
+                "Presione el botón del canal deseado (CH1, CH2 o CH3) para seleccionarlo.",
+                "Use el teclado numérico o la perilla para fijar el voltaje deseado.",
+                "Ajuste el límite de corriente para proteger su circuito bajo prueba.",
+                "Presione 'ON/OFF' correspondiente al canal para energizar la salida."
+            ],
+            type: "Fuente DC Lineal Programable"
+        },
+        {
+            name: "Fuente de Poder DC Alta Gama Keysight",
+            ref: "E36312A",
+            category: "Fuentes de Poder",
+            desc: "Fuente de alimentación premium de precisión extrema, con pantalla a color y mediciones de baja corriente.",
+            videoUrl: "https://www.youtube.com/watch?v=WWTmAzL5pnw",
+            imageUrl: "https://images.keysight.com/is/image/Agilent/E36312A_Front_Right_R22x21?wid=800&hei=800",
+            specs: {
+                "Salidas": "3 aisladas (6V/5A, 25V/1A, 25V/1A)",
+                "Potencia": "80 vatios",
+                "Medición": "Datalogger integrado (Voltaje y Corriente)",
+                "Precisión": "Programación 0.03%"
+            },
+            usageSteps: [
+                "Encienda el equipo. La pantalla mostrará el estado de todos los canales.",
+                "Seleccione si usar canales independientes o combinados (Serie/Paralelo).",
+                "Configure secuencias de salida en el panel frontal si es necesario.",
+                "Utilice la medición de 4 hilos (Sense) trasera para cables largos."
+            ],
+            type: "Fuente DC de Precisión Serie E36300"
+        },
+        {
+            name: "Fuente de Poder Variable Korad",
+            ref: "KA3005P",
+            category: "Fuentes de Poder",
+            desc: "Opción accesible, robusta y con memoria para uso en reparaciones, hobbies y proyectos DIY. Control por USB.",
+            videoUrl: "https://www.youtube.com/watch?v=yksjM7GAdQQ",
+            imageUrl: "https://www.sra-solder.com/pub/media/catalog/product/cache/de8ef5f7c7ec061290cae8f47c68f0eb/k/o/korad-ka3005p-main_1.jpg",
+            specs: {
+                "Rango": "0-30V / 0-5A",
+                "Tipo": "Lineal Un Solo Canal",
+                "Memorias": "4 programables externas (M1-M4)",
+                "Ruido": "<1 mVrms"
+            },
+            usageSteps: [
+                "Mantenga presionado el botón de voltaje y regule la perilla.",
+                "Ajuste el límite de corriente OCP para evitar cortocircuitos.",
+                "Guarde configuraciones comunes manteniendo pulsado M1, M2, etc.",
+                "Pulse 'OUTPUT' para aplicar la energía al dispositivo."
+            ],
+            type: "Fuente de Poder Lineal de Banco"
+        },
+        {
+            name: "Fuente de Poder AC Variable (Variac)",
+            ref: "TDGC2-2KM",
+            category: "Fuentes de Poder",
+            desc: "Autotransformador variable para pruebas de equipos de corriente alterna y testeo seguro en bancos de reparación.",
+            videoUrl: "https://www.youtube.com/watch?v=LpWtZkSbIOk",
+            imageUrl: "https://mastechpowersupply.com/images/source/5KVA_110V250V_main.jpg",
+            specs: {
+                "Voltaje de Entrada": "110V / 120V AC",
+                "Voltaje de Salida": "0 - 130V AC (Variable)",
+                "Potencia Máxima": "2000VA (2KVA)",
+                "Medidores": "Analógicos / Opcional Digital"
+            },
+            usageSteps: [
+                "Gire la perilla superior completamente al cero (0V) antes de encender.",
+                "Conecte el dispositivo a reparar a la toma del Variac aislada.",
+                "Encienda el Variac y gire lentamente la perilla para inyectar voltaje.",
+                "Monitoree los amperios; si la corriente se dispara repentinamente, regrese a 0V."
+            ],
+            type: "Autotransformador AC (Variac)"
         }
     ];
 
