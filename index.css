@@ -245,21 +245,69 @@ h1 {
     padding: 6rem 5%;
 }
 
-.equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.equipment-card {
-    padding: 2rem;
+/* Base Card Styles Updated with Neon Effect */
+.equipment-card,
+.result-card {
+    position: relative;
+    padding: 2.5rem;
+    background: rgba(10, 11, 16, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
     transition: var(--transition);
 }
 
-.equipment-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    background: rgba(255, 255, 255, 0.05);
+/* Neon Animation Layer */
+.equipment-card::before,
+.result-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: conic-gradient(from 0deg,
+            transparent 0deg,
+            transparent 150deg,
+            var(--accent) 180deg,
+            var(--accent) 210deg,
+            transparent 240deg);
+    border-radius: 22px;
+    animation: rotate-light 4s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Internal content protection */
+.equipment-card::after,
+.result-card::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: var(--primary-bg);
+    border-radius: 19px;
+    z-index: -1;
+}
+
+.equipment-card:hover::before,
+.result-card:hover::before {
+    opacity: 1;
+}
+
+.equipment-card:hover,
+.result-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+    border-color: transparent;
+}
+
+@keyframes rotate-light {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .equipment-card i {
@@ -302,39 +350,7 @@ h1 {
     padding: 1rem 0;
 }
 
-.result-card {
-    display: flex;
-    flex-direction: column;
-    padding: 2.5rem;
-    text-align: left;
-    gap: 1.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: var(--transition);
-    height: 100%;
-}
-
-.result-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
-}
-
-.result-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.result-card:hover::before {
-    opacity: 1;
-}
+/* Removed redundant styles in favor of the new neon-card system */
 
 .result-info {
     flex: 1;
