@@ -27,12 +27,11 @@ body {
 }
 
 .glass {
-    background: var(--glass);
-    backdrop-filter: blur(8px);
-    /* Reducido de 12px para mayor fluidez */
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(25, 27, 35, 0.85);
+    /* Color sólido semi-transparente */
     border: 1px solid var(--glass-border);
     border-radius: 16px;
+    /* Eliminado backdrop-filter por impacto crítico en rendimiento */
 }
 
 header {
@@ -256,31 +255,44 @@ h1 {
 .neon-border {
     position: relative;
     border: 1px solid var(--glass-border);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+    transition: transform 0.2s cubic-bezier(0.1, 0.9, 0.2, 1);
     overflow: hidden;
-    /* Importante para los pseudo-elementos */
     z-index: 1;
+    contain: paint layout;
+    /* Aislamiento total de renderizado */
 }
 
 .neon-border::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    background: conic-gradient(from 0deg,
-            transparent 0deg,
-            transparent 150deg,
-            var(--accent) 180deg,
-            var(--accent) 210deg,
-            transparent 240deg);
-    animation: rotate-light 4s linear infinite;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+    opacity: 0.15;
+    /* Resplandor estático muy ligero */
     z-index: -2;
-    opacity: 1;
-    transition: opacity 0.5s ease;
+    pointer-events: none;
     will-change: transform;
-    /* Forzar aceleración por GPU */
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    /* Capa de composición separada */
+}
+
+/* Animación simplificada solo en hover o interactivos clave */
+.neon-border:hover::before,
+.neon-border.fast::before {
+    animation: simple-pulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes simple-pulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0.25;
+    }
 }
 
 .neon-border::after {
@@ -294,22 +306,8 @@ h1 {
 }
 
 /* Modificadores de velocidad para variedad visual */
-.neon-border.fast::before {
-    animation-duration: 2s;
-}
-
 .neon-border.slow::before {
-    animation-duration: 6s;
-}
-
-@keyframes rotate-light {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+    animation-duration: 5s;
 }
 
 /* --- Refactorización de Componentes --- */
@@ -317,16 +315,16 @@ h1 {
 .equipment-card,
 .result-card {
     padding: 2.5rem;
-    background: rgba(10, 11, 16, 0.6);
-    backdrop-filter: blur(15px);
+    background: #12141c;
+    /* Fondo sólido oscuro para máximo rendimiento */
     border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .equipment-card:hover,
 .result-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
-    border-color: transparent;
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
 }
 
 .equipment-card i {
@@ -356,12 +354,11 @@ h1 {
     overflow-y: auto;
     padding: 1rem;
     border-radius: 20px;
-    background: rgba(10, 11, 16, 0.95);
-    /* Aumentada opacidad */
-    backdrop-filter: blur(10px);
-    /* Reducido para scroll más fluido */
+    background: #0d0f17;
+    /* Fondo sólido */
     border: 1px solid var(--glass-border);
-    animation: fadeInUp 0.4s ease;
+    animation: fadeInUp 0.3s ease-out;
+    /* Animación más corta */
 }
 
 .results-grid {
@@ -492,14 +489,14 @@ h1 {
     padding: 3.5rem;
     overflow-y: auto;
     position: relative;
-    transform: translateY(30px);
-    transition: var(--transition);
+    transform: translateY(20px);
+    transition: transform 0.3s ease-out;
     border-radius: 30px;
+    background: #0a0b10;
 }
 
 .modal-overlay.active .modal-content {
     transform: translateY(0);
-    box-shadow: 0 0 50px rgba(0, 242, 255, 0.15);
 }
 
 .close-modal {
