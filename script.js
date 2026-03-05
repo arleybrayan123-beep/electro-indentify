@@ -98,7 +98,7 @@
             category: "Multímetros Digitales",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
             videoUrl: "https://www.youtube.com/watch?v=uMSFrv1UVMc",
-            imageUrl: "https://m.media-amazon.com/images/I/71rBvB9t+YL._AC_SL1500_.jpg",
+            imageUrl: "https://www.fluke-direct.com/images/products/cache/fluke/117/main/fluke-117-digital-multimeter-with-non-contact-voltage.jpg",
             specs: {
                 "Precisión DC": "0.5%",
                 "Cuentas": "6000",
@@ -119,7 +119,7 @@
             category: "Multímetros Digitales",
             desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
             videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
-            imageUrl: "https://m.media-amazon.com/images/I/71N14227iKL._AC_SL1500_.jpg",
+            imageUrl: "https://assets.testequity.com/te1/Images/Web%20Images/Fluke/87V-Contents_500px_01_0525.jpg",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "20000 cuentas",
@@ -140,7 +140,7 @@
             category: "Multímetros Digitales",
             desc: "Excelente relación calidad-precio con alta precisión y conexión a PC para adquisición de datos.",
             videoUrl: "https://www.youtube.com/watch?v=zIFYZ5AwDUI",
-            imageUrl: "https://m.media-amazon.com/images/I/61k2cQW+4aL._AC_SX679_.jpg",
+            imageUrl: "https://i.ebayimg.com/images/g/vVQAAOSwihpkRPqg/s-l400.jpg",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "22000 cuentas",
@@ -161,7 +161,7 @@
             category: "Multímetros Digitales",
             desc: "Alta gama y precisión, doble display y especificaciones superlativas para electrónica de potencia.",
             videoUrl: "https://www.youtube.com/watch?v=rX_H5sI6iMg",
-            imageUrl: "https://m.media-amazon.com/images/I/71a6B7e+TlL._AC_SL1500_.jpg",
+            imageUrl: "https://brymen.eu/wp-content/uploads/2021/12/BM869s.jpg",
             specs: {
                 "Precisión DC": "0.02%",
                 "Cuentas": "500.000 / 50.000",
@@ -182,7 +182,7 @@
             category: "Multímetros Digitales",
             desc: "Multímetro hiper-resistente, fácil de usar y diseñado desde la perspectiva del trabajo de campo.",
             videoUrl: "https://www.youtube.com/watch?v=jW0T0RjC79Y",
-            imageUrl: "https://m.media-amazon.com/images/I/61MvT7u7uRL._AC_SL1000_.jpg",
+            imageUrl: "https://data.kleintools.com/sites/all/product_assets/png/klein/mm400.png",
             specs: {
                 "Cuentas": "4000",
                 "Durabilidad": "Caídas desde 1 m (3.3 pies)",
