@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const searchByText = document.getElementById('search-by-text');
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Rigol_DS1054Z_%28cropped%29.jpg/640px-Rigol_DS1054Z_%28cropped%29.jpg",
+            imageUrl: "https://assets.testequity.com/te1/product-images/large/DS1054Z_01_1024.jpg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             videoUrl: "https://www.youtube.com/watch?v=TCCdMGBlSko",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Tektronix_TDS_3054_Oscilloscope.jpg/640px-Tektronix_TDS_3054_Oscilloscope.jpg",
+            imageUrl: "https://www.mouser.com/images/tektronixinc/lrg/tbs1000b_edu.jpg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "2 análogos",
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=zQsrt3ND0JM",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Oscilloscope_BK.jpg/320px-Oscilloscope_BK.jpg",
+            imageUrl: "https://www.saelig.com/miva/graphics/00000001/sds1202x-e_1280x787.jpg",
             specs: {
                 "Ancho de Banda": "200 MHz",
                 "Canales": "2 análogos",
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Handheld_oscilloscope.jpg/320px-Handheld_oscilloscope.jpg",
+            imageUrl: "https://m.media-amazon.com/images/I/71LzqF-nrnL._SL1000_.jpg",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "117",
             category: "Multímetros Digitales",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fluke_179_ESFM_Multimeter.jpg/320px-Fluke_179_ESFM_Multimeter.jpg",
+            imageUrl: "https://www.fluke-direct.com/images/products/cache/fluke/117/main/fluke-117-digital-multimeter-with-non-contact-voltage.jpg",
             specs: { "Precisión DC": "0.5%", "Cuentas": "6000", "Seguridad": "CAT III 600 V" },
             usageSteps: ["Gire el selector a la magnitud deseada.", "Use 'Auto-V' para detectar AC o DC automáticamente.", "Presione el botón de luz para entornos oscuros."],
             type: "Digital Multimeter"
@@ -203,3 +203,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
     tabBtns.forEach(btn => btn.addEventListener('click', () => { tabBtns.forEach(b => b.classList.remove('active')); btn.classList.add('active'); const isPhoto = btn.dataset.tab === 'photo'; searchByText.style.display = isPhoto ? 'none' : 'block'; searchByPhoto.style.display = isPhoto ? 'block' : 'none'; }));
 });
+
