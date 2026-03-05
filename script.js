@@ -11,6 +11,7 @@
             name: "Osciloscopio Digital Rigol",
             ref: "DS1054Z",
             category: "Osciloscopios",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
             imageUrl: "https://assets.testequity.com/te1/product-images/large/DS1054Z_01_1024.jpg",
@@ -33,6 +34,7 @@
             name: "Osciloscopio Tektronix",
             ref: "TBS1052B",
             category: "Osciloscopios",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             videoUrl: "https://www.youtube.com/watch?v=TCCdMGBlSko",
             imageUrl: "https://www.mouser.com/images/tektronixinc/lrg/tbs1000b_edu.jpg",
@@ -54,6 +56,7 @@
             name: "Osciloscopio Siglent",
             ref: "SDS1202X-E",
             category: "Osciloscopios",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=zQsrt3ND0JM",
             imageUrl: "https://www.saelig.com/miva/graphics/00000001/sds1202x-e_1280x787.jpg",
@@ -75,6 +78,7 @@
             name: "Osciloscopio Portátil Hantek",
             ref: "2D42",
             category: "Osciloscopios",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
             imageUrl: "https://m.media-amazon.com/images/I/71LzqF-nrnL._SL1000_.jpg",
@@ -96,6 +100,7 @@
             name: "Multímetro Digital Fluke",
             ref: "117",
             category: "Multímetros Digitales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
             videoUrl: "https://www.youtube.com/watch?v=uMSFrv1UVMc",
             imageUrl: "https://www.fluke-direct.com/images/products/cache/fluke/117/main/fluke-117-digital-multimeter-with-non-contact-voltage.jpg",
@@ -117,6 +122,7 @@
             name: "Multímetro Industrial Fluke",
             ref: "87V",
             category: "Multímetros Digitales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
             videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
             imageUrl: "https://assets.testequity.com/te1/Images/Web%20Images/Fluke/87V-Contents_500px_01_0525.jpg",
@@ -138,6 +144,7 @@
             name: "Multímetro de Banco/Laboratorio UNI-T",
             ref: "UT61E+",
             category: "Multímetros Digitales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Excelente relación calidad-precio con alta precisión y conexión a PC para adquisición de datos.",
             videoUrl: "https://www.youtube.com/watch?v=zIFYZ5AwDUI",
             imageUrl: "https://i.ebayimg.com/images/g/vVQAAOSwihpkRPqg/s-l400.jpg",
@@ -159,6 +166,7 @@
             name: "Multímetro Avanzado Brymen",
             ref: "BM869s",
             category: "Multímetros Digitales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Alta gama y precisión, doble display y especificaciones superlativas para electrónica de potencia.",
             videoUrl: "https://www.youtube.com/watch?v=aSrq3UJt4qU",
             imageUrl: "https://brymen.eu/wp-content/uploads/2021/12/BM869s.jpg",
@@ -180,6 +188,7 @@
             name: "Multímetro de Electricista Klein Tools",
             ref: "MM400",
             category: "Multímetros Digitales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Multímetro hiper-resistente, fácil de usar y diseñado desde la perspectiva del trabajo de campo.",
             videoUrl: "https://www.youtube.com/watch?v=3Se87lYg5O0",
             imageUrl: "https://data.kleintools.com/sites/all/product_assets/png/klein/mm400.png",
@@ -201,13 +210,14 @@
             name: "Fuente de Poder DC Lineal Programable Rigol",
             ref: "DP832",
             category: "Fuentes de Poder",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Estándar en laboratorios académicos e industriales por su diseño lineal de bajo ruido y tres canales aislados.",
             videoUrl: "https://www.youtube.com/watch?v=we2FwdLs8a8",
             imageUrl: "https://assets.testequity.com/te1/product-images/large/Rigol-DP832-Front.jpg",
             specs: {
                 "Canales": "3 (30V/3A, 30V/3A, 5V/3A)",
                 "Potencia Total": "195 vatios",
-                "Ruido y Ripple": "<350 μVrms / 2 mVpp",
+                "Ruido y Ripple": "<350 \u03bcVrms / 2 mVpp",
                 "Conectividad": "USB, LAN, RS232"
             },
             usageSteps: [
@@ -222,6 +232,7 @@
             name: "Fuente de Poder DC Alta Gama Keysight",
             ref: "E36312A",
             category: "Fuentes de Poder",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Fuente de alimentación premium de precisión extrema, con pantalla a color y mediciones de baja corriente.",
             videoUrl: "https://www.youtube.com/watch?v=WWTmAzL5pnw",
             imageUrl: "https://assets.testequity.com/te1/product-images/large/E36312A-500.jpg",
@@ -243,6 +254,7 @@
             name: "Fuente de Poder Variable Korad",
             ref: "KA3005P",
             category: "Fuentes de Poder",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Opción accesible, robusta y con memoria para uso en reparaciones, hobbies y proyectos DIY. Control por USB.",
             videoUrl: "https://www.youtube.com/watch?v=yksjM7GAdQQ",
             imageUrl: "https://www.sra-solder.com/pub/media/catalog/product/cache/de8ef5f7c7ec061290cae8f47c68f0eb/k/o/korad-ka3005p-main_1.jpg",
@@ -264,6 +276,7 @@
             name: "Fuente de Poder AC Variable (Variac)",
             ref: "TDGC2-2KM",
             category: "Fuentes de Poder",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Autotransformador variable para pruebas de equipos de corriente alterna y testeo seguro en bancos de reparación.",
             videoUrl: "https://www.youtube.com/watch?v=LpWtZkSbIOk",
             imageUrl: "https://mastechpowersupply.com/images/source/5KVA_110V250V_main.jpg",
@@ -285,6 +298,7 @@
             name: "Generador de Señales Arbitrarias Siglent",
             ref: "SDG1032X",
             category: "Generadores de Señales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Excelente generador de ondas complejas con tecnología EasyPulse, ideal para diseño y simulaciones.",
             videoUrl: "https://www.youtube.com/watch?v=XynqWZjHtRs",
             imageUrl: "https://siglentna.com/wp-content/uploads/2017/09/713839551390.MAIN_.jpg",
@@ -306,32 +320,34 @@
             name: "Generador de Señales de RF Rigol",
             ref: "DSG815",
             category: "Generadores de Señales",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Generador para radiofrecuencia (RF) y microondas con excelentes capacidades de modulación analógica.",
             videoUrl: "https://www.youtube.com/watch?v=A0G0uz--5uA",
             imageUrl: "https://www.axiomtest.com/images/models/Rigol_DSG815.jpeg",
             specs: {
                 "Rango de Frecuencia": "9 kHz a 1.5 GHz",
-                "Ruido de Fase": "<-105 dBc/Hz (típico)",
-                "Modulaciones": "AM/FM/ØM Estándar",
-                "Potencia de Salida": "Hasta +20 dBm (Típico)"
+                "Ruido de Fase": "<-105 dBc/Hz (t\u00edpico)",
+                "Modulaciones": "AM/FM/\u00d8M Est\u00e1ndar",
+                "Potencia de Salida": "Hasta +20 dBm (T\u00edpico)"
             },
             usageSteps: [
-                "Establezca la frecuencia central de transmisión en el teclado.",
+                "Establezca la frecuencia central de transmisi\u00f3n en el teclado.",
                 "Ajuste el nivel de potencia de salida RF (Level) en dBm.",
-                "Configure los parámetros de modulación (AM, FM o de fase).",
-                "Active 'RF' y 'Mod' para iniciar la transmisión controlada."
+                "Configure los par\u00e1metros de modulaci\u00f3n (AM, FM o de fase).",
+                "Active 'RF' y 'Mod' para iniciar la transmisi\u00f3n controlada."
             ],
-            type: "Generador de Señales de Radiofrecuencia (RF)"
+            type: "Generador de Se\u00f1ales de Radiofrecuencia (RF)"
         },
         {
-            name: "Generador de Señales Portátil FeelElec",
+            name: "Generador de Se\u00f1ales Port\u00e1til FeelElec",
             ref: "FY6900",
-            category: "Generadores de Señales",
-            desc: "Dispositivo DDS portátil y accesible que incluye múltiples funciones como contador de frecuencia y barredor de señales.",
+            category: "Generadores de Se\u00f1ales",
+            mainCategory: "Aparatos Electr\u00f3nicos",
+            desc: "Dispositivo DDS port\u00e1til y accesible que incluye m\u00faltiples funciones como contador de frecuencia y barredor de se\u00f1ales.",
             videoUrl: "https://www.youtube.com/watch?v=ixkh2rXsqRo",
             imageUrl: "https://ae01.alicdn.com/kf/Sf1303fcb182f47848361c7771e7ccda0p.jpg",
             specs: {
-                "Ancho de Banda Max": "60 MHz a 100 MHz (Según modelo)",
+                "Ancho de Banda Max": "60 MHz a 100 MHz (Seg\u00fan modelo)",
                 "Frecuencia de Muestreo": "250 MSa/s",
                 "Formas Predefinidas": "64 tipos",
                 "Función Extra": "Medidor/Contador de Frecuencia"
@@ -348,6 +364,7 @@
             name: "Estación de Soldadura Digital Hakko",
             ref: "FX-888D",
             category: "Estaciones de Soldadura",
+            mainCategory: "Aparatos Electrónicos",
             desc: "El estándar de la industria para laboratorios y talleres profesionales. Control térmico preciso y puntas intercambiables.",
             videoUrl: "https://www.youtube.com/watch?v=-P4GZfNqYMw",
             imageUrl: "https://cdn-shop.adafruit.com/970x728/1204-03.jpg",
@@ -369,6 +386,7 @@
             name: "Estación de Soldadura Weller",
             ref: "WE1010",
             category: "Estaciones de Soldadura",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Estación de 70W con excelente precisión, pantalla digital y puntas RT de calentamiento rápido.",
             videoUrl: "https://www.youtube.com/watch?v=Z0EvvE2ELbY",
             imageUrl: "https://assets.testequity.com/te1/Images/Web%20Images/Weller/Weller_WE1010NA_Soldering-Station-Kit_01_0126_W.jpg",
@@ -390,6 +408,7 @@
             name: "Analizador Lógico Profesional Saleae",
             ref: "Logic-8",
             category: "Analizadores Lógicos",
+            mainCategory: "Aparatos Electrónicos",
             desc: "El referente de la industria. Decodifica más de 60 protocolos digitales con hardware compacto y software potente.",
             videoUrl: "https://www.youtube.com/watch?v=XhWKoFj_p9k",
             imageUrl: "https://cdn-shop.adafruit.com/970x728/2512-04.jpg",
@@ -411,6 +430,7 @@
             name: "Analizador Lógico USB Económico",
             ref: "LA-8CH-24MHz",
             category: "Analizadores Lógicos",
+            mainCategory: "Aparatos Electrónicos",
             desc: "Compatible con Saleae y PulseView (Sigrok). Excelente opción de entrada para estudiantes y makers con 8 canales a 24 MHz.",
             videoUrl: "https://www.youtube.com/watch?v=SNJCQBZotjQ",
             imageUrl: "https://electropeak.com/media/catalog/product/cache/a99a51fafac039a73087ecfaa8ccceba/p/r/pro-01-021-1-24mhz-8channel-logic.jpg",
@@ -427,6 +447,177 @@
                 "Configure el muestreo y pulse REC para capturar y decodificar señales."
             ],
             type: "Analizador Lógico USB Económico (8ch)"
+        },
+        {
+            name: "Resistencia de Película de Carbón",
+            ref: "RES-CARBON",
+            category: "Resistencias",
+            mainCategory: "Circuitos Integrados",
+            desc: "Componente pasivo que introduce una resistencia eléctrica específica en el circuito.",
+            videoUrl: "https://www.youtube.com/watch?v=Gc1S86D-d9Y",
+            imageUrl: "https://m.media-amazon.com/images/I/51+u0fH8MBL.jpg",
+            specs: {
+                "Funcionamiento": "Limita el flujo de corriente eléctrica convirtiendo energía eléctrica en calor mediante el efecto Joule.",
+                "Tolerancia": "±5% típica",
+                "Potencia": "1/4W, 1/2W típicos",
+                "Datasheet": "Genérico"
+            },
+            usageSteps: [
+                "Identifique el valor óhmico usando el código de colores.",
+                "Corte o doble las terminales según la necesidad.",
+                "Suelde el componente asegurando buen contacto.",
+                "Verifique la resistencia con un multímetro."
+            ],
+            type: "Componente Pasivo"
+        },
+        {
+            name: "Potenciómetro Lineal",
+            ref: "POT-B10K",
+            category: "Resistencias",
+            mainCategory: "Circuitos Integrados",
+            desc: "Resistencia variable accionada manualmente por un eje giratorio.",
+            videoUrl: "https://www.youtube.com/watch?v=0_uW_OaT3_I",
+            imageUrl: "https://m.media-amazon.com/images/I/61r5f7p+FKL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Divisor de voltaje ajustable mediante un contacto deslizante.",
+                "Resistencia Max": "10kΩ",
+                "Pines": "3 (Terminales extremos y cursor)",
+                "Datasheet": "https://www.mouser.com/ds/2/44/PTV09A-1-1102927.pdf"
+            },
+            usageSteps: [
+                "El pin central es el cursor (wiper).",
+                "Conecte extremos a fuente y tierra.",
+                "Gire el eje para variar el voltaje.",
+                "Asegure físicamente al chasis."
+            ],
+            type: "Resistencia Variable"
+        },
+        {
+            name: "Capacitor Electrolítico",
+            ref: "CAP-ELEC",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Almacena energía eléctrica. Componente polarizado.",
+            videoUrl: "https://www.youtube.com/watch?v=f0pS8fO2S8E",
+            imageUrl: "https://m.media-amazon.com/images/I/61J2m0C6-OL._AC_SL1500_.jpg",
+            specs: {
+                "Funcionamiento": "Almacena carga eléctrica mediante campo electrostático.",
+                "Voltaje Max": "Depende del modelo (ej: 25V)",
+                "Polaridad": "Fundamental (Pata corta = Negativo)",
+                "Datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog/aluminum-catalog/YXF.pdf"
+            },
+            usageSteps: [
+                "Identifique el polo negativo (banda gris).",
+                "Respete la polaridad en la instalación.",
+                "Evite el sobrecalentamiento al soldar.",
+                "No exceda el voltaje nominal."
+            ],
+            type: "Componente Pasivo Polarizado"
+        },
+        {
+            name: "Capacitor Cerámico",
+            ref: "CAP-CER",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Capacitor no polarizado para señales de alta frecuencia.",
+            videoUrl: "https://www.youtube.com/watch?v=uD5o8G2YgX4",
+            imageUrl: "https://m.media-amazon.com/images/I/51A1i2-e6-L._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Almacena carga sin polaridad fija.",
+                "Voltaje": "50V típicos",
+                "Datasheet": "https://www.tdk-electronics.tdk.com/inf/20/20/db/mlcc/MLCC_General_Purpose.pdf"
+            },
+            usageSteps: [
+                "Identifique el valor por el código impreso.",
+                "Inserte en cualquier orientación.",
+                "Ubique cerca de los pines de alimentación.",
+                "Suelde con puntos limpios."
+            ],
+            type: "Componente Pasivo No Polarizado"
+        },
+        {
+            name: "Transistor NPN 2N2222",
+            ref: "2N2222",
+            category: "Transistores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Transistor para amplificación y conmutación rápida.",
+            videoUrl: "https://www.youtube.com/watch?v=8REH0_N6U2k",
+            imageUrl: "https://m.media-amazon.com/images/I/41D7h4y8FSL._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Controla corriente grande entre colector y emisor con pequeña corriente en base.",
+                "Encapsulado": "TO-92",
+                "Datasheet": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf"
+            },
+            usageSteps: [
+                "Identifique Emisor, Base y Colector.",
+                "Use resistencia de base siempre.",
+                "Conecte carga entre positivo y colector.",
+                "Verifique disipación de calor."
+            ],
+            type: "Semiconductor BJT"
+        },
+        {
+            name: "Diodo Rectificador 1N4007",
+            ref: "1N4007",
+            category: "Diodos",
+            mainCategory: "Circuitos Integrados",
+            desc: "Permite paso de corriente en un solo sentido.",
+            videoUrl: "https://www.youtube.com/watch?v=fXv0j0D2p6A",
+            imageUrl: "https://m.media-amazon.com/images/I/41t7JgC5RSL._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Bloquea flujo inverso comportándose como válvula.",
+                "Voltaje Inverso": "1000V Max",
+                "Datasheet": "https://www.diodes.com/assets/Datasheets/ds28002.pdf"
+            },
+            usageSteps: [
+                "La banda plateada indica el Cátodo (-).",
+                "Conecte en serie para protección.",
+                "Use en puentes rectificadores.",
+                "No exceda la corriente de 1A."
+            ],
+            type: "Diodo"
+        },
+        {
+            name: "Inductor (Bobina)",
+            ref: "IND-AIR",
+            category: "Bobinas",
+            mainCategory: "Circuitos Integrados",
+            desc: "Almacena energía en campo magnético.",
+            videoUrl: "https://www.youtube.com/watch?v=NgwX_vun3O4",
+            imageUrl: "https://m.media-amazon.com/images/I/61jC8Vq2SML._AC_SL1100_.jpg",
+            specs: {
+                "Funcionamiento": "Se opone a cambios bruscos de corriente.",
+                "Tipo": "Núcleo de Aire",
+                "Datasheet": "Genérico"
+            },
+            usageSteps: [
+                "Retire esmalte de puntas para soldar.",
+                "Aleje de otros metales.",
+                "Fije mecánicamente.",
+                "Use en circuitos resonantes."
+            ],
+            type: "Inductor"
+        },
+        {
+            name: "Timer NE555",
+            ref: "NE555",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "IC para pulsos, retardos y oscilaciones.",
+            videoUrl: "https://www.youtube.com/watch?v=kY6v_A3o8vU",
+            imageUrl: "https://m.media-amazon.com/images/I/61tS7H2pQQL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Genera estados lógicos temporales precisos.",
+                "Voltaje": "4.5V - 15V",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/ne555.pdf"
+            },
+            usageSteps: [
+                "Pin 1 es GND (punto/muesca).",
+                "Pin 8 es VCC.",
+                "Use RC externo para tiempos.",
+                "Pin 3 es la salida."
+            ],
+            type: "Integrated Circuit"
         }
     ];
 
@@ -472,11 +663,11 @@
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
-                    <span class="ref-tag">MODELO: ${item.ref}</span>
+                    <span class="ref-tag">MODELO/REF: ${item.ref}</span>
                 </div>
                 <div class="card-footer">
                     <button class="btn-details" onclick="showDetails('${item.ref}')">
-                        <i class="fas fa-eye"></i> Detalles Técnicos
+                        <i class="fas fa-eye"></i> Detalles
                     </button>
                 </div>
             `;
@@ -499,14 +690,14 @@
                             ${Object.entries(item.specs).map(([key, val]) => `
                                 <div class="spec-item">
                                     <span class="spec-label">${key}</span>
-                                    <span class="spec-value">${val}</span>
+                                    <span class="spec-value">${val.toString().startsWith('http') ? `<a href="${val}" target="_blank" class="spec-link">Ver PDF <i class="fas fa-external-link-alt"></i></a>` : val}</span>
                                 </div>
                             `).join('')}
                         </div>
                         ${item.videoUrl ? `<a href="${item.videoUrl}" target="_blank" class="btn-video"><i class="fab fa-youtube"></i> VER VIDEO TUTORIAL</a>` : ''}
                     </div>
                     <div class="usage-section">
-                        <h3><i class="fas fa-tools"></i> Guía Manual</h3>
+                        <h3><i class="fas fa-tools"></i> Guía / Instrucciones</h3>
                         <ul class="usage-list">${item.usageSteps.map(step => `<li>${step}</li>`).join('')}</ul>
                         ${item.imageUrl ? `
                         <div class="equipment-image-container">
@@ -543,58 +734,114 @@
         }, 450);
     }
 
-    const mainCategoryCard = document.querySelector('.main-category-card');
-    if (mainCategoryCard) {
-        mainCategoryCard.addEventListener('click', () => transition(landingPage, subcategoryPage));
+    // Inicialización dinámica de subcategorías
+    function setupCategories() {
+        const subGrid = document.getElementById('subcategory-grid');
+        const mainCards = document.querySelectorAll('.main-category-card');
+
+        mainCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const mainCategory = card.querySelector('h3').textContent;
+                renderSubcategories(mainCategory);
+                transition(landingPage, subcategoryPage);
+            });
+        });
+    }
+
+    function renderSubcategories(mainCategory) {
+        const subGrid = document.getElementById('subcategory-grid');
+        const subTitle = document.getElementById('subcategory-title');
+        const subSubtitle = document.getElementById('subcategory-subtitle');
+
+        if (subTitle) subTitle.textContent = mainCategory;
+        if (subSubtitle) subSubtitle.textContent = `Selecciona una subcategoría de ${mainCategory.toLowerCase()} para explorar.`;
+
+        // Obtener subcategorías únicas para esta categoría principal
+        const subs = [...new Set(equipmentData
+            .filter(item => item.mainCategory === mainCategory)
+            .map(item => item.category))];
+
+        subGrid.innerHTML = '';
+        subs.forEach(sub => {
+            const count = equipmentData.filter(i => i.category === sub && i.mainCategory === mainCategory).length;
+            const card = document.createElement('div');
+            card.className = 'equipment-card glass neon-border';
+            card.innerHTML = `
+                <div class="card-icon">
+                    <i class="${getIconForSub(sub)}"></i>
+                </div>
+                <h3>${sub}</h3>
+                <p>${count} Dispositivos</p>
+                <div class="card-glow"></div>
+            `;
+            card.addEventListener('click', () => openCategory(sub, mainCategory));
+            subGrid.appendChild(card);
+        });
+    }
+
+    function getIconForSub(sub) {
+        const icons = {
+            "Osciloscopios": "fas fa-wave-square",
+            "Multímetros Digitales": "fas fa-bolt",
+            "Fuentes de Poder": "fas fa-plug",
+            "Generadores de Señales": "fas fa-signal",
+            "Estaciones de Soldadura": "fas fa-fire",
+            "Analizadores Lógicos": "fas fa-microchip",
+            "Resistencias": "fas fa-grip-lines",
+            "Capacitores": "fas fa-battery-half",
+            "Transistores": "fas fa-project-diagram",
+            "Diodos": "fas fa-arrow-right",
+            "Bobinas": "fas fa-redo",
+            "Circuitos Integrados": "fas fa-memory"
+        };
+        return icons[sub] || "fas fa-microchip";
+    }
+
+    function openCategory(category, mainCategory) {
+        const filtered = equipmentData.filter(item =>
+            normalize(item.category) === normalize(category) &&
+            item.mainCategory === mainCategory
+        );
+
+        const catalogTitle = document.getElementById('catalog-title');
+        const catalogSubtitle = document.getElementById('catalog-subtitle');
+        if (catalogTitle) catalogTitle.textContent = category;
+        if (catalogSubtitle) catalogSubtitle.textContent = `${filtered.length} elementos encontrados.`;
+
+        catalogGrid.innerHTML = '';
+        filtered.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'result-card glass neon-border animate';
+            card.innerHTML = `
+                <div class="result-info">
+                    <span class="category-badge">${item.category}</span>
+                    <h4>${item.name}</h4>
+                    <span class="ref-tag">REF: ${item.ref}</span>
+                    <p class="desc-preview">${item.desc}</p>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-details" onclick="showDetails('${item.ref}')">
+                        <i class="fas fa-eye"></i> Ver Detalles
+                    </button>
+                </div>
+            `;
+            catalogGrid.appendChild(card);
+        });
+        transition(subcategoryPage, catalogPage);
     }
 
     if (backToHomeSub) {
         backToHomeSub.addEventListener('click', () => transition(subcategoryPage, landingPage));
     }
 
-    function openCategory(category) {
-        const filtered = equipmentData.filter(item => normalize(item.category) === normalize(category));
-        const catalogTitle = document.getElementById('catalog-title');
-        const catalogSubtitle = document.getElementById('catalog-subtitle');
-        if (catalogTitle) catalogTitle.textContent = category;
-        if (catalogSubtitle) catalogSubtitle.textContent = `${filtered.length} equipos encontrados en esta subcategoría.`;
-        catalogGrid.innerHTML = '';
-        if (filtered.length === 0) {
-            catalogGrid.innerHTML = '<p class="no-results">No hay equipos registrados en esta subcategoría aún.</p>';
-        } else {
-            filtered.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'result-card glass neon-border animate';
-                card.innerHTML = `
-                    <div class="result-info">
-                        <span class="category-badge">${item.category}</span>
-                        <h4>${item.name}</h4>
-                        <span class="ref-tag">MODELO: ${item.ref}</span>
-                        <p class="desc-preview">${item.desc}</p>
-                    </div>
-                    <div class="card-footer">
-                        <button class="btn-details" onclick="showDetails('${item.ref}')">
-                            <i class="fas fa-eye"></i> Detalles Técnicos
-                        </button>
-                    </div>
-                `;
-                catalogGrid.appendChild(card);
-            });
-        }
-        transition(subcategoryPage, catalogPage);
-    }
-
     if (backToHome) {
-        backToHome.innerHTML = '<i class="fas fa-arrow-left"></i> Volver a Subcategorías';
         backToHome.addEventListener('click', () => transition(catalogPage, subcategoryPage));
     }
 
-    document.querySelectorAll('#subcategory-grid .equipment-card').forEach(card => {
-        card.addEventListener('click', () => openCategory(card.dataset.category || card.querySelector('h3').innerText));
-    });
-
+    setupCategories();
     mainSearch.addEventListener('input', debounce(performSearch, 300));
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+
     tabBtns.forEach(btn => btn.addEventListener('click', () => {
         tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');

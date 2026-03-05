@@ -477,7 +477,8 @@ h1 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.96); /* Opaco para bloquear la pagina detras */
+    background: rgba(0, 0, 0, 0.96);
+    /* Opaco para bloquear la pagina detras */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -719,6 +720,7 @@ h1 {
         padding: 2rem 1.5rem;
     }
 }
+
 /* =============================================
    CORRECCIONES RESPONSIVAS AVANZADAS PARA MOVIL
    ============================================= */
@@ -797,9 +799,11 @@ h1 {
 
 /* --- Estilos para la Nueva Navegación de Categorías --- */
 
-.single-main-card {
-    grid-template-columns: 1fr;
-    max-width: 600px;
+.main-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -841,4 +845,19 @@ h1 {
     letter-spacing: 1px;
     text-transform: uppercase;
     box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.spec-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.spec-link:hover {
+    text-shadow: 0 0 10px var(--accent-glow);
+    transform: translateX(5px);
 }
