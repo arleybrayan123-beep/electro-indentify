@@ -453,44 +453,23 @@
             ref: "RES-CARBON",
             category: "Resistencias",
             mainCategory: "Circuitos Integrados",
-            desc: "Componente pasivo que introduce una resistencia eléctrica específica en el circuito.",
-            videoUrl: "https://www.youtube.com/watch?v=Gc1S86D-d9Y",
-            imageUrl: "https://m.media-amazon.com/images/I/51+u0fH8MBL.jpg",
+            desc: "Componente pasivo fundamental que limita el flujo de corriente. Es vital saber identificar su valor mediante las bandas de colores.",
+            videoUrl: "https://www.youtube.com/watch?v=ZakHnvGVxLk",
+            imageUrl: "https://www.logicbus.com.mx/blog/wp-content/uploads/2019/07/codigo-colores-resistencias-e1563802288271.jpg",
             specs: {
-                "Funcionamiento": "Limita el flujo de corriente eléctrica convirtiendo energía eléctrica en calor mediante el efecto Joule.",
-                "Tolerancia": "±5% típica",
-                "Potencia": "1/4W, 1/2W típicos",
-                "Datasheet": "Genérico"
+                "Funcionamiento": "Se opone al paso de la corriente eléctrica, disipando energía en forma de calor.",
+                "Identificación": "Se lee mediante 4 o 5 bandas de colores impresas en su cuerpo.",
+                "Tolerancia": "±5% (Banda dorada) típica",
+                "Potencia": "1/4W o 1/2W para uso general"
             },
             usageSteps: [
-                "Identifique el valor óhmico usando el código de colores.",
-                "Corte o doble las terminales según la necesidad.",
-                "Suelde el componente asegurando buen contacto.",
-                "Verifique la resistencia con un multímetro."
+                "Localice la banda de tolerancia (generalmente dorada) y colóquela a la derecha.",
+                "Lea los colores de las primeras bandas de izquierda a derecha.",
+                "Use la tabla de colores para convertir colores en cifras.",
+                "Multiplique por el valor de la tercera banda para obtener los Ohmios (Ω).",
+                "Verifique el valor real con un multímetro antes de soldar."
             ],
             type: "Componente Pasivo"
-        },
-        {
-            name: "Potenciómetro Lineal",
-            ref: "POT-B10K",
-            category: "Resistencias",
-            mainCategory: "Circuitos Integrados",
-            desc: "Resistencia variable accionada manualmente por un eje giratorio.",
-            videoUrl: "https://www.youtube.com/watch?v=0_uW_OaT3_I",
-            imageUrl: "https://m.media-amazon.com/images/I/61r5f7p+FKL._AC_SL1000_.jpg",
-            specs: {
-                "Funcionamiento": "Divisor de voltaje ajustable mediante un contacto deslizante.",
-                "Resistencia Max": "10kΩ",
-                "Pines": "3 (Terminales extremos y cursor)",
-                "Datasheet": "https://www.mouser.com/ds/2/44/PTV09A-1-1102927.pdf"
-            },
-            usageSteps: [
-                "El pin central es el cursor (wiper).",
-                "Conecte extremos a fuente y tierra.",
-                "Gire el eje para variar el voltaje.",
-                "Asegure físicamente al chasis."
-            ],
-            type: "Resistencia Variable"
         },
         {
             name: "Capacitor Electrolítico",
