@@ -277,9 +277,9 @@ h1 {
     will-change: transform;
 }
 
-/* Animación simplificada solo en hover o interactivos clave */
-.neon-border:hover::before,
-.neon-border.fast::before {
+/* Animación simplificada solo para elementos con clase .fast o .slow */
+.neon-border.fast::before,
+.neon-border.slow::before {
     animation: simple-pulse 3s infinite alternate ease-in-out;
 }
 
