@@ -190,11 +190,11 @@ h1 {
     transform: translateY(-50%);
     background: var(--accent);
     border: none;
-    width: 60px;
-    /* Incrementado para balance visual */
-    height: calc(100% - 10px);
-    /* Coincide con la altura interna del input */
-    border-radius: 10px;
+    width: 50px;
+    /* Tamaño fijo para que sea cuadrado */
+    height: 50px;
+    /* Igual al ancho */
+    border-radius: 12px;
     color: var(--primary-bg);
     cursor: pointer;
     display: flex;
