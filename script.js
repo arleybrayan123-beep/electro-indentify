@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Rigol_DS1054Z_%28cropped%29.jpg/640px-Rigol_DS1054Z_%28cropped%29.jpg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Instrumento robusto y preciso para entornos industriales y educativos.",
             videoUrl: "https://www.youtube.com/watch?v=TCCdMGBlSko",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Tektronix_TDS_3054_Oscilloscope.jpg/640px-Tektronix_TDS_3054_Oscilloscope.jpg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "2 análogos",
@@ -54,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Tecnología Super Phosphor (SPO) de alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=zQsrt3ND0JM",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Oscilloscope_BK.jpg/320px-Oscilloscope_BK.jpg",
             specs: {
                 "Ancho de Banda": "200 MHz",
                 "Canales": "2 análogos",
@@ -74,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Osciloscopios",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Handheld_oscilloscope.jpg/320px-Handheld_oscilloscope.jpg",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -93,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ref: "117",
             category: "Multímetros Digitales",
             desc: "Diseñado para electricistas profesionales con tecnología VoltAlert.",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Fluke_179_ESFM_Multimeter.jpg/320px-Fluke_179_ESFM_Multimeter.jpg",
             specs: { "Precisión DC": "0.5%", "Cuentas": "6000", "Seguridad": "CAT III 600 V" },
             usageSteps: ["Gire el selector a la magnitud deseada.", "Use 'Auto-V' para detectar AC o DC automáticamente.", "Presione el botón de luz para entornos oscuros."],
             type: "Digital Multimeter"
@@ -157,6 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="usage-section">
                         <h3><i class="fas fa-tools"></i> Guía Manual</h3>
                         <ul class="usage-list">${item.usageSteps.map(step => `<li>${step}</li>`).join('')}</ul>
+                        ${item.imageUrl ? `
+                        <div class="equipment-image-container">
+                            <img src="${item.imageUrl}" alt="${item.name}" class="equipment-image"
+                                 onerror="this.parentElement.style.display='none'">
+                        </div>` : ''}
                     </div>
                 </div>
             </div>
