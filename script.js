@@ -478,13 +478,13 @@
             mainCategory: "Circuitos Integrados",
             desc: "Son los más utilizados, compactos y con baja resistencia en serie equivalente (ESR). Esenciales para el filtrado de alta frecuencia y desacople de alimentación.",
             videoUrl: "https://www.youtube.com/watch?v=-Qzuj5PHqxs",
-            imageUrl: "https://m.media-amazon.com/images/I/51A1i2-e6-L._AC_SL1000_.jpg",
+            imageUrl: "assets/capacitores/main_cer_ai.png",
             specs: {
                 "Funcionamiento": "Almacena carga sin polaridad fija. Ideal para bypass y alta frecuencia.",
                 "Voltaje": "50V - 100V típicos",
                 "Polaridad": "No polarizado",
-                "Referencia Visual": "https://www.zonamaker.com/images/electronica/componentes/capacitores/cap_cer_tabla.jpg",
-                "Tabla de Código": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mylar_capacitor_codes.svg/320px-Mylar_capacitor_codes.svg.png"
+                "Referencia Visual": "assets/capacitores/cer_ref.svg"
+                // Removed base64 Tabla de Código
             },
             usageSteps: [
                 "Identifique el valor por el código de 3 dígitos impreso (ej: 104 = 10 × 10⁴ pF = 100nF).",
@@ -502,12 +502,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Ofrecen capacitancia muy alta para filtrado en fuentes de alimentación. Su dieléctrico de óxido de aluminio les permite alcanzar miles de microfaradios.",
             videoUrl: "https://www.youtube.com/watch?v=bLE_cJ8Hrpc",
-            imageUrl: "https://m.media-amazon.com/images/I/61J2m0C6-OL._AC_SL1500_.jpg",
+            imageUrl: "assets/capacitores/main_elec_ai.png",
             specs: {
                 "Funcionamiento": "Almacena grandes cargas para suavizar el rizado en fuentes DC.",
                 "Voltaje Max": "Varía según modelo: 6.3V, 16V, 25V, 50V, 100V",
                 "Polaridad": "Polarizado — la franja gris lateral indica el polo Negativo (−)",
-                "Referencia Visual": "https://i.pinimg.com/736x/8a/a5/d2/8aa5d2c77df51fb264cacf43bd64d509--electronics-components-electrical-electronics.jpg"
+                "Referencia Visual": "assets/capacitores/elec_ref.svg"
             },
             usageSteps: [
                 "Identifique el Cátodo (−) por la franja gris/blanca lateral con el símbolo '−−−'.",
@@ -525,12 +525,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Polarizados con dieléctrico de pentóxido de tantalio. Proporcionan alta estabilidad, mejor respuesta en frecuencia y vida útil superior a los de aluminio.",
             videoUrl: "https://www.youtube.com/watch?v=TYVUeag-Ggk",
-            imageUrl: "https://m.media-amazon.com/images/I/41D8zD5fP9L._AC_.jpg",
+            imageUrl: "assets/capacitores/main_tan_ai.png",
             specs: {
                 "Funcionamiento": "Dieléctrico sólido de óxido de tantalio. Ideal para aplicaciones compactas de precisión y filtrado fino.",
                 "Ventaja": "Larga vida útil, bajo ESR y tamaño reducido vs. electrolítico de Al.",
                 "Polaridad": "Polarizado — la barra o '+' sobre el cuerpo indica el polo Positivo (+)",
-                "Referencia Visual": "https://es.farnell.com/wcsstore/ExtendedSitesCatalogAssetStore/cms/asset/images/americas/common/article165-2019-12-16-17-06-25-303.png"
+                "Referencia Visual": "assets/capacitores/tan_ref.svg"
             },
             usageSteps: [
                 "Identifique el polo Positivo (+) por la RAYA o marca '+' impresa en el cuerpo del capacitor.",
@@ -548,12 +548,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Utilizan una lámina de poliéster (Mylar) o polipropileno como dieléctrico. Son muy estables, resistentes a la humedad y comunes en audio e industriales.",
             videoUrl: "https://www.youtube.com/watch?v=hon7S766jrI",
-            imageUrl: "https://m.media-amazon.com/images/I/61P1YInmE-L._AC_SL1000_.jpg",
+            imageUrl: "assets/capacitores/main_poly_ai.png",
             specs: {
                 "Funcionamiento": "Alta capacidad de sobretensión, baja pérdida dieléctrica y excelente estabilidad térmica.",
                 "Aplicación": "Filtros de audio, acoplamiento de señal AC y fuentes sin transformador (X2).",
                 "Polaridad": "No polarizado — conéctelo en cualquier dirección",
-                "Referencia Visual": "https://www.inventable.eu/media/171_Capacitors_codes/Capacitor-codes-all-1.png"
+                "Referencia Visual": "assets/capacitores/poly_ref.svg"
             },
             usageSteps: [
                 "Lea el código impreso: 3 dígitos + letra de tolerancia + número de voltaje.",
@@ -571,12 +571,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Usan mica natural como dieléctrico. Ofrecen la mayor precisión y estabilidad de todos los capacitores, ideales para circuitos de radiofrecuencia (RF).",
             videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
-            imageUrl: "https://m.media-amazon.com/images/I/51fTf9m-E9L._AC_SL1000_.jpg",
+            imageUrl: "assets/capacitores/main_mica_ai.png",
             specs: {
                 "Funcionamiento": "Mínimas pérdidas dieléctricas (factor Q muy alto) y excelente estabilidad ante temperatura.",
                 "Uso": "Osciladores de RF, circuitos resonantes LC y filtros sintonizados de precisión.",
                 "Tolerancia": "±1% a ±5%; los más precisos del mercado",
-                "Referencia Visual": "https://www.ecured.cu/images/thumb/a/ad/CondensadorMica_2.jpg/300px-CondensadorMica_2.jpg"
+                "Referencia Visual": "assets/capacitores/mica_ref.svg"
             },
             usageSteps: [
                 "Lea el código de color (5 o 6 puntos) o el valor numérico impreso en pF.",
@@ -594,12 +594,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Condensadores de doble capa eléctrica (EDLC) con capacitancias de 1F a miles de Faradios. Actúan como híbrido entre capacitor y batería para respaldo de energía.",
             videoUrl: "https://www.youtube.com/watch?v=nsX31lOdWoY",
-            imageUrl: "https://m.media-amazon.com/images/I/61C2lAt3qPL._AC_SL1100_.jpg",
+            imageUrl: "assets/capacitores/main_super_ai.png",
             specs: {
                 "Funcionamiento": "Almacenan energía por adsorción electrostática de iones, no por reacción química. Carga/descarga muy rápida.",
                 "Capacidad": "1F a 3000F (Faradios). Densidad de potencia muy alta.",
                 "Voltaje Nominal": "2.5V a 2.7V por celda típico (se combinan en serie para mayor voltaje)",
-                "Referencia Visual": "https://www.tecsaqro.com.mx/wp-content/uploads/2019/10/Supercapacitor-construction-y-structure.jpg"
+                "Referencia Visual": "assets/capacitores/super_ref.svg"
             },
             usageSteps: [
                 "Identifique el terminal positivo (+) por la marca impresa; respete siempre la polaridad.",
@@ -617,12 +617,12 @@
             mainCategory: "Circuitos Integrados",
             desc: "Permiten ajustar su capacitancia manualmente. Fundamentales para la sintonización precisa de circuitos de radio AM/FM y filtros resonantes.",
             videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
-            imageUrl: "https://m.media-amazon.com/images/I/61S6hUoO8iL._AC_SL1000_.jpg",
+            imageUrl: "assets/capacitores/main_var_ai.jpg",
             specs: {
                 "Funcionamiento": "Varía el área de placas conductoras enfrentadas mediante un eje giratorio, cambiando la capacitancia.",
                 "Tipos": "Variable de aire (radios) y Trimmer ajustable (cerámico/plástico en PCB)",
                 "Rango Típico": "10pF a 500pF (variable de aire) / 2pF a 60pF (trimmer)",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Variable_capacitor_symbol.svg/200px-Variable_capacitor_symbol.svg.png"
+                "Referencia Visual": "assets/capacitores/var_ref.svg"
             },
             usageSteps: [
                 "Gire el eje del trimmer muy suavemente con un destornillador de punta plana cerámica o plástica.",
@@ -1175,7 +1175,7 @@
                         <div class="specs-grid">
                             ${Object.entries(item.specs).map(([key, val]) => {
             const strVal = val.toString();
-            const isImageUrl = strVal.startsWith('http') && /\.(jpg|jpeg|png|gif|svg|webp)/i.test(strVal);
+            const isImageUrl = strVal.match(/\.(jpg|jpeg|png|gif|svg|webp)(\?.*)?$/i) !== null || strVal.startsWith('data:image/');
             const isPdfUrl = strVal.startsWith('http') && !isImageUrl;
             let displayVal;
             if (isImageUrl) {
