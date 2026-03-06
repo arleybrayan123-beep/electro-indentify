@@ -483,8 +483,8 @@
                 "Funcionamiento": "Almacena carga sin polaridad fija. Ideal para bypass y alta frecuencia.",
                 "Voltaje": "50V - 100V típicos",
                 "Polaridad": "No polarizado",
-                "Referencia Visual": "https://www.logicbus.com.mx/blog/wp-content/uploads/2019/07/codigo-colores-resistencias-e1563802288271.jpg",
-                "Tabla de Código": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Capacitor_codigos.png/320px-Capacitor_codigos.png"
+                "Referencia Visual": "https://www.zonamaker.com/images/electronica/componentes/capacitores/cap_cer_tabla.jpg",
+                "Tabla de Código": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Mylar_capacitor_codes.svg/320px-Mylar_capacitor_codes.svg.png"
             },
             usageSteps: [
                 "Identifique el valor por el código de 3 dígitos impreso (ej: 104 = 10 × 10⁴ pF = 100nF).",
@@ -507,7 +507,7 @@
                 "Funcionamiento": "Almacena grandes cargas para suavizar el rizado en fuentes DC.",
                 "Voltaje Max": "Varía según modelo: 6.3V, 16V, 25V, 50V, 100V",
                 "Polaridad": "Polarizado — la franja gris lateral indica el polo Negativo (−)",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Capacitor_electrolytic_polarity.jpg/320px-Capacitor_electrolytic_polarity.jpg"
+                "Referencia Visual": "https://i.pinimg.com/736x/8a/a5/d2/8aa5d2c77df51fb264cacf43bd64d509--electronics-components-electrical-electronics.jpg"
             },
             usageSteps: [
                 "Identifique el Cátodo (−) por la franja gris/blanca lateral con el símbolo '−−−'.",
@@ -530,7 +530,7 @@
                 "Funcionamiento": "Dieléctrico sólido de óxido de tantalio. Ideal para aplicaciones compactas de precisión y filtrado fino.",
                 "Ventaja": "Larga vida útil, bajo ESR y tamaño reducido vs. electrolítico de Al.",
                 "Polaridad": "Polarizado — la barra o '+' sobre el cuerpo indica el polo Positivo (+)",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/TantalumCapacitorSymbol.svg/320px-TantalumCapacitorSymbol.svg.png"
+                "Referencia Visual": "https://es.farnell.com/wcsstore/ExtendedSitesCatalogAssetStore/cms/asset/images/americas/common/article165-2019-12-16-17-06-25-303.png"
             },
             usageSteps: [
                 "Identifique el polo Positivo (+) por la RAYA o marca '+' impresa en el cuerpo del capacitor.",
@@ -553,7 +553,7 @@
                 "Funcionamiento": "Alta capacidad de sobretensión, baja pérdida dieléctrica y excelente estabilidad térmica.",
                 "Aplicación": "Filtros de audio, acoplamiento de señal AC y fuentes sin transformador (X2).",
                 "Polaridad": "No polarizado — conéctelo en cualquier dirección",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Polyester_film_capacitor.jpg/320px-Polyester_film_capacitor.jpg"
+                "Referencia Visual": "https://www.inventable.eu/media/171_Capacitors_codes/Capacitor-codes-all-1.png"
             },
             usageSteps: [
                 "Lea el código impreso: 3 dígitos + letra de tolerancia + número de voltaje.",
@@ -576,7 +576,7 @@
                 "Funcionamiento": "Mínimas pérdidas dieléctricas (factor Q muy alto) y excelente estabilidad ante temperatura.",
                 "Uso": "Osciladores de RF, circuitos resonantes LC y filtros sintonizados de precisión.",
                 "Tolerancia": "±1% a ±5%; los más precisos del mercado",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mica_capacitor.jpg/320px-Mica_capacitor.jpg"
+                "Referencia Visual": "https://www.ecured.cu/images/thumb/a/ad/CondensadorMica_2.jpg/300px-CondensadorMica_2.jpg"
             },
             usageSteps: [
                 "Lea el código de color (5 o 6 puntos) o el valor numérico impreso en pF.",
@@ -599,7 +599,7 @@
                 "Funcionamiento": "Almacenan energía por adsorción electrostática de iones, no por reacción química. Carga/descarga muy rápida.",
                 "Capacidad": "1F a 3000F (Faradios). Densidad de potencia muy alta.",
                 "Voltaje Nominal": "2.5V a 2.7V por celda típico (se combinan en serie para mayor voltaje)",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Supercapacitor_diagram.svg/320px-Supercapacitor_diagram.svg.png"
+                "Referencia Visual": "https://www.tecsaqro.com.mx/wp-content/uploads/2019/10/Supercapacitor-construction-y-structure.jpg"
             },
             usageSteps: [
                 "Identifique el terminal positivo (+) por la marca impresa; respete siempre la polaridad.",
@@ -622,7 +622,7 @@
                 "Funcionamiento": "Varía el área de placas conductoras enfrentadas mediante un eje giratorio, cambiando la capacitancia.",
                 "Tipos": "Variable de aire (radios) y Trimmer ajustable (cerámico/plástico en PCB)",
                 "Rango Típico": "10pF a 500pF (variable de aire) / 2pF a 60pF (trimmer)",
-                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Bc547_variable_condenser.jpg/320px-Bc547_variable_condenser.jpg"
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Variable_capacitor_symbol.svg/200px-Variable_capacitor_symbol.svg.png"
             },
             usageSteps: [
                 "Gire el eje del trimmer muy suavemente con un destornillador de punta plana cerámica o plástica.",
