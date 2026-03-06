@@ -861,3 +861,40 @@ h1 {
     text-shadow: 0 0 10px var(--accent-glow);
     transform: translateX(5px);
 }
+
+/* =============================================
+   IMÁGENES DE DATASHEET EN SPECS DEL MODAL
+   ============================================= */
+.spec-item-full {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid rgba(0, 242, 255, 0.1);
+}
+
+.spec-img-container {
+    margin-top: 0.5rem;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    background: #0d0f17;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    box-shadow: 0 0 20px rgba(0, 242, 255, 0.08);
+}
+
+.spec-datasheet-img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    max-height: 240px;
+    object-fit: contain;
+    border-radius: 8px;
+    filter: brightness(1.05) contrast(1.05);
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.spec-datasheet-img:hover {
+    transform: scale(1.04);
+}

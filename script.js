@@ -472,131 +472,638 @@
             type: "Componente Pasivo"
         },
         {
-            name: "Capacitor Electrolítico",
-            ref: "CAP-ELEC",
-            category: "Capacitores",
-            mainCategory: "Circuitos Integrados",
-            desc: "Almacena energía eléctrica. Componente polarizado.",
-            videoUrl: "https://www.youtube.com/watch?v=f0pS8fO2S8E",
-            imageUrl: "https://m.media-amazon.com/images/I/61J2m0C6-OL._AC_SL1500_.jpg",
-            specs: {
-                "Funcionamiento": "Almacena carga eléctrica mediante campo electrostático.",
-                "Voltaje Max": "Depende del modelo (ej: 25V)",
-                "Polaridad": "Fundamental (Pata corta = Negativo)",
-                "Datasheet": "https://www.rubycon.co.jp/wp-content/uploads/catalog/aluminum-catalog/YXF.pdf"
-            },
-            usageSteps: [
-                "Identifique el polo negativo (banda gris).",
-                "Respete la polaridad en la instalación.",
-                "Evite el sobrecalentamiento al soldar.",
-                "No exceda el voltaje nominal."
-            ],
-            type: "Componente Pasivo Polarizado"
-        },
-        {
             name: "Capacitor Cerámico",
             ref: "CAP-CER",
             category: "Capacitores",
             mainCategory: "Circuitos Integrados",
-            desc: "Capacitor no polarizado para señales de alta frecuencia.",
-            videoUrl: "https://www.youtube.com/watch?v=uD5o8G2YgX4",
+            desc: "Son los más utilizados, compactos y con baja resistencia en serie equivalente (ESR). Esenciales para el filtrado de alta frecuencia y desacople de alimentación.",
+            videoUrl: "https://www.youtube.com/watch?v=-Qzuj5PHqxs",
             imageUrl: "https://m.media-amazon.com/images/I/51A1i2-e6-L._AC_SL1000_.jpg",
             specs: {
-                "Funcionamiento": "Almacena carga sin polaridad fija.",
-                "Voltaje": "50V típicos",
-                "Datasheet": "https://www.tdk-electronics.tdk.com/inf/20/20/db/mlcc/MLCC_General_Purpose.pdf"
+                "Funcionamiento": "Almacena carga sin polaridad fija. Ideal para bypass y alta frecuencia.",
+                "Voltaje": "50V - 100V típicos",
+                "Polaridad": "No polarizado",
+                "Referencia Visual": "https://www.logicbus.com.mx/blog/wp-content/uploads/2019/07/codigo-colores-resistencias-e1563802288271.jpg",
+                "Tabla de Código": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Capacitor_codigos.png/320px-Capacitor_codigos.png"
             },
             usageSteps: [
-                "Identifique el valor por el código impreso.",
-                "Inserte en cualquier orientación.",
-                "Ubique cerca de los pines de alimentación.",
-                "Suelde con puntos limpios."
+                "Identifique el valor por el código de 3 dígitos impreso (ej: 104 = 10 × 10⁴ pF = 100nF).",
+                "El primer y segundo dígito son cifras significativas; el tercero es el multiplicador (número de ceros).",
+                "Inserte en cualquier orientación en la PCB, no tiene polaridad.",
+                "Ubique lo más cerca posible de los pines de VCC de los circuitos integrados.",
+                "Suelde asegurando que el cuerpo no toque otros componentes calientes."
             ],
-            type: "Componente Pasivo No Polarizado"
+            type: "Pasivo No Polarizado"
+        },
+        {
+            name: "Capacitor Electrolítico de Aluminio",
+            ref: "CAP-ELEC-AL",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Ofrecen capacitancia muy alta para filtrado en fuentes de alimentación. Su dieléctrico de óxido de aluminio les permite alcanzar miles de microfaradios.",
+            videoUrl: "https://www.youtube.com/watch?v=bLE_cJ8Hrpc",
+            imageUrl: "https://m.media-amazon.com/images/I/61J2m0C6-OL._AC_SL1500_.jpg",
+            specs: {
+                "Funcionamiento": "Almacena grandes cargas para suavizar el rizado en fuentes DC.",
+                "Voltaje Max": "Varía según modelo: 6.3V, 16V, 25V, 50V, 100V",
+                "Polaridad": "Polarizado — la franja gris lateral indica el polo Negativo (−)",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Capacitor_electrolytic_polarity.jpg/320px-Capacitor_electrolytic_polarity.jpg"
+            },
+            usageSteps: [
+                "Identifique el Cátodo (−) por la franja gris/blanca lateral con el símbolo '−−−'.",
+                "La pata más CORTA también corresponde al polo Negativo (−).",
+                "Verifique que el voltaje del circuito sea al menos 20% menor que el voltaje nominal del capacitor.",
+                "Respete la polaridad estrictamente: invertirlo puede causar explosión.",
+                "Corte el exceso de terminales a ras de la PCB tras soldar."
+            ],
+            type: "Pasivo Polarizado"
+        },
+        {
+            name: "Capacitor de Tantalio",
+            ref: "CAP-TAN",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Polarizados con dieléctrico de pentóxido de tantalio. Proporcionan alta estabilidad, mejor respuesta en frecuencia y vida útil superior a los de aluminio.",
+            videoUrl: "https://www.youtube.com/watch?v=TYVUeag-Ggk",
+            imageUrl: "https://m.media-amazon.com/images/I/41D8zD5fP9L._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Dieléctrico sólido de óxido de tantalio. Ideal para aplicaciones compactas de precisión y filtrado fino.",
+                "Ventaja": "Larga vida útil, bajo ESR y tamaño reducido vs. electrolítico de Al.",
+                "Polaridad": "Polarizado — la barra o '+' sobre el cuerpo indica el polo Positivo (+)",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/TantalumCapacitorSymbol.svg/320px-TantalumCapacitorSymbol.svg.png"
+            },
+            usageSteps: [
+                "Identifique el polo Positivo (+) por la RAYA o marca '+' impresa en el cuerpo del capacitor.",
+                "En cápsula SMD, la banda indica el terminal POSITIVO (al contrario del electrolítico de aluminio).",
+                "No exceda nunca el voltaje nominal; son extremadamente sensibles a sobretensión.",
+                "Use en etapas de salida de reguladores de voltaje y circuitos de precisión.",
+                "Suelde rápidamente con temperatura controlada para no dañar el dieléctrico sólido."
+            ],
+            type: "Pasivo Polarizado"
+        },
+        {
+            name: "Capacitor de Película/Poliéster",
+            ref: "CAP-POLY",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Utilizan una lámina de poliéster (Mylar) o polipropileno como dieléctrico. Son muy estables, resistentes a la humedad y comunes en audio e industriales.",
+            videoUrl: "https://www.youtube.com/watch?v=hon7S766jrI",
+            imageUrl: "https://m.media-amazon.com/images/I/61P1YInmE-L._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Alta capacidad de sobretensión, baja pérdida dieléctrica y excelente estabilidad térmica.",
+                "Aplicación": "Filtros de audio, acoplamiento de señal AC y fuentes sin transformador (X2).",
+                "Polaridad": "No polarizado — conéctelo en cualquier dirección",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Polyester_film_capacitor.jpg/320px-Polyester_film_capacitor.jpg"
+            },
+            usageSteps: [
+                "Lea el código impreso: 3 dígitos + letra de tolerancia + número de voltaje.",
+                "Ejemplo: '473J 100V' = 47nF, ±5%, 100V de trabajo.",
+                "Puede conectarse en cualquier orientación (no tiene polaridad).",
+                "Ideal para señales de corriente alterna (AC) y acoplamiento de etapas de audio.",
+                "Aísle bien las patas si trabaja con voltajes superiores a 100V."
+            ],
+            type: "Pasivo No Polarizado"
+        },
+        {
+            name: "Capacitor de Mica",
+            ref: "CAP-MICA",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Usan mica natural como dieléctrico. Ofrecen la mayor precisión y estabilidad de todos los capacitores, ideales para circuitos de radiofrecuencia (RF).",
+            videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
+            imageUrl: "https://m.media-amazon.com/images/I/51fTf9m-E9L._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Mínimas pérdidas dieléctricas (factor Q muy alto) y excelente estabilidad ante temperatura.",
+                "Uso": "Osciladores de RF, circuitos resonantes LC y filtros sintonizados de precisión.",
+                "Tolerancia": "±1% a ±5%; los más precisos del mercado",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mica_capacitor.jpg/320px-Mica_capacitor.jpg"
+            },
+            usageSteps: [
+                "Lea el código de color (5 o 6 puntos) o el valor numérico impreso en pF.",
+                "Maneje con cuidado: el cuerpo de mica es frágil y puede agrietarse.",
+                "Úselo en circuitos donde la deriva de frecuencia y temperatura deba ser mínima.",
+                "Suelde con soldadura de alta calidad y temperatura controlada.",
+                "Verifique siempre el voltaje máximo — generalmente son de 100V a 500V."
+            ],
+            type: "Pasivo de Precisión RF"
+        },
+        {
+            name: "Supercapacitor (EDLC)",
+            ref: "CAP-SUPER",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Condensadores de doble capa eléctrica (EDLC) con capacitancias de 1F a miles de Faradios. Actúan como híbrido entre capacitor y batería para respaldo de energía.",
+            videoUrl: "https://www.youtube.com/watch?v=nsX31lOdWoY",
+            imageUrl: "https://m.media-amazon.com/images/I/61C2lAt3qPL._AC_SL1100_.jpg",
+            specs: {
+                "Funcionamiento": "Almacenan energía por adsorción electrostática de iones, no por reacción química. Carga/descarga muy rápida.",
+                "Capacidad": "1F a 3000F (Faradios). Densidad de potencia muy alta.",
+                "Voltaje Nominal": "2.5V a 2.7V por celda típico (se combinan en serie para mayor voltaje)",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Supercapacitor_diagram.svg/320px-Supercapacitor_diagram.svg.png"
+            },
+            usageSteps: [
+                "Identifique el terminal positivo (+) por la marca impresa; respete siempre la polaridad.",
+                "Cargue lentamente o use una resistencia limitadora para evitar picos de corriente al conectar.",
+                "El voltaje máximo de una celda es ~2.7V; en serie puede aumentarlo (ej: 2 × 2.7V = 5.4V).",
+                "Use como respaldo de energía (UPS) para SRAM, RTC o circuitos de memoria.",
+                "Nunca descargue en cortocircuito directo: puede liberar grandes corrientes destructoras."
+            ],
+            type: "Almacenamiento de Energía"
+        },
+        {
+            name: "Capacitor Variable/Ajustable",
+            ref: "CAP-VAR",
+            category: "Capacitores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Permiten ajustar su capacitancia manualmente. Fundamentales para la sintonización precisa de circuitos de radio AM/FM y filtros resonantes.",
+            videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
+            imageUrl: "https://m.media-amazon.com/images/I/61S6hUoO8iL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Varía el área de placas conductoras enfrentadas mediante un eje giratorio, cambiando la capacitancia.",
+                "Tipos": "Variable de aire (radios) y Trimmer ajustable (cerámico/plástico en PCB)",
+                "Rango Típico": "10pF a 500pF (variable de aire) / 2pF a 60pF (trimmer)",
+                "Referencia Visual": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Bc547_variable_condenser.jpg/320px-Bc547_variable_condenser.jpg"
+            },
+            usageSteps: [
+                "Gire el eje del trimmer muy suavemente con un destornillador de punta plana cerámica o plástica.",
+                "Nunca use destornillador metálico: su presencia cerca cambia la capacitancia durante el ajuste.",
+                "Ajuste mientras monitorea la frecuencia de resonancia en el osciloscopio o contador.",
+                "No fuerce los topes mecánicos de giro: el ajuste es de 180° o 360° máximo según modelo.",
+                "Fije la posición con laca o parafina cuando encuentre la sintonía correcta."
+            ],
+            type: "Capacitor Ajustable"
         },
         {
             name: "Transistor NPN 2N2222",
             ref: "2N2222",
             category: "Transistores",
             mainCategory: "Circuitos Integrados",
-            desc: "Transistor para amplificación y conmutación rápida.",
+            desc: "El transistor NPN de propósito general más popular. Ideal para conmutación digital y amplificación de pequeña señal a alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=8REH0_N6U2k",
-            imageUrl: "https://m.media-amazon.com/images/I/41D7h4y8FSL._AC_.jpg",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/transistor_2n2222_leg.jpg/320px-transistor_2n2222_leg.jpg",
             specs: {
-                "Funcionamiento": "Controla corriente grande entre colector y emisor con pequeña corriente en base.",
-                "Encapsulado": "TO-92",
+                "Funcionamiento": "Transistor BJT NPN de unión. La corriente de Base controla la corriente Colector-Emisor con una ganancia (hFE) de 75 a 300.",
+                "Encapsulado": "TO-92 (plástico) / TO-18 (metal)",
+                "Corriente Colector Máx.": "600 mA (IC)",
+                "Voltaje C-E Máx.": "40 V (VCEO)",
+                "Frecuencia de Corte": "300 MHz",
                 "Datasheet": "https://www.onsemi.com/pdf/datasheet/p2n2222a-d.pdf"
             },
             usageSteps: [
-                "Identifique Emisor, Base y Colector.",
-                "Use resistencia de base siempre.",
-                "Conecte carga entre positivo y colector.",
-                "Verifique disipación de calor."
+                "Con el lado plano hacia usted (TO-92): pines son Emisor - Base - Colector (de izquierda a derecha).",
+                "Calcule la resistencia de base: RB = (VIN - 0.7V) / IB, donde IB = IC / hFE.",
+                "Conecte la carga entre VCC y el Colector; el Emisor a GND.",
+                "Para conmutar una carga inductiva (relay, motor), añada un diodo de rueda libre en paralelo con la carga.",
+                "Verifique que la disipación de potencia (VCE × IC) no exceda 625 mW sin disipador."
             ],
-            type: "Semiconductor BJT"
+            type: "Transistor BJT NPN"
+        },
+        {
+            name: "Transistor PNP BC557",
+            ref: "BC557",
+            category: "Transistores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Transistor PNP de pequeña señal para conmutación de carga en el lado positivo (high-side switching) y lógica inversa.",
+            videoUrl: "https://www.youtube.com/watch?v=_eB8cFNkCaM",
+            imageUrl: "https://m.media-amazon.com/images/I/41QRd6fXoOL._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Transistor BJT PNP. Conduce cuando la Base está más negativa que el Emisor. Complementario del BC547.",
+                "Encapsulado": "TO-92",
+                "Corriente Colector Máx.": "100 mA (IC)",
+                "Voltaje E-C Máx.": "45 V (VECO)",
+                "Ganancia hFE": "110 - 800",
+                "Datasheet": "https://www.onsemi.com/pdf/datasheet/bc556b-d.pdf"
+            },
+            usageSteps: [
+                "Con el lado plano hacia usted (TO-92): pines son Colector - Base - Emisor (de izquierda a derecha).",
+                "El Emisor se conecta al voltaje positivo (VCC); la carga entre Colector y GND.",
+                "Para activarlo, lleve la Base a un potencial MENOR que el Emisor (aprox. 0.7V menos).",
+                "Use una resistencia de base de 10kΩ a 47kΩ para limitar la corriente.",
+                "Ideal para etapas de driver de señales positivas en lógica TTL o con microcontroladores."
+            ],
+            type: "Transistor BJT PNP"
+        },
+        {
+            name: "MOSFET N-Channel IRF520",
+            ref: "IRF520",
+            category: "Transistores",
+            mainCategory: "Circuitos Integrados",
+            desc: "MOSFET de potencia canal-N controlado por voltaje. Perfecto para conmutar cargas de alta corriente con señales lógicas de 5V o 3.3V.",
+            videoUrl: "https://www.youtube.com/watch?v=o4_NeqlJgOs",
+            imageUrl: "https://m.media-amazon.com/images/I/51o4yI2RJUL._AC_SL1001_.jpg",
+            specs: {
+                "Funcionamiento": "Se activa con voltaje Gate-Source (VGS). No consume corriente de control. Ideal para switching de alta eficiencia.",
+                "Encapsulado": "TO-220",
+                "Corriente de Drenaje Máx.": "9.2 A (ID)",
+                "Voltaje Drain-Source Máx.": "100 V (VDSS)",
+                "RDS(on) Máx.": "0.27 Ω",
+                "Datasheet": "https://www.infineon.com/dgdl/irf520pbf.pdf?fileId=5546d462533600a4015355e329b1197e"
+            },
+            usageSteps: [
+                "Pines (TO-220, de izquierda a derecha mirando la etiqueta): Gate - Drain - Source.",
+                "Conecte Source a GND; la carga entre VCC y Drain.",
+                "Aplicar 5V-10V al Gate activa completamente el canal (saturación).",
+                "Añada una resistencia de 100Ω-470Ω en serie con el Gate para evitar oscilaciones.",
+                "Asegure el disipador de calor con pasta térmica si la carga supera 1A continuo.",
+                "Use un diodo de rueda libre en paralelo con la carga inductiva (relé, motor)."
+            ],
+            type: "MOSFET de Potencia N-Channel"
+        },
+        {
+            name: "MOSFET P-Channel IRF9540",
+            ref: "IRF9540",
+            category: "Transistores",
+            mainCategory: "Circuitos Integrados",
+            desc: "MOSFET de potencia canal-P. Complementario del IRF540, úselo para control de carga en el lado positivo (high-side) en puentes H o fuentes conmutadas.",
+            videoUrl: "https://www.youtube.com/watch?v=GrvvkYTW_0k",
+            imageUrl: "https://m.media-amazon.com/images/I/41dLGY6TP3L._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Conduce cuando VGS es negativo (Gate más bajo que Source). Source se conecta a VCC.",
+                "Encapsulado": "TO-220",
+                "Corriente de Drenaje Máx.": "-19 A (ID)",
+                "Voltaje Source-Drain Máx.": "100 V",
+                "VGS Umbral": "-2V a -4V",
+                "Datasheet": "https://www.vishay.com/docs/91257/irf9540.pdf"
+            },
+            usageSteps: [
+                "Source se conecta a VCC; la carga entre Drain y GND.",
+                "Para activarlo desde un microcontrolador a 3.3V, use un transistor NPN de nivel lógico de driver.",
+                "VGS debe ser suficientemente negativo (Ej: Gate a GND si Source está a 5V).",
+                "Use siempre diodo de rueda libre para cargas inductivas.",
+                "Consulte el datasheet para verificar VGS(th) exacto del lote."
+            ],
+            type: "MOSFET de Potencia P-Channel"
+        },
+        {
+            name: "Transistor Darlington TIP120",
+            ref: "TIP120",
+            category: "Transistores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Par Darlington NPN de alta ganancia para control de motores DC, solenoides y cargas de media potencia directamente desde microcontroladores.",
+            videoUrl: "https://www.youtube.com/watch?v=sRVvUkK0U80",
+            imageUrl: "https://m.media-amazon.com/images/I/51wJRruvjRL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Combina dos transistores BJT en cascada. Ganancia hFE total superior a 1000. VBE de activación ~1.4V.",
+                "Encapsulado": "TO-220",
+                "Corriente Colector Máx.": "5 A (IC)",
+                "Voltaje C-E Máx.": "60 V (VCEO)",
+                "Diodo de protección": "Integrado (Diodo de rueda libre interno)",
+                "Datasheet": "https://www.onsemi.com/pdf/datasheet/tip120-d.pdf"
+            },
+            usageSteps: [
+                "Pines (TO-220 mirando la etiqueta): Base - Colector - Emisor.",
+                "Con una señal de 5V y ~1mA en la Base, puede conmutar hasta 5A en el Colector.",
+                "Conecte el Emisor a GND y la carga entre VCC y el Colector.",
+                "El diodo interno protege contra corrientes inversas de motores; aun así, añada uno externo para cargas grandes.",
+                "Instale en disipador de aluminio si la corriente supera 1.5A continuos."
+            ],
+            type: "Transistor Darlington NPN"
         },
         {
             name: "Diodo Rectificador 1N4007",
             ref: "1N4007",
             category: "Diodos",
             mainCategory: "Circuitos Integrados",
-            desc: "Permite paso de corriente en un solo sentido.",
+            desc: "El diodo rectificador de propósito general más común. Soporta hasta 1000V de voltaje inverso. Fundamental en fuentes de alimentación.",
             videoUrl: "https://www.youtube.com/watch?v=fXv0j0D2p6A",
             imageUrl: "https://m.media-amazon.com/images/I/41t7JgC5RSL._AC_.jpg",
             specs: {
-                "Funcionamiento": "Bloquea flujo inverso comportándose como válvula.",
-                "Voltaje Inverso": "1000V Max",
+                "Funcionamiento": "Permite el paso de corriente únicamente del Ánodo (+) al Cátodo (-). Bloquea el flujo inverso como una válvula.",
+                "Corriente Promedio": "1 A (IFAV)",
+                "Voltaje Inverso Máx.": "1000 V (VRRM)",
+                "Caída de Voltaje Directa": "~1.1 V (VF a 1A)",
                 "Datasheet": "https://www.diodes.com/assets/Datasheets/ds28002.pdf"
             },
             usageSteps: [
-                "La banda plateada indica el Cátodo (-).",
-                "Conecte en serie para protección.",
-                "Use en puentes rectificadores.",
-                "No exceda la corriente de 1A."
+                "Identifique el Cátodo (-) por la banda plateada o gris impresa en su cuerpo.",
+                "Conéctelo en el circuito con el Ánodo hacia el positivo de la fuente AC.",
+                "Use cuatro unidades en configuración de puente (Puente de Graetz) para rectificar AC completa.",
+                "Añada un capacitor electrolítico a la salida para suavizar el rizado DC.",
+                "No exceda la corriente de 1A. Para corrientes mayores, use el 1N5408 (3A) o similares."
             ],
-            type: "Diodo"
+            type: "Diodo Rectificador General"
         },
         {
-            name: "Inductor (Bobina)",
-            ref: "IND-AIR",
+            name: "Diodo Zener 1N4733A",
+            ref: "1N4733A",
+            category: "Diodos",
+            mainCategory: "Circuitos Integrados",
+            desc: "Diodo Zener de regulación de voltaje. Mantiene exactamente 5.1V en su terminal en polarización inversa. Esencial para referencias de tensión.",
+            videoUrl: "https://www.youtube.com/watch?v=6PmVLNq9cZQ",
+            imageUrl: "https://m.media-amazon.com/images/I/41PtVFw6ZML._AC_.jpg",
+            specs: {
+                "Funcionamiento": "En polarización inversa, entra en avalancha a su voltaje Zener (VZ) regulando el voltaje. No se destruye si se limita la corriente.",
+                "Voltaje Zener (VZ)": "5.1 V",
+                "Tolerancia VZ": "±5%",
+                "Potencia Máxima": "1 W (PZ)",
+                "Corriente de Prueba (IZT)": "49 mA",
+                "Datasheet": "https://www.onsemi.com/pdf/datasheet/1n4728a-d.pdf"
+            },
+            usageSteps: [
+                "Siempre use el Zener en polarización INVERSA: Cátodo (banda) al positivo.",
+                "Calcule la resistencia serie: RS = (VIN - VZ) / IZ_max. Ejemplo: RS = (12V-5.1V) / 20mA = 345Ω → use 330Ω.",
+                "El voltaje de salida regulado aparece entre Cátodo y GND.",
+                "No supere la potencia máxima (VZ × IZ < 1W en este modelo).",
+                "Para mayor precisión de referencia, use un circuito integrado regulador como el TL431."
+            ],
+            type: "Diodo Zener Regulador"
+        },
+        {
+            name: "Diodo Schottky 1N5819",
+            ref: "1N5819",
+            category: "Diodos",
+            mainCategory: "Circuitos Integrados",
+            desc: "Diodo Schottky de conmutación ultrarrápida. Su baja caída de voltaje (~0.3V) lo hace ideal para fuentes conmutadas y protección de polaridad.",
+            videoUrl: "https://www.youtube.com/watch?v=TFvZ9MaqO6c",
+            imageUrl: "https://m.media-amazon.com/images/I/41d3FBBXVNL._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Usa unión metal-semiconductor. Sin carga almacenada → recuperación ultrarrápida. Menor disipación de calor.",
+                "Corriente Promedio": "1 A (IFAV)",
+                "Voltaje Inverso Máx.": "40 V (VRRM)",
+                "Caída de Voltaje Directa": "~0.3 V (VF típico)",
+                "Frecuencia de Trabajo": "Hasta MHz",
+                "Datasheet": "https://www.onsemi.com/pdf/datasheet/1n5817-d.pdf"
+            },
+            usageSteps: [
+                "Identifique el Cátodo por la banda gris (igual que un diodo convencional).",
+                "Úselo para proteger circuitos de polaridad inversa: instale en serie con el positivo de alimentación.",
+                "En fuentes conmutadas (Buck/Boost), colóquelo como diodo de rueda libre por su recuperación rápida.",
+                "La baja caída de tensión (~0.3V vs ~0.7V del 1N4007) reduce pérdidas de calor.",
+                "Tenga en cuenta que su corriente de fuga inversa es mayor que los diodos convencionales."
+            ],
+            type: "Diodo Schottky"
+        },
+        {
+            name: "LED Rojo 5mm",
+            ref: "LED-5MM-RED",
+            category: "Diodos",
+            mainCategory: "Circuitos Integrados",
+            desc: "Diodo emisor de luz (LED) de 5mm estándar. Indicador visual de bajo consumo. Requiere siempre resistencia limitadora de corriente.",
+            videoUrl: "https://www.youtube.com/watch?v=Fo7auUHGMGo",
+            imageUrl: "https://m.media-amazon.com/images/I/61N9RFPdmHL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Emite fotones cuando la corriente fluye en polarización directa. La pata más larga es el Ánodo (+).",
+                "Corriente de Trabajo": "10 mA - 20 mA (IF típico)",
+                "Caída de Voltaje Directa": "~2.0 V (Rojo) / ~3.0 V (Azul/Blanco)",
+                "Ángulo de Visión": "60° típico",
+                "Datasheet": "https://www.vishay.com/docs/83171/tlur640.pdf"
+            },
+            usageSteps: [
+                "Identifique el Ánodo (+): pata más LARGA o lado sin bisel en el encapsulado.",
+                "Calcule la resistencia limitadora: R = (VCC - VLED) / IF. Ejemplo: (5V - 2V) / 0.01A = 300Ω → use 330Ω.",
+                "Nunca conecte un LED directamente a la fuente sin resistencia limitadora.",
+                "Para controlar con Arduino/MCU, use el pin digital con la resistencia en serie.",
+                "Voltaje de alimentación mínimo: VLED + 0.5V para asegurar conducción."
+            ],
+            type: "LED Indicador"
+        },
+        {
+            name: "Diodo Puente KBL410",
+            ref: "KBL410",
+            category: "Diodos",
+            mainCategory: "Circuitos Integrados",
+            desc: "Puente rectificador monolítico de 4 diodos en un solo encapsulado. Simplifica el diseño de fuentes de alimentación AC/DC.",
+            videoUrl: "https://www.youtube.com/watch?v=9csKNnm3UWE",
+            imageUrl: "https://m.media-amazon.com/images/I/51UQikhCKNL._AC_.jpg",
+            specs: {
+                "Funcionamiento": "Rectifica la señal AC completa internamente. Los 4 diodos están preconectados en configuración Puente de Graetz.",
+                "Corriente Promedio": "4 A (IFAV)",
+                "Voltaje Inverso Máx.": "1000 V (VRRM)",
+                "Pines": "AC~, AC~, DC+, DC-",
+                "Datasheet": "https://www.diodes.com/assets/Datasheets/KBL005GP_KBL01GP_KBL02GP_KBL04GP_KBL06GP_KBL08GP_KBL10GP.pdf"
+            },
+            usageSteps: [
+                "Los pines '~' reciben la entrada de corriente alterna (transformador).",
+                "El pin '+' entrega la salida DC positiva; el pin '-' es el GND.",
+                "Conecte un capacitor electrolítico grande (1000µF - 4700µF) entre + y - para filtrar el rizado.",
+                "Use pasta térmica y fije a disipador si la corriente supera 2A.",
+                "Verifique que el voltaje pico de la señal AC (VRMS × 1.41) sea menor que VRRM del puente."
+            ],
+            type: "Puente Rectificador"
+        },
+        {
+            name: "Bobina Toroidal 100µH",
+            ref: "IND-TOR-100U",
             category: "Bobinas",
             mainCategory: "Circuitos Integrados",
-            desc: "Almacena energía en campo magnético.",
+            desc: "Inductor toroidal de núcleo de ferrita. Su geometría circular minimiza la radiación electromagnética y la interferencia. Estándar en fuentes conmutadas.",
             videoUrl: "https://www.youtube.com/watch?v=NgwX_vun3O4",
             imageUrl: "https://m.media-amazon.com/images/I/61jC8Vq2SML._AC_SL1100_.jpg",
             specs: {
-                "Funcionamiento": "Se opone a cambios bruscos de corriente.",
-                "Tipo": "Núcleo de Aire",
-                "Datasheet": "Genérico"
+                "Funcionamiento": "Almacena energía en campo magnético. Se opone a cambios bruscos de corriente. La inductancia se mide en Henrios (H).",
+                "Inductancia": "100 µH",
+                "Corriente de Saturación": "Varía según diseño (ver datasheet).",
+                "Resistencia DC (DCR)": "Baja (< quelques Ω)",
+                "Aplicación": "Filtros EMI, convertidores DC-DC Buck/Boost",
+                "Datasheet": "https://www.bourns.com/docs/Product-Datasheets/SRR1260.pdf"
             },
             usageSteps: [
-                "Retire esmalte de puntas para soldar.",
-                "Aleje de otros metales.",
-                "Fije mecánicamente.",
-                "Use en circuitos resonantes."
+                "Identifique las terminales por continuidad con el multímetro en modo Ω.",
+                "Ubique el toroide lejos de conductores metálicos paralelos para no alterar su inductancia.",
+                "En fuentes conmutadas, seleccione la inductancia según la frecuencia de conmutación y el rizado de corriente deseado.",
+                "Fíjelo mecánicamente con brida plástica o pegamento epoxi no metálico.",
+                "Mida la inductancia con un LCR meter para verificar el valor antes de instalar."
             ],
-            type: "Inductor"
+            type: "Inductor Toroidal"
+        },
+        {
+            name: "Bobina de Núcleo de Aire",
+            ref: "IND-AIR",
+            category: "Bobinas",
+            mainCategory: "Circuitos Integrados",
+            desc: "Inductor artesanal devanado en espiral sin núcleo magnético. Tiene baja inductancia pero excelente respuesta en alta frecuencia y sin saturación.",
+            videoUrl: "https://www.youtube.com/watch?v=2K1PXYpRwvk",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Aircore.jpg/320px-Aircore.jpg",
+            specs: {
+                "Funcionamiento": "Sin núcleo, no se satura. Lineal en todo el rango de corriente. Ideal para RF donde los núcleos añaden pérdidas.",
+                "Rango de Inductancia": "Nanohenrios a Microhenrios (nH - µH)",
+                "Factor de Calidad (Q)": "Alto (poco pérdidas en RF)",
+                "Aplicación": "Circuitos de radio, filtros LC, osciladores de alta frecuencia",
+                "Cálculo": "Use la fórmula de Wheeler: L(µH) = (r²·n²) / (9r + 10l)"
+            },
+            usageSteps: [
+                "Enrolle el alambre esmaltado (magnet wire) en un cilindro del diámetro deseado.",
+                "Retire el esmalte de ambas puntas con lija fina o mechero antes de soldar.",
+                "Mantenga los espiras equidistantes para uniformidad de inductancia.",
+                "Aleje de piezas metálicas que puedan actuar como núcleo no intencional.",
+                "Mida la inductancia con un LCR meter y ajuste separando o comprimiendo espiras."
+            ],
+            type: "Inductor de Núcleo de Aire"
+        },
+        {
+            name: "Bobina SMD 4.7µH",
+            ref: "IND-SMD-4U7",
+            category: "Bobinas",
+            mainCategory: "Circuitos Integrados",
+            desc: "Inductor para montaje superficial (SMD). Compacto, diseñado para circuitos impresos modernos de alta densidad y aplicaciones de potencia en miniatura.",
+            videoUrl: "https://www.youtube.com/watch?v=pKvhBHCkNBQ",
+            imageUrl: "https://m.media-amazon.com/images/I/71R5PeRwVhL._AC_SL1500_.jpg",
+            specs: {
+                "Funcionamiento": "Mismo principio que un inductor PTH pero en paquete compacto para PCB. Se suelda directamente sobre la superficie.",
+                "Inductancia": "4.7 µH",
+                "Corriente de Saturación": "1 A - 3 A (típico para potencia)",
+                "Encapsulado": "4x4mm / 6x6mm",
+                "Aplicación": "Reguladores de tensión DC-DC (LM2596, TPS54x)",
+                "Datasheet": "https://www.bourns.com/docs/Product-Datasheets/SRR4018.pdf"
+            },
+            usageSteps: [
+                "Aplique pasta de soldadura a las pads de la PCB.",
+                "Posicione el inductor SMD con la orientación correcta (verificar marcado).",
+                "Use punta fina o aire caliente; temperatura 250°C-300°C.",
+                "Verifique continuidad y que el valor leído con LCR meter corresponde al marcado.",
+                "Mantenga separación de al menos 1mm de otros componentes magnéticos."
+            ],
+            type: "Inductor SMD de Potencia"
+        },
+        {
+            name: "Choke de Modo Común SY10-102",
+            ref: "IND-CMC",
+            category: "Bobinas",
+            mainCategory: "Circuitos Integrados",
+            desc: "Bobina de modo común (Common Mode Choke). Filtra ruido electromagnético en líneas de potencia y comunicaciones sin afectar la señal diferencial.",
+            videoUrl: "https://www.youtube.com/watch?v=5E6JC1CLHY0",
+            imageUrl: "https://m.media-amazon.com/images/I/51MuA+b-EGL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Presenta alta impedancia al ruido EMI de modo común, pero baja impedancia a la señal diferencial útil.",
+                "Inductancia": "10 mH (por bobinado)",
+                "Corriente Nominal": "1 A",
+                "Resistencia DC": "< 1 Ω",
+                "Aplicación": "Filtros EMI en entradas de fuentes, líneas USB, RS485",
+                "Datasheet": "https://www.tdk-electronics.tdk.com/inf/20/20/db/fe/ACM.pdf"
+            },
+            usageSteps: [
+                "Instale en serie con el par de cables (Line y Neutral o D+ y D-).",
+                "Asegúrese de conectar correctamente el devanado 1 a la línea 1 y el devanado 2 a la línea 2.",
+                "No invierta las terminales o el efecto de filtrado se cancela.",
+                "En motores o fuentes ruidosas, ubíquelo lo más cerca posible de la entrada.",
+                "Consulte el datasheet para verificar la curva de impedancia vs frecuencia del ruido a filtrar."
+            ],
+            type: "Choke de Modo Común"
         },
         {
             name: "Timer NE555",
             ref: "NE555",
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
-            desc: "IC para pulsos, retardos y oscilaciones.",
+            desc: "El circuito integrado más vendido en la historia. Genera pulsos, retardos precisos y frecuencias de oscilación configurables con pocos componentes externos.",
             videoUrl: "https://www.youtube.com/watch?v=kY6v_A3o8vU",
             imageUrl: "https://m.media-amazon.com/images/I/61tS7H2pQQL._AC_SL1000_.jpg",
             specs: {
-                "Funcionamiento": "Genera estados lógicos temporales precisos.",
-                "Voltaje": "4.5V - 15V",
+                "Funcionamiento": "Comparadores internos, flip-flop SR y transistor de descarga. Opera en modo Monoestable (un pulso) o Astable (oscilador).",
+                "Voltaje de Alimentación": "4.5V - 15V (NE555) / 2V - 6V (LMC555 CMOS)",
+                "Corriente de Salida": "Hasta 200 mA (sink/source)",
+                "Frecuencia Máxima": "~500 kHz",
                 "Datasheet": "https://www.ti.com/lit/ds/symlink/ne555.pdf"
             },
             usageSteps: [
-                "Pin 1 es GND (punto/muesca).",
-                "Pin 8 es VCC.",
-                "Use RC externo para tiempos.",
-                "Pin 3 es la salida."
+                "Pin 1 = GND, Pin 8 = VCC (ponga desacople de 100nF entre VCC y GND).",
+                "MODO ASTABLE (oscilador): conecte R1 entre VCC y Discharge(7), R2 entre Discharge(7) y Threshold(6)=Trigger(2), C entre Trigger(2) y GND. Frecuencia = 1.44 / ((R1 + 2·R2) × C).",
+                "MODO MONOESTABLE: Trigger(2) a VCC con pull-up. Pulse a GND para disparar. Tiempo = 1.1 × R × C.",
+                "El pin Control(5) puede modularse con señal externa para PWM o VCO.",
+                "Añada un diodo entre pins 7 y 8 en modo astable para ciclos de trabajo menores al 50%."
             ],
-            type: "Integrated Circuit"
+            type: "Timer / Oscilador IC"
+        },
+        {
+            name: "Amplificador Operacional LM358",
+            ref: "LM358",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "Amplificador Operacional (Op-Amp) dual de propósito general. Opera con una sola fuente de alimentación, ideal para comparadores, amplificadores y filtros activos.",
+            videoUrl: "https://www.youtube.com/watch?v=tyqRZ-IrFQ0",
+            imageUrl: "https://m.media-amazon.com/images/I/51OAGV7iBqL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Amplifica la diferencia entre las entradas (+) y (-). Ganancia abierta muy alta (~100 dB). Se configura con retroalimentación.",
+                "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
+                "Canales": "2 Op-Amps independientes en un DIP-8",
+                "Slew Rate": "0.6 V/µs",
+                "Ancho de Banda": "1 MHz (GBW)",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm358.pdf"
+            },
+            usageSteps: [
+                "Pin 8 = VCC, Pin 4 = GND. Op-Amp A: pines 2(-), 3(+), 1(out). Op-Amp B: pines 6(-), 5(+), 7(out).",
+                "COMPARADOR: conecte la referencia a (+) y la señal a (-). La salida irá a máximo si señal < referencia.",
+                "AMPLIFICADOR NO INVERSOR: Vout = Vin × (1 + Rf/R1). Conecte Rf entre Salida y (-); R1 entre (-) y GND.",
+                "Agregue condensador de desacople de 100nF cerca de los pines de alimentación.",
+                "En modo single-supply, el rango de entrada va desde GND hasta VCC-1.5V típicamente."
+            ],
+            type: "Amplificador Operacional Dual"
+        },
+        {
+            name: "Regulador de Voltaje LM7805",
+            ref: "LM7805",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "Regulador de voltaje lineal fijo de 5V. El componente estándar para suministrar 5V estables a partir de cualquier fuente DC de 7V a 35V.",
+            videoUrl: "https://www.youtube.com/watch?v=bDJdZnwEYqI",
+            imageUrl: "https://m.media-amazon.com/images/I/61ixHLNdGFL._AC_SL1001_.jpg",
+            specs: {
+                "Funcionamiento": "Regula la tensión de salida disipando el exceso de voltaje en calor. Requiere disipador de calor para corrientes altas.",
+                "Voltaje de Salida": "5 V (fijo)",
+                "Corriente Máxima": "1 A (con disipador)",
+                "Voltaje de Entrada Mín.": "7 V (diferencial > 2V)",
+                "Protección Interna": "Cortocircuito y sobre-temperatura",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm7805.pdf"
+            },
+            usageSteps: [
+                "Pines (TO-220 mirando la etiqueta): Entrada - GND - Salida.",
+                "Añada condensador de 0.33µF en la entrada y 0.1µF en la salida, lo más cerca posible al IC.",
+                "La diferencia entre Vin y Vout × Iout = calor disipado. Ej: (9V-5V) × 1A = 4W → necesita disipador.",
+                "Para mayor corriente, use transistor de paso (pass transistor) externo o reemplace por LM338.",
+                "Si necesita voltaje ajustable, use el LM317 con divisor resistivo (R1=240Ω, R2 variable)."
+            ],
+            type: "Regulador Lineal Fijo 5V"
+        },
+        {
+            name: "Driver de Motor L293D",
+            ref: "L293D",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "Driver de doble puente H para controlar la dirección y velocidad de 2 motores DC o 1 motor paso a paso con señales lógicas desde un microcontrolador.",
+            videoUrl: "https://www.youtube.com/watch?v=fPLEncYrl4Q",
+            imageUrl: "https://m.media-amazon.com/images/I/61YGMHduwTL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "Cuatro drivers de medio-puente con diodos de protección integrados. Acepta lógica TTL/CMOS. Controla dirección con IN1/IN2 y velocidad con EN1 (PWM).",
+                "Voltaje Lógico (Vcc1)": "5 V",
+                "Voltaje Motor (Vcc2)": "4.5 V a 36 V",
+                "Corriente por Canal": "600 mA continuo / 1.2 A pico",
+                "Nº de Motores": "2 motores DC / 1 motor paso a paso",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/l293.pdf"
+            },
+            usageSteps: [
+                "Pines de Alimentación: Pin 16 = Vcc1 (5V lógica), Pin 8 = Vcc2 (voltaje del motor), Pins 4,5,12,13 = GND.",
+                "Motor A: IN1(2), IN2(7), EN1(1). Motor B: IN3(10), IN4(15), EN2(9). Salidas: OUT1(3), OUT2(6), OUT3(11), OUT4(14).",
+                "Para girar motor A hacia adelante: EN1=HIGH, IN1=HIGH, IN2=LOW.",
+                "Para frenar: EN1=HIGH, IN1=IN2=LOW (freno activo) o EN1=LOW (libre).",
+                "Aplique señal PWM al pin EN para controlar la velocidad. Frecuencia recomendada: 1kHz-20kHz.",
+                "El CI se calienta con cargas altas: instale disipador de calor o use módulos basados en L298N para más corriente."
+            ],
+            type: "Driver Doble Puente H"
+        },
+        {
+            name: "Microcontrolador ATmega328P",
+            ref: "ATMEGA328P",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "El cerebro del Arduino UNO. Microcontrolador AVR de 8 bits con 32KB Flash, 2KB SRAM, y periféricos como UART, SPI, I2C, ADC y PWM.",
+            videoUrl: "https://www.youtube.com/watch?v=k6pKP8eB6pQ",
+            imageUrl: "https://m.media-amazon.com/images/I/61kMxN3HHFL._AC_SL1000_.jpg",
+            specs: {
+                "Funcionamiento": "CPU RISC de 8 bits a 16 MHz. Ejecuta la mayoría de instrucciones en 1 ciclo de reloj. Programable con Arduino IDE.",
+                "Memoria Flash": "32 KB (de los que 0.5KB son para el bootloader)",
+                "SRAM": "2 KB",
+                "EEPROM": "1 KB",
+                "Pines I/O": "23 pines GPIO (14 digitales, 6 con PWM, 6 ADC de 10-bit)",
+                "Datasheet": "https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf"
+            },
+            usageSteps: [
+                "Use el Arduino UNO/Nano para prototipo. Para producción, programe el ATmega328P-PU directamente con USBasp o con la placa Arduino como ISP.",
+                "Añada cristal de 16 MHz con dos condensadores de 22pF a los pines XTAL1/XTAL2.",
+                "Conecte 100nF entre cada pin VCC/AVCC y GND para desacople.",
+                "Para reseteo manual, añada un pulsador entre el pin RESET y GND con pull-up de 10kΩ a VCC.",
+                "Al programar sin bootloader, use la herramienta 'Quemar Bootloader' del Arduino IDE y configure los fusibles correctamente."
+            ],
+            type: "Microcontrolador AVR 8-bit"
         }
     ];
 
@@ -666,12 +1173,27 @@
                     <div class="specs-section">
                         <h2>${item.name}</h2>
                         <div class="specs-grid">
-                            ${Object.entries(item.specs).map(([key, val]) => `
-                                <div class="spec-item">
+                            ${Object.entries(item.specs).map(([key, val]) => {
+            const strVal = val.toString();
+            const isImageUrl = strVal.startsWith('http') && /\.(jpg|jpeg|png|gif|svg|webp)/i.test(strVal);
+            const isPdfUrl = strVal.startsWith('http') && !isImageUrl;
+            let displayVal;
+            if (isImageUrl) {
+                displayVal = `<div class="spec-img-container">
+                                            <img src="${strVal}" alt="${key}" class="spec-datasheet-img"
+                                                 onerror="this.parentElement.style.display='none'">
+                                        </div>`;
+            } else if (isPdfUrl) {
+                displayVal = `<a href="${strVal}" target="_blank" class="spec-link">Ver PDF <i class="fas fa-external-link-alt"></i></a>`;
+            } else {
+                displayVal = strVal;
+            }
+            return `
+                                <div class="spec-item ${isImageUrl ? 'spec-item-full' : ''}">
                                     <span class="spec-label">${key}</span>
-                                    <span class="spec-value">${val.toString().startsWith('http') ? `<a href="${val}" target="_blank" class="spec-link">Ver PDF <i class="fas fa-external-link-alt"></i></a>` : val}</span>
-                                </div>
-                            `).join('')}
+                                    <span class="spec-value">${displayVal}</span>
+                                </div>`;
+        }).join('')}
                         </div>
                         ${item.videoUrl ? `<a href="${item.videoUrl}" target="_blank" class="btn-video"><i class="fab fa-youtube"></i> VER VIDEO TUTORIAL</a>` : ''}
                     </div>
