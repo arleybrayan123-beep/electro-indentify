@@ -1502,15 +1502,38 @@
     const videoFeed = document.getElementById('video-feed');
     const captureCanvas = document.getElementById('capture-canvas');
     const scanLine = document.querySelector('.scan-line');
+    const cameraOverlay = document.getElementById('camera-status-overlay');
+    const cameraStatusText = document.getElementById('camera-status-text');
     let videoStream = null;
     let net = null; // Modelo de IA MobileNet
+
+    // Verificación de Contexto Seguro (HTTPS)
+    if (window.location.protocol === 'file:' || window.location.protocol === 'http:') {
+        console.warn("Contexto no seguro. La cámara podría no funcionar.");
+        // Opcional: mostrar un mensaje sutil al usuario más tarde si intenta abrir la cámara
+    }
+
+    // Verificación de Librerías Externas
+    function checkLibraries() {
+        if (typeof Tesseract === 'undefined') {
+            console.error("Tesseract.js no cargó.");
+            alert("Error: No se pudo cargar el motor de lectura (Tesseract). Verifica tu conexión a internet.");
+        }
+        if (typeof tf === 'undefined' || typeof mobilenet === 'undefined') {
+            console.error("TensorFlow/MobileNet no cargó.");
+            console.warn("La IA de forma no estará disponible, se usará solo texto.");
+        }
+    }
+    setTimeout(checkLibraries, 2000); // Dar tiempo a los CDNs
 
     // Cargar modelo de IA al inicio
     async function loadAIModel() {
         console.log("Cargando cerebro de IA...");
         try {
-            net = await mobilenet.load();
-            console.log("IA lista para reconocer objetos.");
+            if (typeof mobilenet !== 'undefined') {
+                net = await mobilenet.load();
+                console.log("IA lista para reconocer objetos.");
+            }
         } catch (err) {
             console.error("Error cargando IA:", err);
         }
@@ -1564,12 +1587,17 @@
             context.drawImage(videoFeed, 0, 0);
 
             try {
+                // Mostrar overlay de análisis
+                if (cameraOverlay) {
+                    cameraOverlay.classList.remove('hidden');
+                    if (cameraStatusText) cameraStatusText.innerText = "IA y OCR Analizando...";
+                }
+
                 // 1. Identificación por IA (Forma)
                 let aiCategory = "";
                 if (net) {
                     const predictions = await net.classify(captureCanvas);
                     console.log("IA predice:", predictions);
-                    // Mapear predicciones a nuestras categorías
                     const topLabel = predictions[0].className.toLowerCase();
                     if (topLabel.includes('meter') || topLabel.includes('multimeter')) aiCategory = "Multímetros Digitales";
                     if (topLabel.includes('oscilloscope')) aiCategory = "Osciloscopios";
@@ -1591,12 +1619,11 @@
                     const itemRef = item.ref.toLowerCase();
                     const itemCat = item.category;
 
-                    // Bono por categoría detectada por IA
                     if (aiCategory && itemCat === aiCategory) score += 10;
 
                     searchTerms.forEach(term => {
                         if (itemName.includes(term)) score += 3;
-                        if (itemRef.includes(term)) score += 7; // Mucho peso a la referencia
+                        if (itemRef.includes(term)) score += 7;
                     });
 
                     if (score > highestScore) {
@@ -1605,19 +1632,51 @@
                     }
                 });
 
-                if (bestMatch && highestScore > 5) { // Umbral mínimo de confianza
+                if (bestMatch && highestScore >= 2) {
                     showDetails(bestMatch.ref);
                 } else {
-                    alert("La IA está confundida. Prueba enfocando mejor la etiqueta o el modelo del equipo.");
+                    // Mostrar sugerencia de búsqueda externa si la interna falla o es incierta
+                    showExternalSearchOptions(aiCategory, searchTerms);
                 }
 
             } catch (err) {
-                console.error("Error en identificación híbrida:", err);
-                alert("Error al analizar la imagen. Intenta de nuevo.");
+                console.error("Error en identificación:", err);
+                alert("Error al analizar la imagen.");
             } finally {
+                if (cameraOverlay) cameraOverlay.classList.add('hidden');
                 resetCamera();
             }
         });
+    }
+
+    function showExternalSearchOptions(aiCategory, searchTerms) {
+        const resultsGrid = document.getElementById('results-grid');
+        const searchUI = document.getElementById('search-ui-results');
+        if (!resultsGrid || !searchUI) return;
+
+        searchUI.style.display = 'block';
+        const query = searchTerms.join(' ') || aiCategory || "componente electrónico";
+        const youtubeQuery = encodeURIComponent(`${query} tutorial español`);
+        const googleQuery = encodeURIComponent(`${query} datasheet pdf`);
+
+        resultsGrid.innerHTML = `
+            <div class="external-search-card glass neon-border">
+                <div class="ai-badge">IA: Búsqueda Externa</div>
+                <h3>¿No es lo que buscabas?</h3>
+                <p>La IA detectó: <strong>${aiCategory || 'Componente'}</strong>. Prueba con estos enlaces directos:</p>
+                <div class="external-links-grid">
+                    <a href="https://www.youtube.com/results?search_query=${youtubeQuery}" target="_blank" class="btn-external yt">
+                        <i class="fab fa-youtube"></i> Ver Video Tutoriales
+                    </a>
+                    <a href="https://www.google.com/search?q=${googleQuery}" target="_blank" class="btn-external google">
+                        <i class="fab fa-google"></i> Buscar Especificaciones
+                    </a>
+                </div>
+                <button class="btn-details" onclick="document.getElementById('search-ui-results').style.display='none'">
+                    Volver a intentar
+                </button>
+            </div>
+        `;
     }
 
     // Soporte para carga de archivos con IA + OCR
