@@ -1,26 +1,36 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-    // --- Navegación de Calculadoras ---
-    const navCalculators = document.getElementById('nav-calculators');
+    // --- Referencias a Páginas y Elementos Principales ---
+    const landingPage = document.getElementById('landing-page');
+    const subcategoryPage = document.getElementById('subcategory-page');
+    const catalogPage = document.getElementById('catalog-page');
     const calculatorsPage = document.getElementById('calculators-page');
+    const catalogGrid = document.getElementById('catalog-grid');
+
+    const navCalculators = document.getElementById('nav-calculators');
     const backToHomeFromCalc = document.getElementById('back-to-home-from-calc');
+    const backToHome = document.getElementById('back-to-home');
+    const backToHomeSub = document.getElementById('back-to-home-from-sub');
+
+    // --- Navegación General ---
+    function showPage(page) {
+        [landingPage, subcategoryPage, catalogPage, calculatorsPage].forEach(p => {
+            if (p) p.classList.add('hidden-page');
+        });
+        if (page) {
+            page.classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+        }
+    }
 
     if (navCalculators) {
         navCalculators.addEventListener('click', (e) => {
             e.preventDefault();
-            landingPage.classList.add('hidden-page');
-            subcategoryPage.classList.add('hidden-page');
-            catalogPage.classList.add('hidden-page');
-            calculatorsPage.classList.remove('hidden-page');
-            window.scrollTo(0, 0);
+            showPage(calculatorsPage);
         });
     }
 
     if (backToHomeFromCalc) {
-        backToHomeFromCalc.addEventListener('click', () => {
-            calculatorsPage.classList.add('hidden-page');
-            landingPage.classList.remove('hidden-page');
-            window.scrollTo(0, 0);
-        });
+        backToHomeFromCalc.addEventListener('click', () => showPage(landingPage));
     }
 
     // --- Lógica Ley de Ohm ---
@@ -123,7 +133,12 @@
     initResistor();
 
     const themeToggle = document.getElementById('theme-toggle');
-    const toggleIcon = themeToggle.querySelector('i');
+    const toggleIcon = themeToggle ? themeToggle.querySelector('i') : null;
+
+    if (!themeToggle || !toggleIcon) {
+        console.warn("Theme toggle components not found");
+        return; // Detener ejecución de esta parte si faltan elementos
+    }
 
     // Check local storage or match media
     const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -1369,22 +1384,6 @@
         modal.onclick = (e) => { if (e.target === modal) closeBtn.onclick(); };
     };
 
-    const landingPage = document.getElementById('landing-page');
-    const subcategoryPage = document.getElementById('subcategory-page');
-    const catalogPage = document.getElementById('catalog-page');
-    const catalogGrid = document.getElementById('catalog-grid');
-    const backToHome = document.getElementById('back-to-home');
-    const backToHomeSub = document.getElementById('back-to-home-from-sub');
-
-    function transition(from, to) {
-        from.style.opacity = '0';
-        setTimeout(() => {
-            from.classList.add('hidden-page');
-            to.classList.remove('hidden-page');
-            setTimeout(() => to.style.opacity = '1', 50);
-        }, 450);
-    }
-
     // Inicialización dinámica de subcategorías
     function setupCategories() {
         const subGrid = document.getElementById('subcategory-grid');
@@ -1394,7 +1393,7 @@
             card.addEventListener('click', () => {
                 const mainCategory = card.querySelector('h3').textContent;
                 renderSubcategories(mainCategory);
-                transition(landingPage, subcategoryPage);
+                showPage(subcategoryPage);
             });
         });
     }
@@ -1478,20 +1477,23 @@
             `;
             catalogGrid.appendChild(card);
         });
-        transition(subcategoryPage, catalogPage);
+        showPage(catalogPage);
     }
 
     if (backToHomeSub) {
-        backToHomeSub.addEventListener('click', () => transition(subcategoryPage, landingPage));
+        backToHomeSub.addEventListener('click', () => showPage(landingPage));
     }
 
     if (backToHome) {
-        backToHome.addEventListener('click', () => transition(catalogPage, subcategoryPage));
+        backToHome.addEventListener('click', () => showPage(subcategoryPage));
     }
 
     setupCategories();
     mainSearch.addEventListener('input', debounce(performSearch, 300));
-    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    window.addEventListener('scroll', () => {
+        const headerEl = document.getElementById('header');
+        if (headerEl) headerEl.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
     // --- Lógica de Cámara Móvil ---
     const mobileCameraSection = document.getElementById('mobile-camera-section');
@@ -1501,8 +1503,21 @@
     const captureCanvas = document.getElementById('capture-canvas');
     const scanLine = document.querySelector('.scan-line');
     let videoStream = null;
+    let net = null; // Modelo de IA MobileNet
 
-    // Detección simple de dispositivo móvil
+    // Cargar modelo de IA al inicio
+    async function loadAIModel() {
+        console.log("Cargando cerebro de IA...");
+        try {
+            net = await mobilenet.load();
+            console.log("IA lista para reconocer objetos.");
+        } catch (err) {
+            console.error("Error cargando IA:", err);
+        }
+    }
+    loadAIModel();
+
+    // Detección de móvil
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768);
 
     if (isMobile && mobileCameraSection) {
@@ -1511,6 +1526,10 @@
 
     if (startCameraBtn) {
         startCameraBtn.addEventListener('click', async () => {
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                alert("Tu navegador no soporta el acceso a la cámara o no estás en una conexión segura (HTTPS).");
+                return;
+            }
             try {
                 videoStream = await navigator.mediaDevices.getUserMedia({
                     video: { facingMode: 'environment' },
@@ -1519,38 +1538,144 @@
                 videoFeed.srcObject = videoStream;
                 startCameraBtn.style.display = 'none';
                 capturePhotoBtn.style.display = 'flex';
-                scanLine.style.display = 'block';
+                if (scanLine) scanLine.style.display = 'block';
             } catch (err) {
                 console.error("Error al acceder a la cámara:", err);
-                alert("No se pudo acceder a la cámara. Asegúrate de dar los permisos.");
+                alert("No se pudo acceder a la cámara o permisos denegados.");
             }
         });
     }
 
     if (capturePhotoBtn) {
-        capturePhotoBtn.addEventListener('click', () => {
+        capturePhotoBtn.addEventListener('click', async () => {
             if (!videoStream) return;
 
-            // Congelar video y simular escaneo
+            // Congelar video y mostrar feedback
             videoFeed.pause();
-            scanLine.style.animationIterationCount = '1';
+            if (scanLine) {
+                scanLine.style.animationIterationCount = 'infinite';
+                scanLine.style.background = 'var(--accent)';
+            }
 
-            // Dibujar en canvas para "procesar"
+            // Dibujar en canvas para procesar
             const context = captureCanvas.getContext('2d');
             captureCanvas.width = videoFeed.videoWidth;
             captureCanvas.height = videoFeed.videoHeight;
             context.drawImage(videoFeed, 0, 0);
 
-            // Simular búsqueda (Selección aleatoria de la base de datos para demostración)
-            setTimeout(() => {
-                const randomItem = equipmentData[Math.floor(Math.random() * equipmentData.length)];
+            try {
+                // 1. Identificación por IA (Forma)
+                let aiCategory = "";
+                if (net) {
+                    const predictions = await net.classify(captureCanvas);
+                    console.log("IA predice:", predictions);
+                    // Mapear predicciones a nuestras categorías
+                    const topLabel = predictions[0].className.toLowerCase();
+                    if (topLabel.includes('meter') || topLabel.includes('multimeter')) aiCategory = "Multímetros Digitales";
+                    if (topLabel.includes('oscilloscope')) aiCategory = "Osciloscopios";
+                    if (topLabel.includes('power supply')) aiCategory = "Fuentes de Poder";
+                }
 
-                // Mostrar resultado (usando la función showDetails existente)
-                showDetails(randomItem.ref);
+                // 2. Identificación por OCR (Texto)
+                const { data: { text } } = await Tesseract.recognize(captureCanvas, 'eng+spa');
+                console.log("OCR detecta:", text);
 
-                // Reiniciar estado de cámara
+                // 3. Motor de Búsqueda Híbrido
+                const searchTerms = text.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+                let bestMatch = null;
+                let highestScore = 0;
+
+                equipmentData.forEach(item => {
+                    let score = 0;
+                    const itemName = item.name.toLowerCase();
+                    const itemRef = item.ref.toLowerCase();
+                    const itemCat = item.category;
+
+                    // Bono por categoría detectada por IA
+                    if (aiCategory && itemCat === aiCategory) score += 10;
+
+                    searchTerms.forEach(term => {
+                        if (itemName.includes(term)) score += 3;
+                        if (itemRef.includes(term)) score += 7; // Mucho peso a la referencia
+                    });
+
+                    if (score > highestScore) {
+                        highestScore = score;
+                        bestMatch = item;
+                    }
+                });
+
+                if (bestMatch && highestScore > 5) { // Umbral mínimo de confianza
+                    showDetails(bestMatch.ref);
+                } else {
+                    alert("La IA está confundida. Prueba enfocando mejor la etiqueta o el modelo del equipo.");
+                }
+
+            } catch (err) {
+                console.error("Error en identificación híbrida:", err);
+                alert("Error al analizar la imagen. Intenta de nuevo.");
+            } finally {
                 resetCamera();
-            }, 1500);
+            }
+        });
+    }
+
+    // Soporte para carga de archivos con IA + OCR
+    const photoUpload = document.getElementById('photo-upload');
+    if (photoUpload) {
+        photoUpload.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (event) => {
+                const img = new Image();
+                img.onload = async () => {
+                    captureCanvas.width = img.width;
+                    captureCanvas.height = img.height;
+                    const ctx = captureCanvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+
+                    try {
+                        let aiCategory = "";
+                        if (net) {
+                            const predictions = await net.classify(captureCanvas);
+                            const topLabel = predictions[0].className.toLowerCase();
+                            if (topLabel.includes('meter') || topLabel.includes('multimeter')) aiCategory = "Multímetros Digitales";
+                            if (topLabel.includes('oscilloscope')) aiCategory = "Osciloscopios";
+                        }
+
+                        const { data: { text } } = await Tesseract.recognize(captureCanvas, 'eng+spa');
+                        const searchTerms = text.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+
+                        let bestMatch = null;
+                        let highestScore = 0;
+
+                        equipmentData.forEach(item => {
+                            let score = 0;
+                            if (aiCategory && item.category === aiCategory) score += 10;
+                            searchTerms.forEach(term => {
+                                if (item.name.toLowerCase().includes(term)) score += 3;
+                                if (item.ref.toLowerCase().includes(term)) score += 7;
+                            });
+                            if (score > highestScore) {
+                                highestScore = score;
+                                bestMatch = item;
+                            }
+                        });
+
+                        if (bestMatch && highestScore > 5) {
+                            showDetails(bestMatch.ref);
+                        } else {
+                            alert("No pudimos identificar este componente. Intenta con una foto más clara.");
+                        }
+                    } catch (err) {
+                        alert("Error al procesar la imagen.");
+                    }
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
         });
     }
 
