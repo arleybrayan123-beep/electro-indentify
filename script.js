@@ -1,4 +1,154 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
+    // --- Navegación de Calculadoras ---
+    const navCalculators = document.getElementById('nav-calculators');
+    const calculatorsPage = document.getElementById('calculators-page');
+    const backToHomeFromCalc = document.getElementById('back-to-home-from-calc');
+
+    if (navCalculators) {
+        navCalculators.addEventListener('click', (e) => {
+            e.preventDefault();
+            landingPage.classList.add('hidden-page');
+            subcategoryPage.classList.add('hidden-page');
+            catalogPage.classList.add('hidden-page');
+            calculatorsPage.classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+        });
+    }
+
+    if (backToHomeFromCalc) {
+        backToHomeFromCalc.addEventListener('click', () => {
+            calculatorsPage.classList.add('hidden-page');
+            landingPage.classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+        });
+    }
+
+    // --- Lógica Ley de Ohm ---
+    const ohmV = document.getElementById('ohm-v');
+    const ohmI = document.getElementById('ohm-i');
+    const ohmR = document.getElementById('ohm-r');
+    const ohmResult = document.getElementById('ohm-result');
+    const clearOhm = document.getElementById('clear-ohm');
+
+    function calculateOhm() {
+        const v = parseFloat(ohmV.value);
+        const i = parseFloat(ohmI.value);
+        const r = parseFloat(ohmR.value);
+
+        if (!isNaN(v) && !isNaN(i)) {
+            const res = v / i;
+            ohmR.value = res.toFixed(2);
+            ohmResult.innerHTML = `Resistencia (R) = <strong>${res.toFixed(2)} Ω</strong>`;
+        } else if (!isNaN(v) && !isNaN(r)) {
+            const res = v / r;
+            ohmI.value = res.toFixed(2);
+            ohmResult.innerHTML = `Corriente (I) = <strong>${res.toFixed(2)} A</strong>`;
+        } else if (!isNaN(i) && !isNaN(r)) {
+            const res = i * r;
+            ohmV.value = res.toFixed(2);
+            ohmResult.innerHTML = `Voltaje (V) = <strong>${res.toFixed(2)} V</strong>`;
+        }
+    }
+
+    [ohmV, ohmI, ohmR].forEach(input => {
+        input.addEventListener('input', calculateOhm);
+    });
+
+    clearOhm.addEventListener('click', () => {
+        ohmV.value = '';
+        ohmI.value = '';
+        ohmR.value = '';
+        ohmResult.innerText = 'Ingresa dos valores para calcular el tercero';
+    });
+
+    // --- Lógica Código de Colores ---
+    const colors = [
+        { name: 'Negro', color: '#000000', value: 0, mult: 1, tol: null },
+        { name: 'Marrón', color: '#8B4513', value: 1, mult: 10, tol: 1 },
+        { name: 'Rojo', color: '#FF0000', value: 2, mult: 100, tol: 2 },
+        { name: 'Naranja', color: '#FFA500', value: 3, mult: 1000, tol: null },
+        { name: 'Amarillo', color: '#FFFF00', value: 4, mult: 10000, tol: null },
+        { name: 'Verde', color: '#008000', value: 5, mult: 100000, tol: 0.5 },
+        { name: 'Azul', color: '#0000FF', value: 6, mult: 1000000, tol: 0.25 },
+        { name: 'Violeta', color: '#EE82EE', value: 7, mult: 10000000, tol: 0.1 },
+        { name: 'Gris', color: '#808080', value: 8, mult: 100000000, tol: 0.05 },
+        { name: 'Blanco', color: '#FFFFFF', value: 9, mult: 1000000000, tol: null },
+        { name: 'Oro', color: '#D4AF37', value: null, mult: 0.1, tol: 5 },
+        { name: 'Plata', color: '#C0C0C0', value: null, mult: 0.01, tol: 10 }
+    ];
+
+    const b1S = document.getElementById('band1-select');
+    const b2S = document.getElementById('band2-select');
+    const b3S = document.getElementById('band3-select');
+    const b4S = document.getElementById('band4-select');
+    const resResult = document.getElementById('resistor-result');
+
+    function initResistor() {
+        colors.forEach((c, index) => {
+            if (c.value !== null) {
+                b1S.add(new Option(c.name, index));
+                b2S.add(new Option(c.name, index));
+            }
+            if (c.mult !== null) b3S.add(new Option(c.name, index));
+            if (c.tol !== null) b4S.add(new Option(c.name + ' (' + c.tol + '%)', index));
+        });
+
+        // Valores iniciales (1k 5%)
+        b1S.value = 1; // Marrón
+        b2S.value = 0; // Negro
+        b3S.value = 2; // Rojo (x100)
+        b4S.value = 10; // Oro (5%)
+        updateResistor();
+    }
+
+    function updateResistor() {
+        const c1 = colors[b1S.value];
+        const c2 = colors[b2S.value];
+        const c3 = colors[b3S.value];
+        const c4 = colors[b4S.value];
+
+        document.getElementById('b1').style.backgroundColor = c1.color;
+        document.getElementById('b2').style.backgroundColor = c2.color;
+        document.getElementById('b3').style.backgroundColor = c3.color;
+        document.getElementById('b4').style.backgroundColor = c4.color;
+
+        const val = (c1.value * 10 + c2.value) * c3.mult;
+        let displayVal = val >= 1000000 ? (val / 1000000).toFixed(1) + ' M' :
+            val >= 1000 ? (val / 1000).toFixed(1) + ' k' : val;
+
+        resResult.innerHTML = `<strong>${displayVal} Ω ± ${c4.tol}%</strong>`;
+    }
+
+    [b1S, b2S, b3S, b4S].forEach(s => s.addEventListener('change', updateResistor));
+    initResistor();
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const toggleIcon = themeToggle.querySelector('i');
+
+    // Check local storage or match media
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        toggleIcon.classList.replace('fa-moon', 'fa-sun');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        if (theme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            toggleIcon.classList.replace('fa-sun', 'fa-moon');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            toggleIcon.classList.replace('fa-moon', 'fa-sun');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+
+
     const header = document.getElementById('header');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const searchByText = document.getElementById('search-by-text');
@@ -1343,7 +1493,84 @@
     mainSearch.addEventListener('input', debounce(performSearch, 300));
     window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
 
+    // --- Lógica de Cámara Móvil ---
+    const mobileCameraSection = document.getElementById('mobile-camera-section');
+    const startCameraBtn = document.getElementById('start-camera');
+    const capturePhotoBtn = document.getElementById('capture-photo');
+    const videoFeed = document.getElementById('video-feed');
+    const captureCanvas = document.getElementById('capture-canvas');
+    const scanLine = document.querySelector('.scan-line');
+    let videoStream = null;
+
+    // Detección simple de dispositivo móvil
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (window.innerWidth <= 768);
+
+    if (isMobile && mobileCameraSection) {
+        mobileCameraSection.style.display = 'flex';
+    }
+
+    if (startCameraBtn) {
+        startCameraBtn.addEventListener('click', async () => {
+            try {
+                videoStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' },
+                    audio: false
+                });
+                videoFeed.srcObject = videoStream;
+                startCameraBtn.style.display = 'none';
+                capturePhotoBtn.style.display = 'flex';
+                scanLine.style.display = 'block';
+            } catch (err) {
+                console.error("Error al acceder a la cámara:", err);
+                alert("No se pudo acceder a la cámara. Asegúrate de dar los permisos.");
+            }
+        });
+    }
+
+    if (capturePhotoBtn) {
+        capturePhotoBtn.addEventListener('click', () => {
+            if (!videoStream) return;
+
+            // Congelar video y simular escaneo
+            videoFeed.pause();
+            scanLine.style.animationIterationCount = '1';
+
+            // Dibujar en canvas para "procesar"
+            const context = captureCanvas.getContext('2d');
+            captureCanvas.width = videoFeed.videoWidth;
+            captureCanvas.height = videoFeed.videoHeight;
+            context.drawImage(videoFeed, 0, 0);
+
+            // Simular búsqueda (Selección aleatoria de la base de datos para demostración)
+            setTimeout(() => {
+                const randomItem = equipmentData[Math.floor(Math.random() * equipmentData.length)];
+
+                // Mostrar resultado (usando la función showDetails existente)
+                showDetails(randomItem.ref);
+
+                // Reiniciar estado de cámara
+                resetCamera();
+            }, 1500);
+        });
+    }
+
+    function resetCamera() {
+        if (videoStream) {
+            videoStream.getTracks().forEach(track => track.stop());
+            videoStream = null;
+        }
+        videoFeed.srcObject = null;
+        startCameraBtn.style.display = 'block';
+        capturePhotoBtn.style.display = 'none';
+        scanLine.style.display = 'none';
+        scanLine.style.animationIterationCount = 'infinite';
+    }
+
+    // Detener cámara si se cambia de pestaña
     tabBtns.forEach(btn => btn.addEventListener('click', () => {
+        if (btn.dataset.tab !== 'photo') resetCamera();
+
+        if (!btn.dataset.tab) return; // Ignorar botones sin data-tab (como Calculadoras)
         tabBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         const isPhoto = btn.dataset.tab === 'photo';
