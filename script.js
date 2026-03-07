@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // --- Referencias a Páginas y Elementos Principales ---
     const landingPage = document.getElementById('landing-page');
     const subcategoryPage = document.getElementById('subcategory-page');
@@ -10,9 +10,11 @@
     const backToHomeFromCalc = document.getElementById('back-to-home-from-calc');
     const backToHome = document.getElementById('back-to-home');
     const backToHomeSub = document.getElementById('back-to-home-from-sub');
+    const backToSub = document.getElementById('back-to-sub');
 
-    // --- Navegación General ---
+    // --- Navegación General con Hash Routing ---
     function showPage(page) {
+        // Al ocultar páginas, nos aseguramos de que el scroll vuelva arriba
         [landingPage, subcategoryPage, catalogPage, calculatorsPage].forEach(p => {
             if (p) p.classList.add('hidden-page');
         });
@@ -22,15 +24,69 @@
         }
     }
 
+    function handleRouting() {
+        const hash = window.location.hash;
+        console.log("Navegando a hash:", hash);
+
+        if (!hash || hash === '' || hash === '#') {
+            showPage(landingPage);
+            return;
+        }
+
+        if (hash === '#calculadora') {
+            showPage(calculatorsPage);
+        } else if (hash === '#camera') {
+            const photoTab = document.querySelector('.tab-btn[data-tab="photo"]');
+            if (photoTab) photoTab.click();
+        } else if (hash.startsWith('#aparatos')) {
+            const parts = hash.split('/');
+            if (parts.length > 1) {
+                const subName = decodeURIComponent(parts[1]);
+                openCategory(subName, "Aparatos Electrónicos", false); // false = no empujar hash de nuevo
+            } else {
+                renderSubcategories("Aparatos Electrónicos");
+                showPage(subcategoryPage);
+            }
+        } else if (hash.startsWith('#circuitos')) {
+            const parts = hash.split('/');
+            if (parts.length > 1) {
+                const subName = decodeURIComponent(parts[1]);
+                openCategory(subName, "Circuitos Integrados", false);
+            } else {
+                renderSubcategories("Circuitos Integrados");
+                showPage(subcategoryPage);
+            }
+        } else {
+            showPage(landingPage);
+        }
+    }
+
+    // Escuchar cambios en el hash
+    window.addEventListener('hashchange', handleRouting);
+
     if (navCalculators) {
         navCalculators.addEventListener('click', (e) => {
             e.preventDefault();
-            showPage(calculatorsPage);
+            // Solo abrir nueva pestaña si NO estamos ya en la página de calculadoras
+            if (window.location.hash !== '#calculadora') {
+                const url = window.location.pathname + '#calculadora';
+                window.open(url, '_blank');
+            } else {
+                showPage(calculatorsPage);
+            }
         });
     }
 
-    if (backToHomeFromCalc) {
-        backToHomeFromCalc.addEventListener('click', () => showPage(landingPage));
+    if (backToHomeFromCalc || backToHome || backToHomeSub) {
+        const backBtns = [backToHomeFromCalc, backToHome, backToHomeSub];
+        backBtns.forEach(btn => {
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    window.location.hash = ''; // Limpiar hash para volver al inicio real
+                    showPage(landingPage);
+                });
+            }
+        });
     }
 
     // --- Lógica Ley de Ohm ---
@@ -1146,6 +1202,50 @@
             type: "Choke de Modo Común"
         },
         {
+            name: "Potenciómetro Lineal",
+            ref: "POT-10K",
+            category: "Resistencias",
+            mainCategory: "Componentes Pasivos",
+            desc: "Resistencia variable de tres terminales. El terminal central (cursor) permite variar la resistencia manualmente girando el eje.",
+            videoUrl: "https://www.youtube.com/watch?v=F3_8T_m3qRA",
+            imageUrl: "https://m.media-amazon.com/images/I/51r2XG5XF9L._AC_SL1000_.jpg",
+            specs: {
+                "Valor": "10 kΩ (típico)",
+                "Tipo": "Lineal (B10K)",
+                "Pines": "1-3 Extremos, 2 Cursor",
+                "Potencia": "0.5 W"
+            },
+            usageSteps: [
+                "Conecte los terminales extremos a VCC y GND.",
+                "Mida el voltaje de salida en el terminal central (pata 2).",
+                "Use como divisor de voltaje para controlar volumen o brillo.",
+                "En protoboard, asegúrese de que las patas queden firmes para evitar lecturas ruidosas."
+            ],
+            type: "Resistencia Variable"
+        },
+        {
+            name: "Pulsador Táctil (Push Button)",
+            ref: "BTN-6MM",
+            category: "Interruptores",
+            mainCategory: "Componentes Pasivos",
+            desc: "Interruptor momentáneo que cierra el circuito al ser presionado. Ideal para entradas digitales en microcontroladores.",
+            videoUrl: "https://www.youtube.com/watch?v=fS_2G1vE7cM",
+            imageUrl: "https://m.media-amazon.com/images/I/61N+zP0H1bL._AC_SL1000_.jpg",
+            specs: {
+                "Configuración": "Normalmente Abierto (SPST-NO)",
+                "Dimensiones": "6mm x 6mm",
+                "Voltaje Max": "12 VDC",
+                "Vida Útil": "100.000 ciclos"
+            },
+            usageSteps: [
+                "Identifique los pares de pines que están conectados internamente.",
+                "Use una resistencia Pull-up o Pull-down externa (10k) para evitar pines flotantes.",
+                "En Arduino, use 'INPUT_PULLUP' para simplificar la conexión.",
+                "Implemente un 'debounce' por software para evitar lecturas falsas al presionar."
+            ],
+            type: "Interruptor Momentáneo"
+        },
+        {
             name: "Timer NE555",
             ref: "NE555",
             category: "Circuitos Integrados",
@@ -1391,9 +1491,19 @@
 
         mainCards.forEach(card => {
             card.addEventListener('click', () => {
-                const mainCategory = card.querySelector('h3').textContent;
-                renderSubcategories(mainCategory);
-                showPage(subcategoryPage);
+                const mainCategory = card.dataset.mainCategory || card.querySelector('h3').textContent;
+
+                // Si estamos en la página de inicio (sin hash), abrir en nueva pestaña
+                if (!window.location.hash || window.location.hash === '' || window.location.hash === '#') {
+                    const isAparatos = mainCategory.toLowerCase().includes('aparatos');
+                    const targetHash = isAparatos ? '#aparatos' : '#circuitos';
+                    const baseUrl = window.location.href.split('#')[0];
+                    window.open(baseUrl + targetHash, '_blank');
+                } else {
+                    // Si ya estamos en una pestaña de categoría, navegar en la misma ventana
+                    renderSubcategories(mainCategory);
+                    showPage(subcategoryPage);
+                }
             });
         });
     }
@@ -1424,7 +1534,10 @@
                 <p>${count} Dispositivos</p>
                 <div class="card-glow"></div>
             `;
-            card.addEventListener('click', () => openCategory(sub, mainCategory));
+            card.addEventListener('click', () => {
+                const prefix = mainCategory.includes('Aparatos') ? '#aparatos' : '#circuitos';
+                window.location.hash = `${prefix}/${encodeURIComponent(sub)}`;
+            });
             subGrid.appendChild(card);
         });
     }
@@ -1447,7 +1560,12 @@
         return icons[sub] || "fas fa-microchip";
     }
 
-    function openCategory(category, mainCategory) {
+    function openCategory(category, mainCategory, pushHash = true) {
+        if (pushHash) {
+            const prefix = mainCategory.includes('Aparatos') ? '#aparatos' : '#circuitos';
+            window.location.hash = `${prefix}/${encodeURIComponent(category)}`;
+            return; // handleRouting se encargará del resto
+        }
         const filtered = equipmentData.filter(item =>
             normalize(item.category) === normalize(category) &&
             item.mainCategory === mainCategory
@@ -1481,11 +1599,26 @@
     }
 
     if (backToHomeSub) {
-        backToHomeSub.addEventListener('click', () => showPage(landingPage));
+        backToHomeSub.addEventListener('click', () => {
+            window.location.hash = '';
+        });
     }
 
     if (backToHome) {
-        backToHome.addEventListener('click', () => showPage(subcategoryPage));
+        backToHome.addEventListener('click', () => {
+            window.location.hash = '';
+        });
+    }
+
+    if (backToSub) {
+        backToSub.addEventListener('click', () => {
+            const currentHash = window.location.hash;
+            if (currentHash.includes('/')) {
+                window.location.hash = currentHash.split('/')[0];
+            } else {
+                window.location.hash = '';
+            }
+        });
     }
 
     setupCategories();
@@ -1559,6 +1692,7 @@
                     audio: false
                 });
                 videoFeed.srcObject = videoStream;
+                await videoFeed.play(); // Forzar reproducción
                 startCameraBtn.style.display = 'none';
                 capturePhotoBtn.style.display = 'flex';
                 if (scanLine) scanLine.style.display = 'block';
@@ -1590,7 +1724,7 @@
                 // Mostrar overlay de análisis
                 if (cameraOverlay) {
                     cameraOverlay.classList.remove('hidden');
-                    if (cameraStatusText) cameraStatusText.innerText = "IA y OCR Analizando...";
+                    if (cameraStatusText) cameraStatusText.innerText = "Analizando...";
                 }
 
                 // 1. Identificación por IA (Forma)
@@ -1599,17 +1733,26 @@
                     const predictions = await net.classify(captureCanvas);
                     console.log("IA predice:", predictions);
                     const topLabel = predictions[0].className.toLowerCase();
+
                     if (topLabel.includes('meter') || topLabel.includes('multimeter')) aiCategory = "Multímetros Digitales";
-                    if (topLabel.includes('oscilloscope')) aiCategory = "Osciloscopios";
-                    if (topLabel.includes('power supply')) aiCategory = "Fuentes de Poder";
+                    else if (topLabel.includes('oscilloscope')) aiCategory = "Osciloscopios";
+                    else if (topLabel.includes('power supply')) aiCategory = "Fuentes de Poder";
+                    else if (topLabel.includes('microchip') || topLabel.includes('chip') || topLabel.includes('cpu') || topLabel.includes('circuit')) aiCategory = "Circuitos Integrados";
+                    else if (topLabel.includes('resistor') || topLabel.includes('potentiometer')) aiCategory = "Resistencias";
+                    else if (topLabel.includes('capacitor')) aiCategory = "Capacitores";
+                    else if (topLabel.includes('transistor')) aiCategory = "Transistores";
+                    else if (topLabel.includes('diode')) aiCategory = "Diodos";
+                    else if (topLabel.includes('switch') || topLabel.includes('button')) aiCategory = "Interruptores";
+                    else if (topLabel.includes('generator')) aiCategory = "Generadores de Señales";
+                    else if (topLabel.includes('coil') || topLabel.includes('inductor') || topLabel.includes('transformer')) aiCategory = "Bobinas";
                 }
 
                 // 2. Identificación por OCR (Texto)
                 const { data: { text } } = await Tesseract.recognize(captureCanvas, 'eng+spa');
                 console.log("OCR detecta:", text);
 
-                // 3. Motor de Búsqueda Híbrido
-                const searchTerms = text.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+                // 3. Motor de Búsqueda Híbrido Protegido y Sensible
+                const searchTerms = text.replace(/[^a-zA-Z0-9\s]/g, ' ').toLowerCase().split(/\s+/).filter(t => t.length >= 2);
                 let bestMatch = null;
                 let highestScore = 0;
 
@@ -1619,11 +1762,19 @@
                     const itemRef = item.ref.toLowerCase();
                     const itemCat = item.category;
 
-                    if (aiCategory && itemCat === aiCategory) score += 10;
+                    // Bono por categoría detectada por IA (Muy alto para filtrar ruido)
+                    if (aiCategory && itemCat === aiCategory) score += 15;
 
                     searchTerms.forEach(term => {
+                        // Coincidencia exacta o parcial en nombre
                         if (itemName.includes(term)) score += 3;
-                        if (itemRef.includes(term)) score += 7;
+
+                        // Coincidencia fuerte en referencia (Crucial para chips)
+                        if (itemRef.includes(term) || term.includes(itemRef)) {
+                            score += 10;
+                            // Si es coincidencia casi exacta en referencia, bono máximo
+                            if (term === itemRef || term.length > 3 && itemRef.includes(term)) score += 5;
+                        }
                     });
 
                     if (score > highestScore) {
@@ -1751,8 +1902,17 @@
     }
 
     // Detener cámara si se cambia de pestaña
-    tabBtns.forEach(btn => btn.addEventListener('click', () => {
+    tabBtns.forEach(btn => btn.addEventListener('click', (e) => {
         if (btn.dataset.tab !== 'photo') resetCamera();
+
+        if (btn.dataset.tab === 'photo') {
+            // Si estamos en el inicio y hacemos clic en foto, abrir pestaña nueva
+            if (!window.location.hash || window.location.hash === '#') {
+                e.preventDefault();
+                window.open(window.location.pathname + '#camera', '_blank');
+                return;
+            }
+        }
 
         if (!btn.dataset.tab) return; // Ignorar botones sin data-tab (como Calculadoras)
         tabBtns.forEach(b => b.classList.remove('active'));
@@ -1761,4 +1921,6 @@
         searchByText.style.display = isPhoto ? 'none' : 'block';
         searchByPhoto.style.display = isPhoto ? 'block' : 'none';
     }));
+    // Inicializar el ruteo después de que todo esté cargado
+    handleRouting();
 });
