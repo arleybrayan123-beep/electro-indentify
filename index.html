@@ -17,16 +17,29 @@
 </head>
 
 <body>
-    <div id="landing-page">
-        <header id="header">
-            <div class="logo">ELECTRO<span>IDENTIFY</span></div>
-            <nav>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </nav>
-        </header>
+    <header id="header">
+        <a href="#" class="logo" style="text-decoration: none;" onclick="window.location.hash='';">ELECTRO<span>IDENTIFY</span></a>
+        <nav style="display: flex; align-items: center; gap: 0.5rem;">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="menu-toggle" class="theme-toggle" aria-label="Menú principal">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Dropdown Menu -->
+        <div id="dropdown-menu" class="dropdown-menu hidden-dropdown">
+            <a href="#convertidor" class="dropdown-item" id="link-converter">
+                <i class="fas fa-exchange-alt"></i> Convertidor de Unidades
+            </a>
+            <a href="#calculadora" class="dropdown-item">
+                <i class="fas fa-calculator"></i> Calculadoras
+            </a>
+        </div>
+    </header>
 
+    <div id="landing-page">
         <main>
             <section class="hero">
                 <div class="hero-bg">
@@ -112,7 +125,7 @@
                         <p>Explora nuestra base de datos de instrumentación de laboratorio: osciloscopios,
                             multímetros,
                             fuentes de poder y más.</p>
-                        <span class="subcategory-count">6 subcategorías</span>
+                        <span class="subcategory-count">5 subcategorías</span>
                     </div>
                     <div class="equipment-card glass neon-border main-category-card"
                         data-main-category="Circuitos Integrados">
@@ -236,6 +249,65 @@
                         </div>
                     </div>
                     <div id="resistor-result" class="calc-result value-display">0 Ω ± 0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Converter Page -->
+    <div id="converter-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container">
+            <button id="back-to-home-from-conv" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1>Convertidor de Unidades y Notación</h1>
+                <p>Herramienta rápida para convertir prefijos de ingeniería en el laboratorio.</p>
+            </div>
+            
+            <div class="converter-card glass neon-border">
+                <div class="converter-inputs">
+                    <div class="input-group">
+                        <label>Valor Numérico</label>
+                        <input type="number" step="any" id="conv-value" placeholder="Ej: 1000" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Prefijo Actual</label>
+                        <select id="conv-prefix">
+                            <option value="1e-12">pico (p)</option>
+                            <option value="1e-9">nano (n)</option>
+                            <option value="1e-6">micro (µ)</option>
+                            <option value="1e-3">mili (m)</option>
+                            <option value="1" selected>Unidad Base</option>
+                            <option value="1e3">kilo (k)</option>
+                            <option value="1e6">Mega (M)</option>
+                            <option value="1e9">Giga (G)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Magnitud</label>
+                        <select id="conv-unit">
+                            <option value="V">Voltios (V)</option>
+                            <option value="A">Amperios (A)</option>
+                            <option value="Ω">Ohmios (Ω)</option>
+                            <option value="F">Faradios (F)</option>
+                            <option value="Hz">Hertz (Hz)</option>
+                            <option value="W">Vatios (W)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="converter-results">
+                    <div class="conv-res-item"><span class="conv-lbl">pico (p):</span> <span class="conv-val" id="res-p">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">nano (n):</span> <span class="conv-val" id="res-n">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">micro (µ):</span> <span class="conv-val" id="res-u">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">mili (m):</span> <span class="conv-val" id="res-m">--</span></div>
+                    <div class="conv-res-item highlight-res"><span class="conv-lbl">Base:</span> <span class="conv-val" id="res-base">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">kilo (k):</span> <span class="conv-val" id="res-k">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">Mega (M):</span> <span class="conv-val" id="res-M">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">Giga (G):</span> <span class="conv-val" id="res-G">--</span></div>
                 </div>
             </div>
         </div>

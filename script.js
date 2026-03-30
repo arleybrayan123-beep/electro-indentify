@@ -4,10 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const subcategoryPage = document.getElementById('subcategory-page');
     const catalogPage = document.getElementById('catalog-page');
     const calculatorsPage = document.getElementById('calculators-page');
+    const converterPage = document.getElementById('converter-page');
     const catalogGrid = document.getElementById('catalog-grid');
 
     const navCalculators = document.getElementById('nav-calculators');
     const backToHomeFromCalc = document.getElementById('back-to-home-from-calc');
+    const backToHomeFromConv = document.getElementById('back-to-home-from-conv');
     const backToHome = document.getElementById('back-to-home');
     const backToHomeSub = document.getElementById('back-to-home-from-sub');
     const backToSub = document.getElementById('back-to-sub');
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Navegación General con Hash Routing ---
     function showPage(page) {
         // Al ocultar páginas, nos aseguramos de que el scroll vuelva arriba
-        [landingPage, subcategoryPage, catalogPage, calculatorsPage].forEach(p => {
+        [landingPage, subcategoryPage, catalogPage, calculatorsPage, converterPage].forEach(p => {
             if (p) p.classList.add('hidden-page');
         });
         if (page) {
@@ -35,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (hash === '#calculadora') {
             showPage(calculatorsPage);
+        } else if (hash === '#convertidor') {
+            showPage(converterPage);
+            const dropdown = document.getElementById('dropdown-menu');
+            if(dropdown) dropdown.classList.add('hidden-dropdown');
         } else if (hash === '#camera') {
             const photoTab = document.querySelector('.tab-btn[data-tab="photo"]');
             if (photoTab) photoTab.click();
@@ -77,8 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (backToHomeFromCalc || backToHome || backToHomeSub) {
-        const backBtns = [backToHomeFromCalc, backToHome, backToHomeSub];
+    if (backToHomeFromCalc || backToHome || backToHomeSub || backToHomeFromConv) {
+        const backBtns = [backToHomeFromCalc, backToHome, backToHomeSub, backToHomeFromConv];
         backBtns.forEach(btn => {
             if (btn) {
                 btn.addEventListener('click', () => {
@@ -87,6 +93,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+    }
+
+    // --- Lógica Menú Desplegable ---
+    const menuToggle = document.getElementById('menu-toggle');
+    const dropdownMenu = document.getElementById('dropdown-menu');
+    
+    if(menuToggle && dropdownMenu) {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('hidden-dropdown');
+        });
+        
+        document.addEventListener('click', (e) => {
+            if (!dropdownMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                dropdownMenu.classList.add('hidden-dropdown');
+            }
+        });
+    }
+
+    // --- Lógica Convertidor de Unidades ---
+    const convValue = document.getElementById('conv-value');
+    const convPrefix = document.getElementById('conv-prefix');
+    const convUnit = document.getElementById('conv-unit');
+    
+    function updateConverter() {
+        if(!convValue) return;
+        const val = parseFloat(convValue.value) || 0;
+        const prefixMult = parseFloat(convPrefix.value) || 1;
+        const unit = convUnit.value;
+        const baseValue = val * prefixMult;
+        
+        const formatRes = (mult) => {
+            if(baseValue === 0) return "0 " + unit;
+            let res = baseValue / mult;
+            if(Math.abs(res) < 1e-15) return "0 " + unit;
+            return Number(res.toPrecision(7)).toString() + " " + unit; 
+        };
+        
+        document.getElementById('res-p').innerText = formatRes(1e-12);
+        document.getElementById('res-n').innerText = formatRes(1e-9);
+        document.getElementById('res-u').innerText = formatRes(1e-6);
+        document.getElementById('res-m').innerText = formatRes(1e-3);
+        document.getElementById('res-base').innerText = formatRes(1);
+        document.getElementById('res-k').innerText = formatRes(1e3);
+        document.getElementById('res-M').innerText = formatRes(1e6);
+        document.getElementById('res-G').innerText = formatRes(1e9);
+        
+        document.querySelectorAll('.conv-res-item').forEach(el => el.classList.remove('highlight-res'));
+        const prefixes = ['1e-12','1e-9','1e-6','1e-3','1','1e3','1e6','1e9'];
+        const pIndex = prefixes.indexOf(convPrefix.value);
+        if(pIndex >= 0) {
+            document.querySelectorAll('.conv-res-item')[pIndex].classList.add('highlight-res');
+        }
+    }
+
+    if(convValue) {
+        [convValue, convPrefix, convUnit].forEach(el => el.addEventListener('input', updateConverter));
+        updateConverter();
     }
 
     // --- Lógica Ley de Ohm ---
@@ -235,7 +299,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
-            imageUrl: "https://assets.testequity.com/te1/product-images/large/DS1054Z_01_1024.jpg",
+            imageUrl: "https://m.media-amazon.com/images/I/51wX8N18YlL._AC_SL1103_.jpg",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -302,7 +366,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
-            imageUrl: "https://m.media-amazon.com/images/I/71LzqF-nrnL._SL1000_.jpg",
+            imageUrl: "assets/osciloscopios/osciloscopio_portatil.png",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -346,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
             videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
-            imageUrl: "https://assets.testequity.com/te1/Images/Web%20Images/Fluke/87V-Contents_500px_01_0525.jpg",
+            imageUrl: "https://www.mouser.in/images/fluke/lrg/87v-im-b_lrg.jpg",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "20000 cuentas",
@@ -581,50 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             type: "Generador DDS de Doble Canal"
         },
-        {
-            name: "Estación de Soldadura Digital Hakko",
-            ref: "FX-888D",
-            category: "Estaciones de Soldadura",
-            mainCategory: "Aparatos Electrónicos",
-            desc: "El estándar de la industria para laboratorios y talleres profesionales. Control térmico preciso y puntas intercambiables.",
-            videoUrl: "https://www.youtube.com/watch?v=-P4GZfNqYMw",
-            imageUrl: "https://cdn-shop.adafruit.com/970x728/1204-03.jpg",
-            specs: {
-                "Potencia": "70 W",
-                "Rango de Temperatura": "120°C - 480°C",
-                "Tiempo de Calentamiento": "20 seg a 350°C",
-                "Función": "Bloqueo de temperatura por contraseña"
-            },
-            usageSteps: [
-                "Encienda la estación y espere 20 segundos a que alcance la temperatura.",
-                "Ajuste la temperatura con los botones (+/-) o la perilla según modelo.",
-                "Limpie la punta en la esponja húmeda antes de soldar.",
-                "Al terminar, aplique estaño fresco a la punta y guárdela protegida."
-            ],
-            type: "Estación de Soldadura Digital"
-        },
-        {
-            name: "Estación de Soldadura Weller",
-            ref: "WE1010",
-            category: "Estaciones de Soldadura",
-            mainCategory: "Aparatos Electrónicos",
-            desc: "Estación de 70W con excelente precisión, pantalla digital y puntas RT de calentamiento rápido.",
-            videoUrl: "https://www.youtube.com/watch?v=Z0EvvE2ELbY",
-            imageUrl: "https://assets.testequity.com/te1/Images/Web%20Images/Weller/Weller_WE1010NA_Soldering-Station-Kit_01_0126_W.jpg",
-            specs: {
-                "Potencia": "70 W",
-                "Rango de Temperatura": "100°C - 450°C",
-                "Tiempo de Calentamiento": "<10 seg a 350°C",
-                "Compatibilidad": "Puntas Serie RT / Series WT"
-            },
-            usageSteps: [
-                "Conecte el soldador al módulo base y encienda con el botón ON.",
-                "Use las flechas para ajustar la temperatura objetivo.",
-                "Espere que el LED cambie a verde: la punta está lista para soldar.",
-                "Active el modo Sleep si se ausenta más de 5 minutos para proteger las puntas."
-            ],
-            type: "Estación de Soldadura Digital"
-        },
+
         {
             name: "Analizador Lógico Profesional Saleae",
             ref: "Logic-8",
@@ -911,7 +932,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "MOSFET de potencia canal-N controlado por voltaje. Perfecto para conmutar cargas de alta corriente con señales lógicas de 5V o 3.3V.",
             videoUrl: "https://www.youtube.com/watch?v=o4_NeqlJgOs",
-            imageUrl: "https://m.media-amazon.com/images/I/51o4yI2RJUL._AC_SL1001_.jpg",
+            imageUrl: "assets/transistores/mosfet_premium.png",
             specs: {
                 "Funcionamiento": "Se activa con voltaje Gate-Source (VGS). No consume corriente de control. Ideal para switching de alta eficiencia.",
                 "Encapsulado": "TO-220",
