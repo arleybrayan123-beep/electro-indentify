@@ -882,7 +882,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "El transistor NPN de propósito general más popular. Ideal para conmutación digital y amplificación de pequeña señal a alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=8REH0_N6U2k",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/transistor_2n2222_leg.jpg/320px-transistor_2n2222_leg.jpg",
+            imageUrl: "assets/transistores/npn_2n2222_ai.png",
             specs: {
                 "Funcionamiento": "Transistor BJT NPN de unión. La corriente de Base controla la corriente Colector-Emisor con una ganancia (hFE) de 75 a 300.",
                 "Encapsulado": "TO-92 (plástico) / TO-18 (metal)",
@@ -907,7 +907,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Transistor PNP de pequeña señal para conmutación de carga en el lado positivo (high-side switching) y lógica inversa.",
             videoUrl: "https://www.youtube.com/watch?v=_eB8cFNkCaM",
-            imageUrl: "https://m.media-amazon.com/images/I/41QRd6fXoOL._AC_.jpg",
+            imageUrl: "assets/transistores/pnp_bc557_ai.png",
             specs: {
                 "Funcionamiento": "Transistor BJT PNP. Conduce cuando la Base está más negativa que el Emisor. Complementario del BC547.",
                 "Encapsulado": "TO-92",
@@ -958,7 +958,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "MOSFET de potencia canal-P. Complementario del IRF540, úselo para control de carga en el lado positivo (high-side) en puentes H o fuentes conmutadas.",
             videoUrl: "https://www.youtube.com/watch?v=GrvvkYTW_0k",
-            imageUrl: "https://m.media-amazon.com/images/I/41dLGY6TP3L._AC_.jpg",
+            imageUrl: "assets/transistores/mosfet_p_irf9540_ai.png",
             specs: {
                 "Funcionamiento": "Conduce cuando VGS es negativo (Gate más bajo que Source). Source se conecta a VCC.",
                 "Encapsulado": "TO-220",
@@ -983,7 +983,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Par Darlington NPN de alta ganancia para control de motores DC, solenoides y cargas de media potencia directamente desde microcontroladores.",
             videoUrl: "https://www.youtube.com/watch?v=sRVvUkK0U80",
-            imageUrl: "https://m.media-amazon.com/images/I/51wJRruvjRL._AC_SL1000_.jpg",
+            imageUrl: "assets/transistores/tip120_ai.png",
             specs: {
                 "Funcionamiento": "Combina dos transistores BJT en cascada. Ganancia hFE total superior a 1000. VBE de activación ~1.4V.",
                 "Encapsulado": "TO-220",
@@ -1432,6 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border';
             card.innerHTML = `
+                ${item.imageUrl ? `<div class="card-img-container"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1602,6 +1603,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border animate';
             card.innerHTML = `
+                ${item.imageUrl ? `<div class="card-img-container"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
