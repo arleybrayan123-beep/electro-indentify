@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainSearch = document.getElementById('main-search');
     const searchTrigger = document.getElementById('search-trigger');
 
-    const equipmentData = [
+    window.equipmentData = [
         {
             name: "Osciloscopio Digital Rigol",
             ref: "DS1054Z",
@@ -1008,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "El diodo rectificador de propósito general más común. Soporta hasta 1000V de voltaje inverso. Fundamental en fuentes de alimentación.",
             videoUrl: "https://www.youtube.com/watch?v=fXv0j0D2p6A",
-            imageUrl: "https://m.media-amazon.com/images/I/41t7JgC5RSL._AC_.jpg",
+            imageUrl: "assets/diodos/diodo_1n4007_ai.png",
             specs: {
                 "Funcionamiento": "Permite el paso de corriente únicamente del Ánodo (+) al Cátodo (-). Bloquea el flujo inverso como una válvula.",
                 "Corriente Promedio": "1 A (IFAV)",
@@ -1032,7 +1032,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Diodo Zener de regulación de voltaje. Mantiene exactamente 5.1V en su terminal en polarización inversa. Esencial para referencias de tensión.",
             videoUrl: "https://www.youtube.com/watch?v=6PmVLNq9cZQ",
-            imageUrl: "https://m.media-amazon.com/images/I/41PtVFw6ZML._AC_.jpg",
+            imageUrl: "assets/diodos/diodo_zener_1n4733a_ai.png",
             specs: {
                 "Funcionamiento": "En polarización inversa, entra en avalancha a su voltaje Zener (VZ) regulando el voltaje. No se destruye si se limita la corriente.",
                 "Voltaje Zener (VZ)": "5.1 V",
@@ -1057,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Diodo Schottky de conmutación ultrarrápida. Su baja caída de voltaje (~0.3V) lo hace ideal para fuentes conmutadas y protección de polaridad.",
             videoUrl: "https://www.youtube.com/watch?v=TFvZ9MaqO6c",
-            imageUrl: "https://m.media-amazon.com/images/I/41d3FBBXVNL._AC_.jpg",
+            imageUrl: "assets/diodos/schottky_1n5819_ai.svg",
             specs: {
                 "Funcionamiento": "Usa unión metal-semiconductor. Sin carga almacenada → recuperación ultrarrápida. Menor disipación de calor.",
                 "Corriente Promedio": "1 A (IFAV)",
@@ -1075,30 +1075,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             type: "Diodo Schottky"
         },
-        {
-            name: "LED Rojo 5mm",
-            ref: "LED-5MM-RED",
-            category: "Diodos",
-            mainCategory: "Circuitos Integrados",
-            desc: "Diodo emisor de luz (LED) de 5mm estándar. Indicador visual de bajo consumo. Requiere siempre resistencia limitadora de corriente.",
-            videoUrl: "https://www.youtube.com/watch?v=Fo7auUHGMGo",
-            imageUrl: "https://m.media-amazon.com/images/I/61N9RFPdmHL._AC_SL1000_.jpg",
-            specs: {
-                "Funcionamiento": "Emite fotones cuando la corriente fluye en polarización directa. La pata más larga es el Ánodo (+).",
-                "Corriente de Trabajo": "10 mA - 20 mA (IF típico)",
-                "Caída de Voltaje Directa": "~2.0 V (Rojo) / ~3.0 V (Azul/Blanco)",
-                "Ángulo de Visión": "60° típico",
-                "Datasheet": "https://www.vishay.com/docs/83171/tlur640.pdf"
-            },
-            usageSteps: [
-                "Identifique el Ánodo (+): pata más LARGA o lado sin bisel en el encapsulado.",
-                "Calcule la resistencia limitadora: R = (VCC - VLED) / IF. Ejemplo: (5V - 2V) / 0.01A = 300Ω → use 330Ω.",
-                "Nunca conecte un LED directamente a la fuente sin resistencia limitadora.",
-                "Para controlar con Arduino/MCU, use el pin digital con la resistencia en serie.",
-                "Voltaje de alimentación mínimo: VLED + 0.5V para asegurar conducción."
-            ],
-            type: "LED Indicador"
-        },
+
         {
             name: "Diodo Puente KBL410",
             ref: "KBL410",
@@ -1106,7 +1083,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Puente rectificador monolítico de 4 diodos en un solo encapsulado. Simplifica el diseño de fuentes de alimentación AC/DC.",
             videoUrl: "https://www.youtube.com/watch?v=9csKNnm3UWE",
-            imageUrl: "https://m.media-amazon.com/images/I/51UQikhCKNL._AC_.jpg",
+            imageUrl: "assets/diodos/puente_kbl410_ai.svg",
             specs: {
                 "Funcionamiento": "Rectifica la señal AC completa internamente. Los 4 diodos están preconectados en configuración Puente de Graetz.",
                 "Corriente Promedio": "4 A (IFAV)",
@@ -1130,7 +1107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Inductor toroidal de núcleo de ferrita. Su geometría circular minimiza la radiación electromagnética y la interferencia. Estándar en fuentes conmutadas.",
             videoUrl: "https://www.youtube.com/watch?v=NgwX_vun3O4",
-            imageUrl: "https://m.media-amazon.com/images/I/61jC8Vq2SML._AC_SL1100_.jpg",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/79/Small_Toroidal_Inductors.jpg",
             specs: {
                 "Funcionamiento": "Almacena energía en campo magnético. Se opone a cambios bruscos de corriente. La inductancia se mide en Henrios (H).",
                 "Inductancia": "100 µH",
@@ -1155,7 +1132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Inductor artesanal devanado en espiral sin núcleo magnético. Tiene baja inductancia pero excelente respuesta en alta frecuencia y sin saturación.",
             videoUrl: "https://www.youtube.com/watch?v=2K1PXYpRwvk",
-            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Aircore.jpg/320px-Aircore.jpg",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Air_core_inductor.jpg",
             specs: {
                 "Funcionamiento": "Sin núcleo, no se satura. Lineal en todo el rango de corriente. Ideal para RF donde los núcleos añaden pérdidas.",
                 "Rango de Inductancia": "Nanohenrios a Microhenrios (nH - µH)",
@@ -1179,7 +1156,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Circuitos Integrados",
             desc: "Inductor para montaje superficial (SMD). Compacto, diseñado para circuitos impresos modernos de alta densidad y aplicaciones de potencia en miniatura.",
             videoUrl: "https://www.youtube.com/watch?v=pKvhBHCkNBQ",
-            imageUrl: "https://m.media-amazon.com/images/I/71R5PeRwVhL._AC_SL1500_.jpg",
+            imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b2/SMD_inductors_on_match.jpg",
             specs: {
                 "Funcionamiento": "Mismo principio que un inductor PTH pero en paquete compacto para PCB. Se suelda directamente sobre la superficie.",
                 "Inductancia": "4.7 µH",
@@ -1197,31 +1174,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             type: "Inductor SMD de Potencia"
         },
-        {
-            name: "Choke de Modo Común SY10-102",
-            ref: "IND-CMC",
-            category: "Bobinas",
-            mainCategory: "Circuitos Integrados",
-            desc: "Bobina de modo común (Common Mode Choke). Filtra ruido electromagnético en líneas de potencia y comunicaciones sin afectar la señal diferencial.",
-            videoUrl: "https://www.youtube.com/watch?v=5E6JC1CLHY0",
-            imageUrl: "https://m.media-amazon.com/images/I/51MuA+b-EGL._AC_SL1000_.jpg",
-            specs: {
-                "Funcionamiento": "Presenta alta impedancia al ruido EMI de modo común, pero baja impedancia a la señal diferencial útil.",
-                "Inductancia": "10 mH (por bobinado)",
-                "Corriente Nominal": "1 A",
-                "Resistencia DC": "< 1 Ω",
-                "Aplicación": "Filtros EMI en entradas de fuentes, líneas USB, RS485",
-                "Datasheet": "https://www.tdk-electronics.tdk.com/inf/20/20/db/fe/ACM.pdf"
-            },
-            usageSteps: [
-                "Instale en serie con el par de cables (Line y Neutral o D+ y D-).",
-                "Asegúrese de conectar correctamente el devanado 1 a la línea 1 y el devanado 2 a la línea 2.",
-                "No invierta las terminales o el efecto de filtrado se cancela.",
-                "En motores o fuentes ruidosas, ubíquelo lo más cerca posible de la entrada.",
-                "Consulte el datasheet para verificar la curva de impedancia vs frecuencia del ruido a filtrar."
-            ],
-            type: "Choke de Modo Común"
-        },
+
         {
             name: "Potenciómetro Lineal",
             ref: "POT-10K",
@@ -1316,6 +1269,31 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Amplificador Operacional Dual"
         },
         {
+            name: "Amplificador Operacional Cuádruple LM324N",
+            ref: "LM324N",
+            category: "Amplificadores Operacionales",
+            mainCategory: "Circuitos Integrados",
+            desc: "Circuito integrado que contiene cuatro amplificadores operacionales independientes de propósito general. Ideal para aplicaciones con fuente de alimentación simple.",
+            videoUrl: "https://www.youtube.com/watch?v=tyqRZ-IrFQ0",
+            imageUrl: "assets/circuitos/lm324n_ai.png",
+            specs: {
+                "Funcionamiento": "Amplifica la diferencia entre las entradas (+) y (-). Contiene cuatro operacionales en un solo chip.",
+                "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
+                "Canales": "4 Op-Amps independientes en un DIP-14",
+                "Slew Rate": "0.5 V/µs",
+                "Ancho de Banda": "1.2 MHz (GBW)",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm324.pdf"
+            },
+            usageSteps: [
+                "Pin 4 = VCC, Pin 11 = GND. Op-Amp 1: pines 2(-), 3(+), 1(out).",
+                "Op-Amp 2: 6(-), 5(+), 7(out). Op-Amp 3: 9(-), 10(+), 8(out). Op-Amp 4: 13(-), 12(+), 14(out).",
+                "Se puede usar como filtro activo, comparador, oscilador o amplificador de instrumentación.",
+                "Coloca un capacitor de desacople de 100nF cerca de VCC y GND para reducir el ruido.",
+                "En modo single-supply, ten en cuenta que la salida no llega perfectamente a VCC."
+            ],
+            type: "Amplificador Operacional Cuádruple"
+        },
+        {
             name: "Regulador de Voltaje LM7805",
             ref: "LM7805",
             category: "Circuitos Integrados",
@@ -1390,6 +1368,204 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Al programar sin bootloader, use la herramienta 'Quemar Bootloader' del Arduino IDE y configure los fusibles correctamente."
             ],
             type: "Microcontrolador AVR 8-bit"
+        },
+        {
+            name: "Relé Electromecánico 5V",
+            ref: "SRD-05VDC-SL-C",
+            category: "Relés",
+            mainCategory: "Circuitos Integrados",
+            desc: "Interruptor electromecánico controlado por voltaje. Permite a circuitos de bajo voltaje (como microcontroladores) conmutar cargas de alto voltaje (hasta 250V AC).",
+            videoUrl: "https://www.youtube.com/watch?v=AS2-PhDvQbQ",
+            imageUrl: "assets/reles/sr5vdc_ai.png",
+            specs: {
+                "Voltaje de Control (Bobina)": "5V DC",
+                "Capacidad Máxima de Carga": "10A 250VAC / 10A 30VDC",
+                "Contactos": "Normalmente Abierto (NO) y Normalmente Cerrado (NC)",
+                "Principio": "Electromecánico (usa un electroimán interno para accionar los contactos)"
+            },
+            usageSteps: [
+                "Conecte el pin de señal (IN) al pin digital del microcontrolador.",
+                "Suministre 5V y GND a los pines VCC y GND del módulo para energizar la bobina.",
+                "Conecte la carga de alto voltaje al borne COM (Común) y al de activación (NO o NC).",
+                "Precaución: Trabajar con voltajes AC (110V/220V) es peligroso, hágalo con el circuito desconectado."
+            ],
+            type: "Relé Electromecánico"
+        },
+        {
+            name: "Relé de Estado Sólido (SSR)",
+            ref: "SSR-40DA",
+            category: "Relés",
+            mainCategory: "Circuitos Integrados",
+            desc: "Relé sin partes móviles. Utiliza semiconductores ópticos y triacs para conmutar corriente alterna. Ofrece vida útil casi ilimitada y libre de chispas.",
+            videoUrl: "https://www.youtube.com/watch?v=wgAj8WUvt_o",
+            imageUrl: "assets/reles/ssr_ai.png",
+            specs: {
+                "Voltaje de Control (Input)": "3 - 32V DC",
+                "Voltaje de Carga (Output)": "24 - 380V AC",
+                "Corriente Máxima admisible": "40A (con disipador de aluminio adecuado)",
+                "Aislamiento": "Optoacoplado internamente, protege los circuitos de control"
+            },
+            usageSteps: [
+                "Conecte la señal de control DC (ej. de 5V o 12V) a los terminales 3(+) y 4(-).",
+                "Conecte en serie la carga AC de alta potencia a los terminales 1 y 2.",
+                "Para corrientes superiores a 5A continuos, atornille el relé a un disipador de aluminio con pasta térmica.",
+                "Por su alta velocidad, es excelente para controlar sistemas mediante modulación (PWM lento)."
+            ],
+            type: "Relé de Estado Sólido"
+        },
+        {
+            name: "Interruptor Reed (Reed Switch)",
+            ref: "GPS-14A",
+            category: "Relés",
+            mainCategory: "Circuitos Integrados",
+            desc: "Interruptor magnético sellado en un tubo de vidrio. Se activa por la proximidad de un campo magnético externo (imán). Es el componente base para sensores de puertas y relés reed.",
+            videoUrl: "https://www.youtube.com/watch?v=uaP4ZxsjrHw",
+            imageUrl: "assets/reles/reed_switch_glass.png",
+            specs: {
+                "Tipo de Contacto": "Normalmente Abierto (SPST-NO)",
+                "Voltaje Máximo": "100V DC",
+                "Corriente de Conmutación": "0.5A",
+                "Material": "Tubo de vidrio con gas inerte y contactos de rodio/rutenio"
+            },
+            usageSteps: [
+                "Acerque un imán al cuerpo de vidrio para cerrar el contacto interno.",
+                "Suelde los terminales con cuidado; el vidrio es frágil y puede romperse por calor excesivo o tensión mecánica.",
+                "Ideal para usar como sensor de fin de carrera o detector de apertura sin contacto físico.",
+                "No lo use para conmutar directamente cargas inductivas grandes sin un diodo de protección."
+            ],
+            type: "Interruptor Magnético"
+        },
+        {
+            name: "Potenciómetro Lineal B20K",
+            ref: "WH148-B20K",
+            category: "Potenciómetros",
+            mainCategory: "Circuitos Integrados",
+            desc: "Resistencia variable de tres terminales. Actúa como un divisor de voltaje ajustable, permitiendo regular la intensidad de señales, volumen o potencia en circuitos electrónicos.",
+            videoUrl: "https://www.youtube.com/watch?v=Cq5kYaWtNPA",
+            imageUrl: "assets/circuitos/potenciometro_b20k.png",
+            specs: {
+                "Valor de Resistencia": "20K Ω (Ohmios)",
+                "Curva de Respuesta": "Lineal (Tipo B)",
+                "Potencia Máxima": "0.125 W",
+                "Ángulo de Rotación": "300° ± 5°"
+            },
+            usageSteps: [
+                "Conecte los terminales extremos a VCC y GND.",
+                "Use el terminal central (wiper) para obtener el voltaje variable (salida).",
+                "Para usarlo como reóstato (resistencia variable de 2 pines), conecte el central y uno de los extremos.",
+                "Al soldar, evite calentar los terminales por más de 3 segundos para no dañar la pista de carbón interna."
+            ],
+            type: "Resistencia Variable"
+        },
+        {
+            name: "Termistor NTC 10K (Sensor de Temperatura)",
+            ref: "NTC-MF52-103",
+            category: "Sensores y Transductores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Resistencia sensible a la temperatura con coeficiente térmico negativo (NTC). Su resistencia disminuye a medida que aumenta la temperatura. Ideal para medir variaciones térmicas.",
+            videoUrl: "https://www.youtube.com/watch?v=8Wry8lwgGtA",
+            imageUrl: "assets/sensores/ntc.svg",
+            specs: {
+                "Tipo": "Coeficiente de Temperatura Negativo (NTC)",
+                "Resistencia Nominal": "10kΩ a 25°C",
+                "Constante (Valor B)": "3950K",
+                "Precisión": "±1% o ±5%"
+            },
+            usageSteps: [
+                "Conecta el termistor en configuración de divisor de voltaje junto con una resistencia fija (comúnmente de 10k).",
+                "Conecta el punto medio del divisor a un pin analógico de Arduino (ej. A0).",
+                "Utiliza la ecuación de Steinhart-Hart en tu código para convertir el valor analógico leído en grados Celsius.",
+                "Ten cuidado de no superar el voltaje o la corriente máxima para evitar errores por autocalentamiento."
+            ],
+            type: "Sensor Analógico"
+        },
+        {
+            name: "Fotorresistencia (LDR 5mm)",
+            ref: "GL5516 / LDR",
+            category: "Sensores y Transductores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Sensor de luz (Light Dependent Resistor). Componente electrónico cuya resistencia disminuye de forma logarítmica con el aumento de la intensidad de luz que incide sobre él.",
+            videoUrl: "https://www.youtube.com/watch?v=D65Gn-2NONU",
+            imageUrl: "assets/sensores/ldr.svg",
+            specs: {
+                "Resistencia en la Oscuridad": "> 1 MΩ",
+                "Resistencia a Plena Luz": "10kΩ - 20kΩ (aprox)",
+                "Pico Espectral": "540 nm (Luz visible)",
+                "Voltaje Máximo": "150V DC"
+            },
+            usageSteps: [
+                "Conecta la LDR en serie con una resistencia fija (ej. 10k) formando un divisor de tensión.",
+                "Conecta uno de los extremos a 5V, el otro a GND y el empalme central a un pin analógico.",
+                "En Arduino, utiliza la función analogRead() para detectar cambios numéricos según la luz.",
+                "Mapea los valores obtenidos (0-1023) a niveles de luminosidad o úsalos para activar un relé cuando oscurece."
+            ],
+            type: "Sensor Óptico"
+        },
+        {
+            name: "Módulo Ultrasónico HC-SR04",
+            ref: "HC-SR04",
+            category: "Sensores y Transductores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Sensor transductor acústico que utiliza ondas de sonido de alta frecuencia para determinar la distancia a un obstáculo. Fundamental en robótica para evasión.",
+            videoUrl: "https://www.youtube.com/watch?v=mlw3APOUt8U",
+            imageUrl: "assets/sensores/hcsr04.svg",
+            specs: {
+                "Voltaje de Operación": "5V DC",
+                "Corriente Estática": "< 2mA",
+                "Rango de Medición": "2cm a 400cm",
+                "Precisión": "3mm"
+            },
+            usageSteps: [
+                "Conecta VCC a 5V y GND a tierra del Arduino.",
+                "Conecta el pin TRIG a un pin digital (para emitir la señal) y ECHO a otro digital (para recibir el rebote).",
+                "Envía un pulso ALTO por 10 microsegundos al pin TRIG.",
+                "Usa pulseIn() en el pin ECHO para medir el tiempo de respuesta y convertir ese tiempo en distancia (Velocidad del Sonido)."
+            ],
+            type: "Sensor de Medición"
+        },
+        {
+            name: "Sensor de Temperatura y Humedad DHT11",
+            ref: "DHT11",
+            category: "Sensores y Transductores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Sensor digital compuesto que calibra y emite datos tanto de humedad relativa como de temperatura ambiental en una sola lectura a través de un bus de datos único.",
+            videoUrl: "https://www.youtube.com/watch?v=9Ndak-JaSdg",
+            imageUrl: "assets/sensores/dht11.svg",
+            specs: {
+                "Rango de Humedad": "20-90% RH (±5% RH)",
+                "Rango de Temperatura": "0-50 °C (±2 °C)",
+                "Protocolo": "Digital / One-Wire nativo",
+                "Voltaje de Operación": "3.3V a 5V"
+            },
+            usageSteps: [
+                "Descarga e instala la librería DHT (ej. proporcionada por Adafruit) en el IDE de Arduino.",
+                "Conecta VCC a 5V, GND a tierra y el pin DATA a un pin digital de Arduino.",
+                "Incluye un resistor Pull-up de 10k entre VCC y DATA si usas el componente base (los módulos ya lo traen).",
+                "Usa sentencias como dht.readTemperature() y dht.readHumidity() para obtener datos inmediatos."
+            ],
+            type: "Sensor Digital"
+        },
+        {
+            name: "Zumbador Piezoeléctrico (Buzzer)",
+            ref: "Buzzer Pasivo/Activo",
+            category: "Sensores y Transductores",
+            mainCategory: "Circuitos Integrados",
+            desc: "Transductor electroacústico que convierte una señal eléctrica de oscilación en sonido audible. Se usa ampliamente para generar pitidos, alarmas y melodías.",
+            videoUrl: "https://www.youtube.com/watch?v=dc6_9VMarjI",
+            imageUrl: "assets/sensores/buzzer.svg",
+            specs: {
+                "Voltaje de Operación": "3.3V a 5V (típicamente)",
+                "Frecuencia Resonante (Pasivo)": "Controlable (Ej: 2kHz - 4kHz)",
+                "Tipo de Sonido": "Bip / Tono (Activo) o Frecuencias (Pasivo)",
+                "Consumo Promedio": "~30mA"
+            },
+            usageSteps: [
+                "Identifica si es activo (tiene un oscilador interno y pita al recibir 5V) o pasivo (requiere una onda cuadrada como PWM).",
+                "Conecta el pin positivo a un pin de Arduino y el negativo a GND.",
+                "Para el pasivo: Usa la función tone() indicando el pin y la frecuencia deseada en Hertzios (ej: tone(8, 1000)).",
+                "Si es activo clásico, basta escribir un HIGH seguido de un delay y un LOW para generar tonos intermitentes."
+            ],
+            type: "Transductor Acústico"
         }
     ];
 
@@ -1432,7 +1608,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border';
             card.innerHTML = `
-                ${item.imageUrl ? `<div class="card-img-container"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1577,7 +1752,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "Transistores": "fas fa-project-diagram",
             "Diodos": "fas fa-arrow-right",
             "Bobinas": "fas fa-redo",
-            "Circuitos Integrados": "fas fa-memory"
+            "Circuitos Integrados": "fas fa-memory",
+            "Relés": "fas fa-toggle-on",
+            "Potenciómetros": "fas fa-sliders-h",
+            "Sensores y Transductores": "fas fa-satellite-dish"
         };
         return icons[sub] || "fas fa-microchip";
     }
@@ -1603,7 +1781,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border animate';
             card.innerHTML = `
-                ${item.imageUrl ? `<div class="card-img-container"><img src="${item.imageUrl}" alt="${item.name}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1945,5 +2122,550 @@ document.addEventListener('DOMContentLoaded', () => {
         searchByPhoto.style.display = isPhoto ? 'block' : 'none';
     }));
     // Inicializar el ruteo después de que todo esté cargado
+    // --- Lógica de Calculadoras Avanzadas ---
+    const ledVs = document.getElementById('led-vs');
+    const ledVl = document.getElementById('led-vl');
+    const ledI = document.getElementById('led-i');
+    const ledResult = document.getElementById('led-result');
+
+    function updateLED() {
+        if (!ledVs || !ledVl || !ledI || !ledResult) return;
+        const vs = parseFloat(ledVs.value);
+        const vl = parseFloat(ledVl.value);
+        const i = parseFloat(ledI.value) / 1000;
+        if (vs > 0 && vl > 0 && i > 0) {
+            if (vs <= vl) {
+                ledResult.innerHTML = `<span style="color:#ff4d4d">Error: Vs debe ser > Vl</span>`;
+                return;
+            }
+            const r = (vs - vl) / i;
+            const p = (vs - vl) * i;
+            let pSug = "1/4W";
+            if (p > 1) pSug = "2W+";
+            else if (p > 0.5) pSug = "1W";
+            else if (p > 0.25) pSug = "1/2W";
+            else if (p > 0.125) pSug = "1/4W";
+            else pSug = "1/8W";
+
+            ledResult.innerHTML = `R: <strong>${Math.round(r)} Ω</strong> | Potencia: <strong>${p.toFixed(3)}W</strong><br><small>Sugerencia: Usar resistencia de ${pSug}</small>`;
+        }
+    }
+
+    [ledVs, ledVl, ledI].forEach(input => input && input.addEventListener('input', updateLED));
+
+    const t555R1 = document.getElementById('t555-r1');
+    const t555R2 = document.getElementById('t555-r2');
+    const t555C = document.getElementById('t555-c');
+    const t555Result = document.getElementById('t555-result');
+
+    function update555() {
+        if (!t555R1 || !t555R2 || !t555C || !t555Result) return;
+        const r1 = parseFloat(t555R1.value);
+        const r2 = parseFloat(t555R2.value);
+        const c = parseFloat(t555C.value) / 1000000;
+        if (r1 > 0 && r2 > 0 && c > 0) {
+            const freq = 1.44 / ((r1 + 2 * r2) * c);
+            const dc = ((r1 + r2) / (r1 + 2 * r2)) * 100;
+            t555Result.innerHTML = `Frecuencia: <strong>${freq > 1000 ? (freq / 1000).toFixed(2) + ' kHz' : freq.toFixed(2) + ' Hz'}</strong><br>Duty Cycle: <strong>${dc.toFixed(1)}%</strong>`;
+        }
+    }
+
+    [t555R1, t555R2, t555C].forEach(input => input && input.addEventListener('input', update555));
+
+    const divVin = document.getElementById('div-vin');
+    const divR1 = document.getElementById('div-r1');
+    const divR2 = document.getElementById('div-r2');
+    const divResult = document.getElementById('div-result');
+
+    function updateDivider() {
+        if (!divVin || !divR1 || !divR2 || !divResult) return;
+        const vin = parseFloat(divVin.value);
+        const r1 = parseFloat(divR1.value);
+        const r2 = parseFloat(divR2.value);
+        if (vin >= 0 && r1 > 0 && r2 > 0) {
+            const vout = vin * (r2 / (r1 + r2));
+            divResult.innerHTML = `Vout: <strong>${vout.toFixed(2)} V</strong>`;
+        }
+    }
+
+    [divVin, divR1, divR2].forEach(input => input && input.addEventListener('input', updateDivider));
+
+    // --- Lógica del Visor de Pinouts ---
+    const pinTabs = document.querySelectorAll('.pin-tab');
+    const pinoutViewer = document.getElementById('pinout-viewer');
+
+    const pinoutData = {
+        ne555: {
+            pins: [
+                { num: 1, label: "GND", side: "left" },
+                { num: 2, label: "TRIG", side: "left" },
+                { num: 3, label: "OUT", side: "left" },
+                { num: 4, label: "RESET", side: "left" },
+                { num: 8, label: "VCC", side: "right" },
+                { num: 7, label: "DISCH", side: "right" },
+                { num: 6, label: "THRESH", side: "right" },
+                { num: 5, label: "CTRL", side: "right" }
+            ]
+        },
+        lm741: {
+            pins: [
+                { num: 1, label: "OFF-N1", side: "left" },
+                { num: 2, label: "INV-IN", side: "left" },
+                { num: 3, label: "N-INV", side: "left" },
+                { num: 4, label: "V-", side: "left" },
+                { num: 8, label: "V+", side: "right" },
+                { num: 7, label: "OUT", side: "right" },
+                { num: 6, label: "OFF-N2", side: "right" },
+                { num: 5, label: "NC", side: "right" }
+            ]
+        },
+        lm324n: {
+            pins: [
+                { num: 1, label: "OUT 1", side: "left" },
+                { num: 2, label: "IN 1-", side: "left" },
+                { num: 3, label: "IN 1+", side: "left" },
+                { num: 4, label: "V+", side: "left" },
+                { num: 5, label: "IN 2+", side: "left" },
+                { num: 6, label: "IN 2-", side: "left" },
+                { num: 7, label: "OUT 2", side: "left" },
+                { num: 14, label: "OUT 4", side: "right" },
+                { num: 13, label: "IN 4-", side: "right" },
+                { num: 12, label: "IN 4+", side: "right" },
+                { num: 11, label: "V- (GND)", side: "right" },
+                { num: 10, label: "IN 3+", side: "right" },
+                { num: 9, label: "IN 3-", side: "right" },
+                { num: 8, label: "OUT 3", side: "right" }
+            ]
+        },
+        lm3914n: {
+            pins: [
+                { num: 1, label: "LED 1", side: "left" },
+                { num: 2, label: "V-", side: "left" },
+                { num: 3, label: "V+", side: "left" },
+                { num: 4, label: "RLO", side: "left" },
+                { num: 5, label: "SIG", side: "left" },
+                { num: 6, label: "RHI", side: "left" },
+                { num: 7, label: "REF OUT", side: "left" },
+                { num: 8, label: "REF ADJ", side: "left" },
+                { num: 9, label: "MODE", side: "left" },
+                { num: 18, label: "LED 2", side: "right" },
+                { num: 17, label: "LED 3", side: "right" },
+                { num: 16, label: "LED 4", side: "right" },
+                { num: 15, label: "LED 5", side: "right" },
+                { num: 14, label: "LED 6", side: "right" },
+                { num: 13, label: "LED 7", side: "right" },
+                { num: 12, label: "LED 8", side: "right" },
+                { num: 11, label: "LED 9", side: "right" },
+                { num: 10, label: "LED 10", side: "right" }
+            ]
+        },
+        atmega328: {
+            pins: [
+                { num: 1, label: "PC6/RST", side: "left" },
+                { num: 2, label: "PD0/RX", side: "left" },
+                { num: 3, label: "PD1/TX", side: "left" },
+                { num: 4, label: "PD2/INT0", side: "left" },
+                { num: 5, label: "PD3/PWM", side: "left" },
+                { num: 6, label: "PD4", side: "left" },
+                { num: 7, label: "VCC", side: "left" },
+                { num: 8, label: "GND", side: "left" },
+                { num: 9, label: "PB6/XTAL", side: "left" },
+                { num: 10, label: "PB7/XTAL", side: "left" },
+                { num: 11, label: "PD5/PWM", side: "left" },
+                { num: 12, label: "PD6/PWM", side: "left" },
+                { num: 13, label: "PD7", side: "left" },
+                { num: 14, label: "PB0", side: "left" },
+                { num: 28, label: "PC5/SCL", side: "right" },
+                { num: 27, label: "PC4/SDA", side: "right" },
+                { num: 26, label: "PC3", side: "right" },
+                { num: 25, label: "PC2", side: "right" },
+                { num: 24, label: "PC1", side: "right" },
+                { num: 23, label: "PC0", side: "right" },
+                { num: 22, label: "GND", side: "right" },
+                { num: 21, label: "AREF", side: "right" },
+                { num: 20, label: "AVCC", side: "right" },
+                { num: 19, label: "PB5/SCK", side: "right" },
+                { num: 18, label: "PB4/MISO", side: "right" },
+                { num: 17, label: "PB3/MOSI", side: "right" },
+                { num: 16, label: "PB2/SS", side: "right" },
+                { num: 15, label: "PB1/PWM", side: "right" }
+            ],
+            type: "atmega"
+        },
+        esp32: {
+            pins: [
+                { num: 1, label: "EN / RST", side: "left" },
+                { num: 2, label: "VP (G36)", side: "left" },
+                { num: 3, label: "VN (G39)", side: "left" },
+                { num: 4, label: "D34", side: "left" },
+                { num: 5, label: "D35", side: "left" },
+                { num: 6, label: "D32", side: "left" },
+                { num: 7, label: "D33", side: "left" },
+                { num: 8, label: "D25", side: "left" },
+                { num: 9, label: "D26", side: "left" },
+                { num: 10, label: "D27", side: "left" },
+                { num: 11, label: "D14", side: "left" },
+                { num: 12, label: "D12", side: "left" },
+                { num: 13, label: "D13", side: "left" },
+                { num: 14, label: "GND", side: "left" },
+                { num: 15, label: "VIN (5V)", side: "left" },
+                { num: 30, label: "D23/MSI", side: "right" },
+                { num: 29, label: "D22/SCL", side: "right" },
+                { num: 28, label: "TX0", side: "right" },
+                { num: 27, label: "RX0", side: "right" },
+                { num: 26, label: "D21/SDA", side: "right" },
+                { num: 25, label: "D19/MSO", side: "right" },
+                { num: 24, label: "D18/SCK", side: "right" },
+                { num: 23, label: "D5", side: "right" },
+                { num: 22, label: "TX2", side: "right" },
+                { num: 21, label: "RX2", side: "right" },
+                { num: 20, label: "D4", side: "right" },
+                { num: 19, label: "D0", side: "right" },
+                { num: 18, label: "D2", side: "right" },
+                { num: 17, label: "D15", side: "right" },
+                { num: 16, label: "3V3", side: "right" }
+            ],
+            type: "atmega"
+        }
+    };
+
+    function renderChip(chipId) {
+        if (!pinoutViewer) return;
+        const data = pinoutData[chipId];
+        if (!data) return;
+
+        const leftPins = data.pins.filter(p => p.side === 'left');
+        const rightPins = data.pins.filter(p => p.side === 'right');
+        rightPins.reverse(); // Standard view: pins go up on the right
+
+        let chipHtml = `
+            <div class="chip-dip ${data.type || ''} animate">
+                <div class="chip-notch"></div>
+                <div class="chip-label-main">${chipId.toUpperCase()}</div>
+                <div class="chip-body-content">
+                    ${leftPins.map((lp, idx) => {
+                        const rp = rightPins[rightPins.length - 1 - idx];
+                        return `
+                            <div class="pin-row">
+                                <div class="pin-leg left"></div>
+                                <div class="pin-num left">${lp.num}</div>
+                                <div class="pin-info left-info">${lp.label}</div>
+                                
+                                ${rp ? `
+                                <div class="pin-info right-info">${rp.label}</div>
+                                <div class="pin-num right">${rp.num}</div>
+                                <div class="pin-leg right"></div>
+                                ` : ''}
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+        pinoutViewer.innerHTML = chipHtml;
+    }
+
+    pinTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            pinTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            renderChip(tab.dataset.chip);
+        });
+    });
+
+    // Cargar primer chip por defecto
+    if (pinTabs.length > 0) renderChip('ne555');
+
     handleRouting();
 });
+
+/* ===================================================
+   ANTIGRAVITY AI CHAT ASSISTANT
+   Motor de Asistencia Inteligente para Electrónica
+   =================================================== */
+(function () {
+    'use strict';
+
+    /* ---- Base de conocimiento del asistente ---- */
+    const AI_KNOWLEDGE = {
+        greetings: ['hola', 'buen', 'hey', 'saludos', 'hi', 'hello', 'buenas'],
+        help: ['ayuda', 'help', 'qué puedes', 'que puedes', 'cómo funciona', 'como funciona', 'qué haces', 'que haces'],
+        ohm: ['ohm', 'voltaje', 'corriente', 'resistencia', 'ley de ohm', 'kirchhoff', 'voltios', 'amperios', 'ohmios'],
+        components: ['componente', 'componentes', 'catálogo', 'catalogo', 'qué tienes', 'que tienes', 'lista', 'inventario'],
+        sensors: ['sensor', 'sensores', 'temperatura', 'termistor', 'ntc', 'ldr', 'luz', 'ultrasonico', 'ultrasonido', 'hcsr04', 'dht11', 'humedad'],
+        calculators: ['calculadora', 'calcular', 'calcul', 'ohm', 'divisor', 'led', '555', 'colores', 'timer'],
+        oscilloscope: ['osciloscopio', 'osciloscopo', 'rigol', 'siglent', 'keysight'],
+        multimeter: ['multimetro', 'multímetro', 'tester', 'medir', 'medicion'],
+        transistor: ['transistor', 'bjt', 'mosfet', 'npn', 'pnp', '2n2222', 'bc547', 'irfz'],
+        diode: ['diodo', 'diodos', 'rectificador', 'zener', '1n4007', 'led'],
+        capacitor: ['capacitor', 'condensador', 'capacitores', 'capacitancia', 'faradios'],
+        resistor: ['resistencia', 'resistencias', 'ohm', 'código de colores', 'banda'],
+    };
+
+    const EMOJI_MAP = {
+        'Osciloscopios': '📺',
+        'Multímetros Digitales': '🔋',
+        'Fuentes de Poder': '⚡',
+        'Generadores de Señal': '📡',
+        'Analizadores de Espectro': '📊',
+        'Resistencias': '🎨',
+        'Capacitores': '⚙️',
+        'Transistores': '💡',
+        'Diodos': '🔺',
+        'Circuitos Integrados': '🖥️',
+        'Inductores y Bobinas': '🌀',
+        'Sensores y Transductores': '🌡️',
+        'Microcontroladores y SBC': '🤖',
+        'Módulos de Comunicación': '📶',
+        'Fuentes Conmutadas': '🔌',
+        'Módulos de Potencia': '⚡',
+    };
+
+    /* ---- Utilidades ---- */
+    function normalize(str) {
+        return str.toLowerCase()
+            .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+            .replace(/[^a-z0-9\s]/g, ' ');
+    }
+
+    function containsAny(text, words) {
+        const norm = normalize(text);
+        return words.some(w => norm.includes(normalize(w)));
+    }
+
+    /* ---- Motor de búsqueda en equipmentData ---- */
+    function searchCatalog(query) {
+        const catalog = window.equipmentData;
+        if (!catalog || !catalog.length) return [];
+        const q = normalize(query);
+        const terms = q.split(' ').filter(t => t.length > 2);
+        const scored = [];
+
+        equipmentData.forEach((item, idx) => {
+            let score = 0;
+            const searchable = normalize(
+                `${item.name} ${item.ref} ${item.category} ${item.mainCategory} ${item.desc} ${item.type || ''}`
+            );
+            terms.forEach(term => {
+                if (searchable.includes(term)) score += term.length > 5 ? 3 : 1;
+            });
+            if (normalize(item.name).includes(q)) score += 5;
+            if (normalize(item.ref).includes(q)) score += 4;
+            if (score > 0) scored.push({ item, score });
+        });
+
+        return scored.sort((a, b) => b.score - a.score).slice(0, 3);
+    }
+
+    /* ---- Generador de respuestas ---- */
+    function generateResponse(query) {
+        const q = normalize(query);
+
+        // Saludo
+        if (containsAny(q, AI_KNOWLEDGE.greetings)) {
+            return {
+                text: '¡Hola! 👋 Soy <strong>Antigravity AI</strong>, tu asistente de electrónica. Puedo ayudarte a:\n\n• 🔍 Encontrar componentes en el catálogo\n• ⚡ Explicar la <strong>Ley de Ohm</strong>\n• 🛠️ Orientarte sobre el uso de instrumentos\n• 🧮 Referirte a las calculadoras\n\n¿Qué necesitas?',
+                results: []
+            };
+        }
+
+        // Ayuda
+        if (containsAny(q, AI_KNOWLEDGE.help)) {
+            return {
+                text: 'Puedo hacer varias cosas por ti:\n\n🔍 <strong>Buscar componentes:</strong> Dime el nombre o referencia y te muestro los detalles.\n\n⚡ <strong>Ley de Ohm:</strong> Pregúntame sobre V, I y R.\n\n🧮 <strong>Calculadoras:</strong> Tenemos Ley de Ohm, Código de Colores, LED, Timer 555 y Divisor de Voltaje.\n\n📦 <strong>Catálogo:</strong> Aparatos electrónicos y circuitos integrados.',
+                results: []
+            };
+        }
+
+        // Ley de Ohm
+        if (containsAny(q, AI_KNOWLEDGE.ohm)) {
+            return {
+                text: '⚡ <strong>Ley de Ohm: V = I × R</strong>\n\n• <strong>V</strong> = Voltaje (Voltios)\n• <strong>I</strong> = Corriente (Amperios)\n• <strong>R</strong> = Resistencia (Ohmios)\n\nPuedes calcular cualquiera de las tres variables con nuestra <a href="#" onclick="window.location.hash=\'#calculadora\'; document.getElementById(\'ai-chat-fab\').click(); return false;">Calculadora de Ley de Ohm →</a>',
+                results: []
+            };
+        }
+
+        // Catálogo general
+        if (containsAny(q, AI_KNOWLEDGE.components)) {
+            return {
+                text: '📦 Nuestro catálogo incluye:\n\n<strong>Aparatos Electrónicos:</strong>\n• Osciloscopios, Multímetros, Fuentes de poder, Generadores de señal\n\n<strong>Circuitos Integrados:</strong>\n• Resistencias, Capacitores, Transistores, Diodos, Sensores y más.\n\n¿Sobre cuál te interesa saber más?',
+                results: []
+            };
+        }
+
+        // Calculadoras
+        if (containsAny(q, AI_KNOWLEDGE.calculators)) {
+            return {
+                text: '🧮 Tenemos estas <strong>Calculadoras de Ingeniería</strong>:\n\n• ⚡ Ley de Ohm\n• 🎨 Código de Colores de Resistencias\n• 💡 Resistencia para LEDs\n• ⏱ Timer 555 (Astable)\n• ➗ Divisor de Voltaje\n\n<a href="#" onclick="window.location.hash=\'#calculadora\'; document.getElementById(\'ai-chat-fab\').click(); return false;">Ir a las Calculadoras →</a>',
+                results: []
+            };
+        }
+
+        // Búsqueda en el catálogo
+        const found = searchCatalog(query);
+        if (found.length > 0) {
+            const plural = found.length > 1 ? `Encontré <strong>${found.length} resultados</strong>` : 'Encontré <strong>1 resultado</strong>';
+            return {
+                text: `🔍 ${plural} para "<em>${query}</em>". Haz clic para ver los detalles:`,
+                results: found
+            };
+        }
+
+        // Respuesta por defecto
+        return {
+            text: `🤔 No encontré nada específico sobre "<em>${query}</em>". Intenta con términos como:\n\n• Nombre del componente (ej: <em>multímetro</em>, <em>transistor</em>)\n• Referencia técnica (ej: <em>BC547</em>, <em>NE555</em>)\n• Tipo de instrumento (ej: <em>osciloscopio</em>)\n\n¿Puedo ayudarte con algo más?`,
+            results: []
+        };
+    }
+
+    /* ---- Lógica de la UI ---- */
+    const fab = document.getElementById('ai-chat-fab');
+    const container = document.getElementById('ai-chat-container');
+    const closeBtn = document.getElementById('ai-chat-close');
+    const messagesEl = document.getElementById('ai-chat-messages');
+    const inputEl = document.getElementById('ai-chat-input');
+    const sendBtn = document.getElementById('ai-chat-send');
+    const suggestions = document.querySelectorAll('.ai-suggestion-chip');
+    const suggestionsBar = document.getElementById('ai-quick-suggestions');
+
+    if (!fab || !container) return; // Salir si los elementos no existen
+
+    let isOpen = false;
+    let hasGreeted = false;
+    let isTyping = false;
+
+    function toggleChat() {
+        isOpen = !isOpen;
+        fab.classList.toggle('is-open', isOpen);
+        container.classList.toggle('is-visible', isOpen);
+        container.setAttribute('aria-hidden', String(!isOpen));
+
+        if (isOpen && !hasGreeted) {
+            hasGreeted = true;
+            setTimeout(() => {
+                addBotMessage({
+                    text: '¡Hola! 👋 Soy <strong>Antigravity AI</strong>, tu asistente de electrónica. ¿En qué te puedo ayudar hoy?',
+                    results: []
+                });
+            }, 400);
+        }
+
+        if (isOpen) inputEl.focus();
+    }
+
+    function addMessage(html, isUser = false) {
+        const msgEl = document.createElement('div');
+        msgEl.className = `ai-message ${isUser ? 'user-message' : ''}`;
+
+        if (!isUser) {
+            msgEl.innerHTML = `
+                <div class="ai-msg-avatar"><i class="fas fa-robot"></i></div>
+                <div class="ai-msg-bubble">${html}</div>
+            `;
+        } else {
+            msgEl.innerHTML = `<div class="ai-msg-bubble">${html}</div>`;
+        }
+
+        messagesEl.appendChild(msgEl);
+        scrollToBottom();
+        return msgEl;
+    }
+
+    function addBotMessage(response) {
+        // Procesar saltos de línea
+        const htmlText = response.text.replace(/\n/g, '<br>');
+        const msgEl = addMessage(htmlText, false);
+
+        // Añadir cards de resultados si las hay
+        if (response.results && response.results.length > 0) {
+            const bubble = msgEl.querySelector('.ai-msg-bubble');
+            response.results.forEach(({ item }) => {
+                const emoji = EMOJI_MAP[item.category] || '🔩';
+                const card = document.createElement('div');
+                card.className = 'ai-result-card';
+                card.innerHTML = `
+                    <div class="ai-result-card-icon">${emoji}</div>
+                    <div class="ai-result-card-info">
+                        <strong>${item.name}</strong>
+                        <span>${item.ref} · ${item.category}</span>
+                    </div>
+                    <i class="fas fa-arrow-right ai-result-card-arrow"></i>
+                `;
+                card.addEventListener('click', () => {
+                    // Cerrar el chat y abrir el modal del componente
+                    if (isOpen) toggleChat();
+                    if (typeof window.showDetails === 'function') {
+                        setTimeout(() => window.showDetails(item.ref), 200);
+                    }
+                });
+                bubble.appendChild(card);
+            });
+        }
+
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.className = 'ai-typing-indicator';
+        indicator.id = 'ai-typing-indicator';
+        indicator.innerHTML = `
+            <div class="ai-msg-avatar"><i class="fas fa-robot"></i></div>
+            <div class="ai-typing-dots">
+                <span></span><span></span><span></span>
+            </div>
+        `;
+        messagesEl.appendChild(indicator);
+        scrollToBottom();
+    }
+
+    function hideTypingIndicator() {
+        const indicator = document.getElementById('ai-typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    function scrollToBottom() {
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+
+    function handleUserMessage(query) {
+        if (!query.trim() || isTyping) return;
+        isTyping = true;
+
+        // Ocultar sugerencias tras primer mensaje
+        if (suggestionsBar) suggestionsBar.style.display = 'none';
+
+        // Añadir mensaje del usuario
+        addMessage(query, true);
+        inputEl.value = '';
+
+        // Mostrar indicador de escritura
+        showTypingIndicator();
+
+        // Simular tiempo de respuesta
+        const delay = 700 + Math.random() * 500;
+        setTimeout(() => {
+            hideTypingIndicator();
+            const response = generateResponse(query);
+            addBotMessage(response);
+            isTyping = false;
+        }, delay);
+    }
+
+    /* ---- Event Listeners ---- */
+    fab.addEventListener('click', toggleChat);
+    closeBtn.addEventListener('click', toggleChat);
+
+    sendBtn.addEventListener('click', () => handleUserMessage(inputEl.value));
+
+    inputEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') handleUserMessage(inputEl.value);
+    });
+
+    suggestions.forEach(chip => {
+        chip.addEventListener('click', () => {
+            handleUserMessage(chip.dataset.query);
+        });
+    });
+
+})();
