@@ -3,7 +3,7 @@
    Versión: 1.0.0
    ============================================= */
 
-const CACHE_NAME = 'electroidentify-v8';
+const CACHE_NAME = 'electroidentify-v9';
 
 // Archivos a cachear para modo offline
 const ASSETS_TO_CACHE = [
@@ -21,13 +21,14 @@ const ASSETS_TO_CACHE = [
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2'
 ];
 
-// ---- Instalación: cachear recursos ----
+// ---- Instalación: cachear recursos y activar inmediatamente ----
 self.addEventListener('install', (event) => {
-    console.log('[SW] Instalando ElectroIdentify PWA...');
+    console.log('[SW] Instalando ElectroIdentify PWA v9...');
+    // skipWaiting fuerza que este SW reemplace al viejo SIN esperar
+    self.skipWaiting();
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
             console.log('[SW] Cacheando recursos principales...');
-            // Cachear de a uno para no fallar si algún CDN no responde
             return Promise.allSettled(
                 ASSETS_TO_CACHE.map(url =>
                     cache.add(url).catch(err => console.warn('[SW] No se pudo cachear:', url, err))
@@ -35,14 +36,13 @@ self.addEventListener('install', (event) => {
             );
         }).then(() => {
             console.log('[SW] Instalación completa.');
-            return self.skipWaiting();
         })
     );
 });
 
-// ---- Activación: limpiar cachés viejos ----
+// ---- Activación: limpiar cachés viejos y tomar control inmediatamente ----
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Activando nueva versión...');
+    console.log('[SW] Activando nueva versión v9...');
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
@@ -53,11 +53,12 @@ self.addEventListener('activate', (event) => {
                         return caches.delete(name);
                     })
             );
+        // clients.claim() toma control de todas las pestañas abiertas inmediatamente
         }).then(() => self.clients.claim())
     );
 });
 
-// ---- Fetch: estrategia Cache First con fallback a red ----
+// ---- Fetch: estrategia Network First (siempre intenta la red primero) ----
 self.addEventListener('fetch', (event) => {
     // Ignorar requests que no sean GET
     if (event.request.method !== 'GET') return;
@@ -66,34 +67,21 @@ self.addEventListener('fetch', (event) => {
     if (event.request.url.startsWith('chrome-extension://')) return;
 
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            // Responder desde caché si existe
-            if (cachedResponse) {
-                // En background, actualizar el caché con la versión de red
-                fetch(event.request)
-                    .then(networkResponse => {
-                        if (networkResponse && networkResponse.status === 200) {
-                            caches.open(CACHE_NAME).then(cache => {
-                                cache.put(event.request, networkResponse.clone());
-                            });
-                        }
-                    })
-                    .catch(() => {}); // Silenciar error si no hay red
-                return cachedResponse;
+        // Intentar red primero
+        fetch(event.request).then((networkResponse) => {
+            // Si la respuesta de red es válida, actualizamos el caché y la retornamos
+            if (networkResponse && networkResponse.status === 200) {
+                const responseToCache = networkResponse.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, responseToCache);
+                });
             }
-
-            // No está en caché: ir a la red
-            return fetch(event.request).then((networkResponse) => {
-                // Cachear la respuesta si es válida
-                if (networkResponse && networkResponse.status === 200) {
-                    const responseToCache = networkResponse.clone();
-                    caches.open(CACHE_NAME).then(cache => {
-                        cache.put(event.request, responseToCache);
-                    });
-                }
-                return networkResponse;
-            }).catch(() => {
-                // Sin red y sin caché: mostrar página offline básica
+            return networkResponse;
+        }).catch(() => {
+            // Sin red: fallback al caché guardado
+            return caches.match(event.request).then((cachedResponse) => {
+                if (cachedResponse) return cachedResponse;
+                // Sin caché tampoco: para documentos mostrar index.html
                 if (event.request.destination === 'document') {
                     return caches.match('./index.html');
                 }
