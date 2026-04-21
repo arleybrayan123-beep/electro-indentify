@@ -8,12 +8,22 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>ElectroIdentify | Búsqueda de Aparatos Electrónicos</title>
-    <link rel="stylesheet" href="index.css?v=4.0.0">
+    <link rel="stylesheet" href="index.css?v=6.2.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
     <!-- Librerías de IA para visión computacional -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+
+    <!-- ===== PWA META TAGS ===== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00f2ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ElectroIdentify">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    <meta name="description" content="Identifica y explora componentes electrónicos: osciloscopios, circuitos integrados, calculadoras y academia de electrónica.">
+    <!-- ===== /PWA META TAGS ===== -->
 </head>
 
 <body>
@@ -30,11 +40,20 @@
         
         <!-- Dropdown Menu -->
         <div id="dropdown-menu" class="dropdown-menu hidden-dropdown">
+            <a href="#favoritos" class="dropdown-item" id="link-favoritos">
+                <i class="fas fa-star" style="color: gold;"></i> Mis Favoritos
+            </a>
+            <a href="#pinouts" class="dropdown-item" id="link-pinouts">
+                <i class="fas fa-microchip"></i> Visor de Pinouts
+            </a>
             <a href="#convertidor" class="dropdown-item" id="link-converter">
                 <i class="fas fa-exchange-alt"></i> Convertidor de Unidades
             </a>
             <a href="#calculadora" class="dropdown-item">
                 <i class="fas fa-calculator"></i> Calculadoras
+            </a>
+            <a href="#academia" class="dropdown-item" id="link-academia">
+                <i class="fas fa-graduation-cap"></i> Academia
             </a>
         </div>
     </header>
@@ -400,6 +419,121 @@
     </div>
 
     <!-- ================================================
+         SECCIÓN EDUCATIVA / ACADEMIA
+         ================================================ -->
+    <div id="academia-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container academia-container">
+            <button id="back-to-home-from-academia" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-graduation-cap" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Academia ElectroIdentify</h1>
+                <p>Aprende electrónica con tutoriales, glosario y fórmulas esenciales.</p>
+            </div>
+
+            <!-- Pestañas de la Academia -->
+            <div class="academia-tabs">
+                <button class="academia-tab-btn active" data-section="tutoriales" id="tab-tutoriales">
+                    <i class="fas fa-book-open"></i> Mini-Tutoriales
+                </button>
+                <button class="academia-tab-btn" data-section="glosario" id="tab-glosario">
+                    <i class="fas fa-spell-check"></i> Glosario
+                </button>
+                <button class="academia-tab-btn" data-section="formulas" id="tab-formulas">
+                    <i class="fas fa-square-root-alt"></i> Fórmulas
+                </button>
+            </div>
+
+            <!-- ===== MINI-TUTORIALES ===== -->
+            <div id="section-tutoriales" class="academia-section">
+                <div class="tutorials-grid" id="tutorials-grid">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+
+            <!-- ===== GLOSARIO ===== -->
+            <div id="section-glosario" class="academia-section hidden-section">
+                <div class="glosario-search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="glosario-search" placeholder="Buscar término... (ej: condensador, transistor)" autocomplete="off">
+                </div>
+                <div class="glosario-grid" id="glosario-grid">
+                    <!-- Generado por JS -->
+                </div>
+                <p id="glosario-no-results" class="no-results" style="display:none">No se encontraron términos para tu búsqueda.</p>
+            </div>
+
+            <!-- ===== FÓRMULAS ===== -->
+            <div id="section-formulas" class="academia-section hidden-section">
+                <div class="formulas-grid" id="formulas-grid">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PÁGINA MIS FAVORITOS
+         ================================================ -->
+    <div id="favorites-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container favorites-container">
+            <button id="back-to-home-from-favorites" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-star" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Mis Favoritos</h1>
+                <p>Componentes y calculadoras guardados para acceso rápido.</p>
+            </div>
+            <!-- Grid de favoritos -->
+            <div class="catalog-grid" id="favorites-grid">
+                <!-- Se poblará con JS -->
+                <div class="no-favorites-msg" style="display: none;text-align:center;width:100%;grid-column:1/-1;">
+                    <i class="fas fa-box-open" style="font-size:3rem;color:var(--text-muted);margin-bottom:1rem;"></i>
+                    <h3>Aún no tienes favoritos</h3>
+                    <p>Busca aparatos y toca la estrella para guardarlos aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PÁGINA VISOR DE PINOUTS
+         ================================================ -->
+    <div id="pinouts-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container pinouts-container">
+            <button id="back-to-home-from-pinouts" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-microchip" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Visor de Pinouts</h1>
+                <p>Referencia técnica para patillaje de integrados y controladores populares.</p>
+            </div>
+            
+            <div class="pinout-section">
+                <div class="pinout-tabs">
+                    <button class="pin-tab active" data-chip="ne555">NE555</button>
+                    <button class="pin-tab" data-chip="lm741">LM741</button>
+                    <button class="pin-tab" data-chip="lm324n">LM324N</button>
+                    <button class="pin-tab" data-chip="lm3914n">LM3914N</button>
+                    <button class="pin-tab" data-chip="atmega328">ATmega328</button>
+                    <button class="pin-tab" data-chip="esp32">ESP32</button>
+                </div>
+                <div class="pinout-viewer-container" id="pinout-viewer">
+                    <!-- Se renderiza por JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================================================
          ANTIGRAVITY AI CHAT ASSISTANT
          ================================================ -->
 
@@ -461,7 +595,84 @@
         </div>
     </div>
 
-    <script src="script.js?v=9.0.3"></script>
+    <script src="script.js?v=10.3.1"></script>
+
+    <!-- ===== PWA: Registro del Service Worker e Install Banner ===== -->
+    <div id="pwa-install-banner" class="pwa-install-banner hidden-pwa-banner" role="dialog" aria-label="Instalar aplicación">
+        <div class="pwa-banner-icon">
+            <img src="icon-512.png" alt="ElectroIdentify" width="44" height="44">
+        </div>
+        <div class="pwa-banner-text">
+            <strong>Instalar ElectroIdentify</strong>
+            <span>Úsala sin internet desde tu dispositivo</span>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwa-install-btn" class="pwa-btn-install">
+                <i class="fas fa-download"></i> Instalar
+            </button>
+            <button id="pwa-dismiss-btn" class="pwa-btn-dismiss" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('[PWA] Service Worker registrado:', reg.scope))
+                    .catch(err => console.warn('[PWA] Error al registrar SW:', err));
+            });
+        }
+
+        // Prompt de instalación
+        let deferredPrompt = null;
+        const installBanner = document.getElementById('pwa-install-banner');
+        const installBtn   = document.getElementById('pwa-install-btn');
+        const dismissBtn   = document.getElementById('pwa-dismiss-btn');
+
+        // Comprobar si el usuario ya descartó el banner
+        const pwaDismissed = localStorage.getItem('pwa-banner-dismissed');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Solo mostrar si no fue descartado
+            if (!pwaDismissed) {
+                setTimeout(() => {
+                    installBanner.classList.remove('hidden-pwa-banner');
+                    installBanner.classList.add('pwa-banner-visible');
+                }, 2500); // Aparece 2.5s después de cargar
+            }
+        });
+
+        installBtn && installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            installBanner.classList.remove('pwa-banner-visible');
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('[PWA] Respuesta del usuario:', outcome);
+            deferredPrompt = null;
+            if (outcome === 'accepted') {
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+            }
+        });
+
+        dismissBtn && dismissBtn.addEventListener('click', () => {
+            installBanner.classList.remove('pwa-banner-visible');
+            setTimeout(() => installBanner.classList.add('hidden-pwa-banner'), 400);
+            localStorage.setItem('pwa-banner-dismissed', 'true');
+        });
+
+        // Cuando ya está instalada
+        window.addEventListener('appinstalled', () => {
+            console.log('[PWA] ¡ElectroIdentify instalada correctamente!');
+            installBanner.classList.remove('pwa-banner-visible');
+            showToast('🎉 ¡ElectroIdentify instalada en tu dispositivo!');
+        });
+    </script>
 </body>
 
 </html>

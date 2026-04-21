@@ -5,19 +5,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const catalogPage = document.getElementById('catalog-page');
     const calculatorsPage = document.getElementById('calculators-page');
     const converterPage = document.getElementById('converter-page');
+    const favoritesPage = document.getElementById('favorites-page');
+    const pinoutsPage = document.getElementById('pinouts-page');
     const catalogGrid = document.getElementById('catalog-grid');
+    
+    // Referencias Visor de Pinouts (Se agregan globales para que renderChip no falle)
+    const pinTabs = document.querySelectorAll('.pin-tab');
+    const pinoutViewer = document.getElementById('pinout-viewer');
 
     const navCalculators = document.getElementById('nav-calculators');
     const backToHomeFromCalc = document.getElementById('back-to-home-from-calc');
     const backToHomeFromConv = document.getElementById('back-to-home-from-conv');
     const backToHome = document.getElementById('back-to-home');
     const backToHomeSub = document.getElementById('back-to-home-from-sub');
+    const backToHomeFromFav = document.getElementById('back-to-home-from-favorites');
+    const backToHomeFromPinouts = document.getElementById('back-to-home-from-pinouts');
     const backToSub = document.getElementById('back-to-sub');
 
     // --- Navegación General con Hash Routing ---
     function showPage(page) {
         // Al ocultar páginas, nos aseguramos de que el scroll vuelva arriba
-        [landingPage, subcategoryPage, catalogPage, calculatorsPage, converterPage].forEach(p => {
+        [landingPage, subcategoryPage, catalogPage, calculatorsPage, converterPage, favoritesPage, pinoutsPage].forEach(p => {
             if (p) p.classList.add('hidden-page');
         });
         if (page) {
@@ -39,8 +47,14 @@ document.addEventListener('DOMContentLoaded', () => {
             showPage(calculatorsPage);
         } else if (hash === '#convertidor') {
             showPage(converterPage);
-            const dropdown = document.getElementById('dropdown-menu');
-            if(dropdown) dropdown.classList.add('hidden-dropdown');
+        } else if (hash === '#favoritos') {
+            if(window.renderFavorites) window.renderFavorites();
+            showPage(favoritesPage);
+        } else if (hash === '#pinouts') {
+            showPage(pinoutsPage);
+        } else if (hash === '#academia') {
+            const academiaPage = document.getElementById('academia-page');
+            if(academiaPage) showPage(academiaPage);
         } else if (hash === '#camera') {
             const photoTab = document.querySelector('.tab-btn[data-tab="photo"]');
             if (photoTab) photoTab.click();
@@ -83,17 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (backToHomeFromCalc || backToHome || backToHomeSub || backToHomeFromConv) {
-        const backBtns = [backToHomeFromCalc, backToHome, backToHomeSub, backToHomeFromConv];
-        backBtns.forEach(btn => {
-            if (btn) {
-                btn.addEventListener('click', () => {
-                    window.location.hash = ''; // Limpiar hash para volver al inicio real
-                    showPage(landingPage);
-                });
-            }
-        });
-    }
+    const backBtnsArr = [backToHomeFromCalc, backToHome, backToHomeSub, backToHomeFromConv, backToHomeFromFav, backToHomeFromPinouts];
+    backBtnsArr.forEach(btn => {
+        if (btn) {
+            btn.addEventListener('click', () => {
+                window.location.hash = ''; // Limpiar hash para volver al inicio real
+                showPage(landingPage);
+            });
+        }
+    });
 
     // --- Lógica Menú Desplegable ---
     const menuToggle = document.getElementById('menu-toggle');
@@ -299,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
-            imageUrl: "https://m.media-amazon.com/images/I/51wX8N18YlL._AC_SL1103_.jpg",
+            imageUrl: "assets/osciloscopios/rigol_ds1054z.png",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -366,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
-            imageUrl: "assets/osciloscopios/osciloscopio_portatil.png",
+            imageUrl: "assets/osciloscopios/hantek_2d42.png",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -410,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
             videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
-            imageUrl: "https://www.mouser.in/images/fluke/lrg/87v-im-b_lrg.jpg",
+            imageUrl: "assets/multimetros/fluke_87v.png",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "20000 cuentas",
@@ -432,7 +444,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electrónicos",
             desc: "Excelente relación calidad-precio con alta precisión y conexión a PC para adquisición de datos.",
             videoUrl: "https://www.youtube.com/watch?v=zIFYZ5AwDUI",
-            imageUrl: "https://i.ebayimg.com/images/g/vVQAAOSwihpkRPqg/s-l400.jpg",
+            imageUrl: "assets/multimetros/unit_ut61e.jpg",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "22000 cuentas",
@@ -630,7 +642,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mainCategory: "Aparatos Electr\u00f3nicos",
             desc: "Dispositivo DDS port\u00e1til y accesible que incluye m\u00faltiples funciones como contador de frecuencia y barredor de se\u00f1ales.",
             videoUrl: "https://www.youtube.com/watch?v=ixkh2rXsqRo",
-            imageUrl: "https://ae01.alicdn.com/kf/Sf1303fcb182f47848361c7771e7ccda0p.jpg",
+            imageUrl: "assets/osciloscopios/feelelec_fy6900.png",
             specs: {
                 "Ancho de Banda Max": "60 MHz a 100 MHz (Seg\u00fan modelo)",
                 "Frecuencia de Muestreo": "250 MSa/s",
@@ -1375,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Relés",
             mainCategory: "Circuitos Integrados",
             desc: "Interruptor electromecánico controlado por voltaje. Permite a circuitos de bajo voltaje (como microcontroladores) conmutar cargas de alto voltaje (hasta 250V AC).",
-            videoUrl: "https://www.youtube.com/watch?v=AS2-PhDvQbQ",
+            videoUrl: "https://www.youtube.com/watch?v=Knd4zDqYfW0",
             imageUrl: "assets/reles/sr5vdc_ai.png",
             specs: {
                 "Voltaje de Control (Bobina)": "5V DC",
@@ -1397,7 +1409,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Relés",
             mainCategory: "Circuitos Integrados",
             desc: "Relé sin partes móviles. Utiliza semiconductores ópticos y triacs para conmutar corriente alterna. Ofrece vida útil casi ilimitada y libre de chispas.",
-            videoUrl: "https://www.youtube.com/watch?v=wgAj8WUvt_o",
+            videoUrl: "https://www.youtube.com/watch?v=KzV_uB48XTo",
             imageUrl: "assets/reles/ssr_ai.png",
             specs: {
                 "Voltaje de Control (Input)": "3 - 32V DC",
@@ -1419,7 +1431,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Relés",
             mainCategory: "Circuitos Integrados",
             desc: "Interruptor magnético sellado en un tubo de vidrio. Se activa por la proximidad de un campo magnético externo (imán). Es el componente base para sensores de puertas y relés reed.",
-            videoUrl: "https://www.youtube.com/watch?v=uaP4ZxsjrHw",
+            videoUrl: "https://www.youtube.com/watch?v=T-2HByfndA0",
             imageUrl: "assets/reles/reed_switch_glass.png",
             specs: {
                 "Tipo de Contacto": "Normalmente Abierto (SPST-NO)",
@@ -1434,6 +1446,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 "No lo use para conmutar directamente cargas inductivas grandes sin un diodo de protección."
             ],
             type: "Interruptor Magnético"
+        },
+        {
+            name: "Relé Reed (SIP-1A05)",
+            ref: "SIP-1A05",
+            category: "Relés",
+            mainCategory: "Circuitos Integrados",
+            desc: "Relé Reed en encapsulado SIP. Combina la velocidad de un interruptor reed con una bobina de control integrada. Muy silencioso y eficiente.",
+            videoUrl: "https://www.youtube.com/watch?v=Knd4zDqYfW0",
+            imageUrl: "assets/reles/reed_relay_sip.png",
+            specs: {
+                "Voltaje Bobina": "5V DC",
+                "Resistencia Bobina": "500 Ω",
+                "Configuración": "1 Form A (SPST-NO)",
+                "Velocidad": "0.5ms (Conmutación ultra rápida)"
+            },
+            usageSteps: [
+                "Identifique los pines de la bobina (extremos) y los del contacto (internos).",
+                "Alimente la bobina con 5V directamente si el consumo es bajo (<10mA).",
+                "Úselo en aplicaciones de alta velocidad o donde el ruido mecánico de un relé común sea molesto.",
+                "Ideal para multímetros automáticos y equipos de prueba."
+            ],
+            type: "Relé de Lengüeta (Encapsulado)"
         },
         {
             name: "Potenciómetro Lineal B20K",
@@ -1569,6 +1603,82 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
+    // --- Lógica de Favoritos ---
+    window.getFavorites = function() {
+        try {
+            return JSON.parse(localStorage.getItem('electro_favorites') || '[]');
+        } catch(e) { return []; }
+    };
+    window.isFavorite = function(ref) {
+        return window.getFavorites().includes(ref);
+    };
+    window.toggleFavorite = function(ref, event) {
+        if(event) event.stopPropagation();
+        const favs = window.getFavorites();
+        const idx = favs.indexOf(ref);
+        if(idx === -1) {
+            favs.push(ref);
+            showToast('⭐ Añadido a Favoritos');
+        } else {
+            favs.splice(idx, 1);
+            showToast('🗑️ Eliminado de Favoritos');
+        }
+        localStorage.setItem('electro_favorites', JSON.stringify(favs));
+        
+        // Actualizar UI
+        document.querySelectorAll(`.btn-fav-star[data-ref="${ref}"]`).forEach(btn => {
+            btn.classList.toggle('active', idx === -1);
+            btn.innerHTML = (idx === -1) ? '<i class="fas fa-star"></i>' : '<i class="far fa-star"></i>';
+        });
+
+        if(window.location.hash === '#favoritos') {
+            window.renderFavorites();
+        }
+    };
+    window.renderFavorites = function() {
+        const grid = document.getElementById('favorites-grid');
+        const msg = document.querySelector('.no-favorites-msg');
+        if(!grid) return;
+        const favs = window.getFavorites();
+        
+        // Limpiar todas las cards previas (excepto el mensaje)
+        Array.from(grid.children).forEach(child => {
+            if(!child.classList.contains('no-favorites-msg')) child.remove();
+        });
+
+        if(favs.length === 0) {
+            msg.style.display = 'block';
+            return;
+        }
+        msg.style.display = 'none';
+
+        const favItems = equipmentData.filter(item => favs.includes(item.ref));
+        favItems.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'result-card glass neon-border';
+            card.innerHTML = `
+                <button class="btn-fav-star active" title="Quitar de Favoritos" data-ref="${item.ref}" onclick="window.toggleFavorite('${item.ref}', event)">
+                    <i class="fas fa-star"></i>
+                </button>
+                ${item.imageUrl ? `
+                <div class="result-image-container">
+                    <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
+                </div>` : ''}
+                <div class="result-info">
+                    <span class="category-badge">${item.category}</span>
+                    <h4>${item.name}</h4>
+                    <span class="ref-tag">MODELO/REF: ${item.ref}</span>
+                </div>
+                <div class="card-footer">
+                    <button class="btn-details" onclick="showDetails('${item.ref}')">
+                        <i class="fas fa-eye"></i> Detalles
+                    </button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    };
+
     const normalize = (text) => text ? text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
 
     function debounce(func, wait) {
@@ -1608,6 +1718,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border';
             card.innerHTML = `
+                <button class="btn-fav-star ${window.isFavorite(item.ref) ? 'active' : ''}" title="Añadir a Favoritos" data-ref="${item.ref}" onclick="window.toggleFavorite('${item.ref}', event)">
+                    <i class="${window.isFavorite(item.ref) ? 'fas' : 'far'} fa-star"></i>
+                </button>
+                ${item.imageUrl ? `
+                <div class="result-image-container">
+                    <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
+                </div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1629,8 +1746,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.createElement('div');
         modal.className = 'modal-overlay';
         modal.innerHTML = `
-            <div class="modal-content glass">
+            <div class="modal-content glass" id="modal-print-area">
                 <button class="close-modal">&times;</button>
+
+                <!-- Botones UX: Compartir y PDF -->
+                <div class="modal-ux-actions">
+                    <button class="modal-ux-btn btn-fav-star ${window.isFavorite(item.ref) ? 'active' : ''}" style="position:static; margin-right:auto; margin-bottom: 5px; width:auto; border-radius:12px; height: 38px" data-ref="${item.ref}" onclick="window.toggleFavorite('${item.ref}', event)" title="${window.isFavorite(item.ref) ? 'Quitar de Favoritos' : 'Añadir a Favoritos'}">
+                        <i class="${window.isFavorite(item.ref) ? 'fas' : 'far'} fa-star"></i>
+                    </button>
+                    <button class="modal-ux-btn" id="btn-share-component" title="Copiar información">
+                        <i class="fas fa-share-alt"></i> Compartir
+                    </button>
+                    <button class="modal-ux-btn modal-ux-btn--pdf" id="btn-export-pdf" title="Exportar a PDF">
+                        <i class="fas fa-file-pdf"></i> Exportar PDF
+                    </button>
+                </div>
+
                 <div class="modal-body">
                     <div class="specs-section">
                         <h2>${item.name}</h2>
@@ -1679,6 +1810,36 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => modal.remove(), 400);
         };
         modal.onclick = (e) => { if (e.target === modal) closeBtn.onclick(); };
+
+        // ---- Botón Compartir ----
+        const shareBtn = modal.querySelector('#btn-share-component');
+        shareBtn.addEventListener('click', () => {
+            const specsText = Object.entries(item.specs)
+                .filter(([, v]) => !v.toString().match(/\.(jpg|png|svg|gif|webp)/i) && !v.toString().startsWith('data:image'))
+                .map(([k, v]) => `• ${k}: ${v}`)
+                .join('\n');
+            const text = `⚡ ${item.name} (${item.ref})\nCategoría: ${item.category}\n\n${item.desc}\n\nEspecificaciones:\n${specsText}\n\n🔗 Busca más en ElectroIdentify`;
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => showToast('✅ Información copiada al portapapeles'));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                showToast('✅ Información copiada al portapapeles');
+            }
+        });
+
+        // ---- Botón Exportar PDF ----
+        const pdfBtn = modal.querySelector('#btn-export-pdf');
+        pdfBtn.addEventListener('click', () => {
+            // Añadir clase de impresión al body para activar estilos @media print
+            document.body.classList.add('printing-modal');
+            window.print();
+            document.body.classList.remove('printing-modal');
+        });
     };
 
     // Inicialización dinámica de subcategorías
@@ -1781,6 +1942,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.className = 'result-card glass neon-border animate';
             card.innerHTML = `
+                ${item.imageUrl ? `
+                <div class="result-image-container">
+                    <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
+                </div>` : ''}
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -2191,8 +2356,7 @@ document.addEventListener('DOMContentLoaded', () => {
     [divVin, divR1, divR2].forEach(input => input && input.addEventListener('input', updateDivider));
 
     // --- Lógica del Visor de Pinouts ---
-    const pinTabs = document.querySelectorAll('.pin-tab');
-    const pinoutViewer = document.getElementById('pinout-viewer');
+    // (pinTabs y pinoutViewer declarados arriba)
 
     const pinoutData = {
         ne555: {
@@ -2339,7 +2503,7 @@ document.addEventListener('DOMContentLoaded', () => {
         rightPins.reverse(); // Standard view: pins go up on the right
 
         let chipHtml = `
-            <div class="chip-dip ${data.type || ''} animate">
+            <div class="chip-dip ${data.type || ''}">
                 <div class="chip-notch"></div>
                 <div class="chip-label-main">${chipId.toUpperCase()}</div>
                 <div class="chip-body-content">
@@ -2347,14 +2511,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         const rp = rightPins[rightPins.length - 1 - idx];
                         return `
                             <div class="pin-row">
-                                <div class="pin-leg left"></div>
-                                <div class="pin-num left">${lp.num}</div>
-                                <div class="pin-info left-info">${lp.label}</div>
-                                
+                                <div class="pin-left">
+                                    <div class="pin-leg"></div>
+                                    <span class="pin-label">${lp.label}</span>
+                                    <span class="pin-num">${lp.num}</span>
+                                </div>
                                 ${rp ? `
-                                <div class="pin-info right-info">${rp.label}</div>
-                                <div class="pin-num right">${rp.num}</div>
-                                <div class="pin-leg right"></div>
+                                <div class="pin-right">
+                                    <span class="pin-num">${rp.num}</span>
+                                    <span class="pin-label">${rp.label}</span>
+                                    <div class="pin-leg"></div>
+                                </div>
                                 ` : ''}
                             </div>
                         `;
@@ -2669,3 +2836,588 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 })();
+
+/* =============================================
+   SECCIÓN EDUCATIVA / ACADEMIA
+   ============================================= */
+(function initAcademia() {
+
+    // ---- Datos: Mini-Tutoriales ----
+    const tutorialesData = [
+        {
+            icon: 'fa-bolt',
+            title: '¿Qué es la Ley de Ohm?',
+            category: 'Fundamentos',
+            difficulty: 'basico',
+            intro: 'La Ley de Ohm es la relación fundamental entre voltaje, corriente y resistencia. Si conoces dos de los tres valores, puedes calcular el tercero.',
+            steps: [
+                'Voltaje (V): Es la "presión" que empuja los electrones. Se mide en Voltios (V).',
+                'Corriente (I): Es el flujo de electrones. Se mide en Amperios (A).',
+                'Resistencia (R): Es el obstáculo al paso de corriente. Se mide en Ohmios (Ω).',
+                'Fórmula principal: V = I × R. Despejando: I = V / R y R = V / I.',
+                'Ejemplo: Con 9V y una resistencia de 470Ω → I = 9 / 470 ≈ 19.1 mA.'
+            ],
+            tip: '💡 Úsala siempre antes de conectar un LED: calcula la resistencia limitadora para no quemarlo.'
+        },
+        {
+            icon: 'fa-palette',
+            title: 'Código de Colores de Resistencias',
+            category: 'Componentes',
+            difficulty: 'basico',
+            intro: 'Las resistencias tienen bandas de colores para identificar su valor. Aprender este código te ahorrará tener que medir cada resistencia con el multímetro.',
+            steps: [
+                'Ubica la banda de tolerancia (oro = ±5%, plata = ±10%). Debe quedar a la derecha.',
+                'Lee las 4 bandas de izquierda a derecha: banda 1, banda 2, multiplicador, tolerancia.',
+                'Cada color equivale a un número: Negro=0, Marrón=1, Rojo=2, Naranja=3, Amarillo=4, Verde=5, Azul=6, Violeta=7, Gris=8, Blanco=9.',
+                'Multiplica (Bandas 1 y 2) × (Multiplicador de Banda 3). Ejemplo: Rojo-Rojo-Naranja-Oro = 22 × 1000 = 22kΩ ±5%.',
+                'Usa la Calculadora de Código de Colores de ElectroIdentify para verificar.'
+            ],
+            tip: '💡 Truco mnemotécnico: "Negro-Marrón-Rojo-Naranja-Amarillo-Verde-Azul-Violeta-Gris-Blanco" = "No Me Río Nunca Al Veces Bajo Violentamente Gritando Bobadas".'
+        },
+        {
+            icon: 'fa-microchip',
+            title: 'Cómo usar un Protoboard',
+            category: 'Laboratorio',
+            difficulty: 'basico',
+            intro: 'El protoboard (tablero de pruebas) permite construir circuitos temporales sin soldar. Es la herramienta más usada por estudiantes y makers.',
+            steps: [
+                'Las filas centrales (a-e y f-j) están conectadas horizontalmente por columnas de 5 agujeros.',
+                'Las rieles laterales (marcadas + y -) están conectadas verticalmente. Úsalas para VCC y GND.',
+                'Nunca pongas dos patas del mismo componente en la misma columna conectada (se cortocircuitan).',
+                'Conecta el rail "+" a la salida positiva de tu fuente y el rail "−" a tierra (GND).',
+                'Los cables jumper macho-macho facilitan las conexiones. Usa colores: rojo para +, negro para GND.'
+            ],
+            tip: '💡 Antes de encender, revisa dos veces que VCC y GND no estén conectados directamente. Un cortocircuito puede dañar tu fuente o microcontrolador.'
+        },
+        {
+            icon: 'fa-lightbulb',
+            title: 'Cómo conectar un LED correctamente',
+            category: 'Componentes',
+            difficulty: 'basico',
+            intro: 'El LED (Light Emitting Diode) es el componente más visual de la electrónica. Necesita una resistencia limitadora para no quemarse.',
+            steps: [
+                'Identifica el ánodo (+): la pata más larga, o el lado sin el borde plano en la cápsula.',
+                'Identifica el cátodo (−): la pata más corta, o el lado con el borde plano.',
+                'Calcula la resistencia: R = (Vfuente - Vled) / Iled. Para un LED rojo con 5V: R = (5 - 2) / 0.02 = 150Ω.',
+                'Usa la resistencia más cercana disponible (en este caso 150Ω o 220Ω).',
+                'Conecta: VCC → Resistencia → Ánodo LED → Cátodo LED → GND. ¡Listo!'
+            ],
+            tip: '💡 La mayoría de LEDs de uso general trabajan a 20mA y caen entre 1.8V (rojo) y 3.4V (azul/blanco). Úsalo en la calculadora de LED para mayor precisión.'
+        },
+        {
+            icon: 'fa-wave-square',
+            title: 'Usar el Osciloscopio por primera vez',
+            category: 'Instrumentación',
+            difficulty: 'medio',
+            intro: 'El osciloscopio es el ojo del ingeniero: muestra gráficamente cómo varía una señal eléctrica en el tiempo. Aprender los controles básicos desbloquea su poder.',
+            steps: [
+                'Conecta la sonda al canal CH1. Verifica que el interruptor de la sonda esté en 10x.',
+                'Toca la punta de la sonda al terminal "Cal" del equipo (señal de calibración interna 1kHz, 1Vpp).',
+                'Presiona el botón "Auto" o "Autoset" para que el equipo detecte y encuadre la señal automáticamente.',
+                'Controles clave: "Volt/Div" ajusta la escala vertical, "Time/Div" ajusta la escala horizontal, "Trigger" estabiliza la imagen.',
+                'Lee Vpp (voltaje pico a pico) en la pantalla y calcula la frecuencia: f = 1 / período.'
+            ],
+            tip: '💡 Si la señal se mueve y no se puede leer, ajusta el nivel de Trigger hasta que quede estática. Eso significa que el triggering está sincronizado correctamente.'
+        },
+        {
+            icon: 'fa-ruler-combined',
+            title: 'Medir con el Multímetro',
+            category: 'Instrumentación',
+            difficulty: 'basico',
+            intro: 'El multímetro es la navaja suiza del laboratorio. Puede medir voltaje, corriente, resistencia, continuidad y más. Saber usarlo bien es esencial.',
+            steps: [
+                'Para medir VOLTAJE DC: Coloca el selector en V— (o VDC). Conecta las puntas en paralelo con el elemento.',
+                'Para medir RESISTENCIA: Apaga el circuito. Selector en Ω. Conecta las puntas a los extremos de la resistencia.',
+                'Para medir CONTINUIDAD: Selector en ))) (pitido). Si hay continuidad, el multímetro emite un sonido.',
+                'Para medir CORRIENTE: Coloca el selector en A. Conecta las puntas en SERIE (no en paralelo). ¡Cuidado con los fusibles!',
+                'Siempre empieza en el rango más alto para no dañar el instrumento; baja hasta el rango adecuado.'
+            ],
+            tip: '💡 Nunca midas resistencia en un circuito energizado. Y nunca midas corriente en paralelo: puedes quemar el fusible del multímetro.'
+        },
+        {
+            icon: 'fa-memory',
+            title: 'Introducción a los Transistores BJT',
+            category: 'Componentes',
+            difficulty: 'medio',
+            intro: 'El transistor BJT (Bipolar Junction Transistor) actúa como interruptor o amplificador. Es el corazón de toda la electrónica moderna.',
+            steps: [
+                'Terminales: Base (B), Colector (C) y Emisor (E). En NPN: Corriente fluye de C a E cuando la base está activada.',
+                'Como interruptor: Aplica ~0.7V a la base (con resistencia limitadora). El transistor satura y conduce de C a E.',
+                'Como amplificador: Opera en zona activa. La corriente de base (Ib) controla la corriente de colector: Ic = β × Ib.',
+                'El hFE (β, ganancia) varía de 20 a 500 según el modelo. Para el popular BC547, β ≈ 110-800.',
+                'Identifica los pines: para el 2N2222 en cápsula TO-92: la pata central es la Base cuando el lado plano da hacia ti.'
+            ],
+            tip: '💡 Para encender un relay o LED de alta potencia mediante un microcontrolador (3.3V / 5V), un transistor NPN como el BC547 o 2N2222 es tu mejor aliado.'
+        },
+        {
+            icon: 'fa-shield-alt',
+            title: 'Protección contra Polaridad Inversa',
+            category: 'Buenas Prácticas',
+            difficulty: 'medio',
+            intro: 'Conectar la alimentación al revés puede destruir tu circuito en milisegundos. Existen técnicas simples para protegerse.',
+            steps: [
+                'Diodo en serie: Coloca un diodo 1N4007 en el rail de alimentación. Si se invierte la polaridad, el diodo bloquea la corriente.',
+                'Precio: una caída de voltaje de ~0.7V. Para 12V es aceptable; para 3.3V puede ser problemático.',
+                'Diodo Schottky (1N5819): Mismo principio pero con caída de solo ~0.3V. Mejor para circuitos de baja tensión.',
+                'MOSFET de canal P: La solución profesional. Sin caída de voltaje apreciable y con protección perfecta.',
+                'También considera fusibles en la entrada para proteger contra sobrecorriente.'
+            ],
+            tip: '💡 Añade siempre un capacitor de desacople (100nF cerámico + 10µF electrolítico) cerca de cada circuito integrado para filtrar ruido de la alimentación.'
+        }
+    ];
+
+    // ---- Datos: Glosario ----
+    const glosarioData = [
+        { term: 'Corriente Alterna (AC)', tag: 'Magnitud', def: 'Tipo de corriente eléctrica cuya amplitud y sentido varía con el tiempo de forma periódica (sinusoidal). Es la que llega a los tomacorrientes del hogar (110V o 220V, 60Hz).' },
+        { term: 'Corriente Continua (DC)', tag: 'Magnitud', def: 'Corriente eléctrica que fluye en un solo sentido y con amplitud constante. Las baterías, paneles solares y fuentes reguladas entregan DC.' },
+        { term: 'Voltaje (V)', tag: 'Magnitud', def: 'Diferencia de potencial eléctrico entre dos puntos. Es la "presión" que impulsa la corriente. Se mide en Voltios (V).' },
+        { term: 'Corriente (I)', tag: 'Magnitud', def: 'Flujo de carga eléctrica (electrones) por un conductor. Se mide en Amperios (A). 1 A = 1 Coulomb por segundo.' },
+        { term: 'Resistencia (R)', tag: 'Magnitud', def: 'Oposición al paso de corriente eléctrica. Se mide en Ohmios (Ω). Cuanto mayor es la resistencia, menos corriente circula con el mismo voltaje.' },
+        { term: 'Potencia (P)', tag: 'Magnitud', def: 'Energía consumida o entregada por unidad de tiempo. P = V × I. Se mide en Vatios (W). Un LED típico consume 0.06W.' },
+        { term: 'Capacitancia (C)', tag: 'Magnitud', def: 'Capacidad de un componente para almacenar carga eléctrica. Se mide en Faradios (F). Los capacitores comerciales van de pF hasta miles de µF.' },
+        { term: 'Inductancia (L)', tag: 'Magnitud', def: 'Propiedad de un conductor o bobina que se opone a los cambios de corriente. Se mide en Henrios (H). Es el complemento del capacitor en filtros de frecuencia.' },
+        { term: 'Impedancia (Z)', tag: 'Magnitud', def: 'Resistencia total que un circuito ofrece al paso de corriente AC. Combina resistencia, capacitancia e inductancia. Se mide en Ohmios (Ω).' },
+        { term: 'Frecuencia (f)', tag: 'Magnitud', def: 'Número de ciclos completos que una señal periódica realiza por segundo. Se mide en Hertz (Hz). La electricidad en Colombia es a 60Hz.' },
+        { term: 'Resistor', tag: 'Componente', def: 'Componente pasivo que limita el flujo de corriente. Su valor se identifica por bandas de colores o código numérico (SMD). Es el componente más común en electrónica.' },
+        { term: 'Capacitor', tag: 'Componente', def: 'Componente que almacena energía en un campo eléctrico. Se usa para filtrado, desacople de alimentación, temporización y acoplamiento de señales AC.' },
+        { term: 'Inductor (Bobina)', tag: 'Componente', def: 'Componente que almacena energía en un campo magnético. Se usa en fuentes conmutadas, filtros de frecuencia y transformadores.' },
+        { term: 'Diodo', tag: 'Componente', def: 'Dispositivo semiconductor que permite el flujo de corriente en un solo sentido (del ánodo al cátodo). Se usa para rectificación, protección y señalización (LED).' },
+        { term: 'LED', tag: 'Componente', def: 'Light Emitting Diode. Diodo que emite luz al conducir. Requiere una resistencia limitadora. Existe en colores visibles, IR y UV.' },
+        { term: 'Transistor BJT', tag: 'Componente', def: 'Componente de tres terminales (Base, Colector, Emisor) que actúa como interruptor o amplificador controlado por corriente. Tipos: NPN y PNP.' },
+        { term: 'MOSFET', tag: 'Componente', def: 'Transistor de efecto de campo controlado por voltaje. Más eficiente que el BJT para conmutación. Terminales: Gate, Drain, Source. Tipo N y tipo P.' },
+        { term: 'Circuito Integrado (IC)', tag: 'Componente', def: 'Chip que contiene millones de transistores y componentes en un encapsulado miniaturizado. Ejemplo: microcontroladores, amplificadores operacionales.' },
+        { term: 'Relé', tag: 'Componente', def: 'Interruptor electromecánico controlado por una bobina electromagnética. Permite controlar circuitos de alta potencia con señales de baja corriente (GPIO de Arduino, etc).' },
+        { term: 'Cristal Oscilador', tag: 'Componente', def: 'Componente piezoeléctrico que genera una señal de frecuencia muy precisa. Se usa como fuente de reloj en microcontroladores (ej: 16 MHz para Arduino UNO).' },
+        { term: 'Amplificador Operacional (Op-Amp)', tag: 'CI', def: 'Circuito integrado de alta ganancia con dos entradas (+ y −) y una salida. Se usa en amplificadores, comparadores, filtros activos y osciladores. Ejemplo: LM741, LM324N.' },
+        { term: 'PWM', tag: 'Señal', def: 'Pulse Width Modulation. Técnica de modulación donde se varía el ancho del pulso (duty cycle) de una señal cuadrada para controlar potencia, brillo de LEDs, velocidad de motores, etc.' },
+        { term: 'Tierra (GND)', tag: 'Concepto', def: 'Punto de referencia de potencial cero (0V) en un circuito. Todos los voltajes se miden respecto a este punto. Es el eslabón común de toda la electrónica.' },
+        { term: 'Pull-Up / Pull-Down', tag: 'Concepto', def: 'Resistencias conectadas a VCC (pull-up) o GND (pull-down) para definir un estado lógico definido en una entrada digital cuando no está siendo activamente manejada.' },
+        { term: 'Flyback', tag: 'Concepto', def: 'Pico de voltaje inverso generado por la bobina de un relé o motor cuando se desactiva. Puede destruir transistores. Se protege con un diodo en antiparalelo (diodo flyback).' },
+        { term: 'Duty Cycle', tag: 'Señal', def: 'Porcentaje del tiempo que una señal PWM permanece en alto. 50% duty cycle = señal alta durante la mitad del período. Controla la potencia entregada a la carga.' },
+        { term: 'I2C', tag: 'Protocolo', def: 'Bus serie síncrono de 2 hilos (SDA, SCL). Permite conectar múltiples dispositivos con solo 2 pines. Cada dispositivo tiene una dirección única. Velocidad típica: 100kHz-400kHz.' },
+        { term: 'SPI', tag: 'Protocolo', def: 'Serial Peripheral Interface. Bus de 4 hilos (MOSI, MISO, SCK, CS) de alta velocidad para comunicación entre microcontroladores y periféricos como pantallas, SD, sensores.' },
+        { term: 'UART', tag: 'Protocolo', def: 'Universal Asynchronous Receiver-Transmitter. Protocolo serie asíncrono de 2 hilos (TX, RX). El más sencillo. Usado en comunicación con GPS, módulos Bluetooth, depuración.' },
+        { term: 'SMD', tag: 'Tecnología', def: 'Surface Mount Device. Componente de montaje superficial sin patas través de PCB. Más pequeño y eficiente que THT. Requiere soldadura con pasta y/o estación de calor.' },
+        { term: 'THT', tag: 'Tecnología', def: 'Through-Hole Technology. Componentes con patas que se insertan en agujeros de la PCB. Más fácil de soldar a mano. Usados en protoboard y electrónica de aprendizaje.' },
+        { term: 'PCB', tag: 'Concepto', def: 'Printed Circuit Board. Tarjeta de circuito impreso donde los componentes se montan y conectan mediante pistas conductoras de cobre. Es el sustrato de cualquier producto electrónico.' }
+    ];
+
+    // ---- Datos: Fórmulas ----
+    const formulasData = [
+        {
+            icon: 'fa-bolt',
+            title: 'Ley de Ohm',
+            formulas: ['V = I × R', 'I = V / R', 'R = V / I'],
+            vars: [
+                { sym: 'V', desc: 'Voltaje (Voltios, V)' },
+                { sym: 'I', desc: 'Corriente (Amperios, A)' },
+                { sym: 'R', desc: 'Resistencia (Ohmios, Ω)' }
+            ]
+        },
+        {
+            icon: 'fa-fire',
+            title: 'Potencia Eléctrica',
+            formulas: ['P = V × I', 'P = I² × R', 'P = V² / R'],
+            vars: [
+                { sym: 'P', desc: 'Potencia (Vatios, W)' },
+                { sym: 'V', desc: 'Voltaje (Voltios, V)' },
+                { sym: 'I', desc: 'Corriente (Amperios, A)' }
+            ]
+        },
+        {
+            icon: 'fa-lightbulb',
+            title: 'Resistencia para LED',
+            formulas: ['R = (Vs − Vled) / Iled'],
+            vars: [
+                { sym: 'Vs',   desc: 'Voltaje de la fuente (V)' },
+                { sym: 'Vled', desc: 'Caída de voltaje del LED (V)' },
+                { sym: 'Iled', desc: 'Corriente del LED (A) — típico 0.02A' }
+            ]
+        },
+        {
+            icon: 'fa-divide',
+            title: 'Divisor de Voltaje',
+            formulas: ['Vout = Vin × R2 / (R1 + R2)'],
+            vars: [
+                { sym: 'Vin',  desc: 'Voltaje de entrada (V)' },
+                { sym: 'R1',   desc: 'Resistencia superior (Ω)' },
+                { sym: 'R2',   desc: 'Resistencia inferior (Ω)' },
+                { sym: 'Vout', desc: 'Voltaje de salida (V)' }
+            ]
+        },
+        {
+            icon: 'fa-clock',
+            title: 'Timer 555 (Astable)',
+            formulas: ['f = 1.44 / ((R1 + 2×R2) × C)', 'DC = (R1 + R2) / (R1 + 2×R2)'],
+            vars: [
+                { sym: 'f',  desc: 'Frecuencia de oscilación (Hz)' },
+                { sym: 'DC', desc: 'Duty Cycle (0 a 1)' },
+                { sym: 'C',  desc: 'Capacitancia (Faradios, F)' }
+            ]
+        },
+        {
+            icon: 'fa-filter',
+            title: 'Filtro RC (Frecuencia de Corte)',
+            formulas: ['fc = 1 / (2π × R × C)'],
+            vars: [
+                { sym: 'fc', desc: 'Frecuencia de corte (Hz)' },
+                { sym: 'R',  desc: 'Resistencia (Ω)' },
+                { sym: 'C',  desc: 'Capacitancia (Faradios, F)' }
+            ]
+        },
+        {
+            icon: 'fa-memory',
+            title: 'Resistencias en Paralelo',
+            formulas: ['1/Req = 1/R1 + 1/R2 + 1/Rn', 'Req(2) = (R1×R2)/(R1+R2)'],
+            vars: [
+                { sym: 'Req', desc: 'Resistencia equivalente (Ω)' },
+                { sym: 'Rn',  desc: 'Cada resistencia del grupo' }
+            ]
+        },
+        {
+            icon: 'fa-link',
+            title: 'Resistencias en Serie',
+            formulas: ['Req = R1 + R2 + R3 + ... + Rn'],
+            vars: [
+                { sym: 'Req', desc: 'Resistencia equivalente (Ω)' },
+                { sym: 'Rn',  desc: 'Cada resistencia individual' }
+            ]
+        },
+        {
+            icon: 'fa-layer-group',
+            title: 'Carga del Capacitor (RC)',
+            formulas: ['V(t) = Vs × (1 − e^(−t/τ))', 'τ = R × C'],
+            vars: [
+                { sym: 'τ',    desc: 'Constante de tiempo (segundos)' },
+                { sym: 'Vs',   desc: 'Voltaje de la fuente (V)' },
+                { sym: 'V(t)', desc: 'Voltaje en el tiempo t (V)' }
+            ]
+        },
+        {
+            icon: 'fa-wave-square',
+            title: 'Período y Frecuencia',
+            formulas: ['T = 1 / f', 'f = 1 / T'],
+            vars: [
+                { sym: 'T', desc: 'Período (segundos, s)' },
+                { sym: 'f', desc: 'Frecuencia (Hertz, Hz)' }
+            ]
+        }
+    ];
+
+    // ---- Referencias al DOM ----
+    const academiaPage   = document.getElementById('academia-page');
+    const backBtn        = document.getElementById('back-to-home-from-academia');
+    const tabBtns        = document.querySelectorAll('.academia-tab-btn');
+    const tutGrid        = document.getElementById('tutorials-grid');
+    const glosGrid       = document.getElementById('glosario-grid');
+    const glosSearch     = document.getElementById('glosario-search');
+    const glosNoResults  = document.getElementById('glosario-no-results');
+    const formulasGrid   = document.getElementById('formulas-grid');
+
+    if (!academiaPage) return; // Salir si el HTML no está listo
+
+    // ---- Routing ----
+    const originalShowPage = window._academiaShowPageInjected;
+
+    // Extender el routing global para incluir #academia
+    const origHandleRouting = window.handleRoutingRef;
+
+    // Enganchamos al evento hashchange
+    window.addEventListener('hashchange', () => {
+        if (window.location.hash === '#academia') {
+            showAllPages('hidden');
+            academiaPage.classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+        }
+    });
+
+    // Verificar si se cargó con #academia
+    if (window.location.hash === '#academia') {
+        document.querySelectorAll('.hidden-page').forEach(p => p.classList.add('hidden-page'));
+        academiaPage.classList.remove('hidden-page');
+    }
+
+    function showAllPages(action) {
+        ['landing-page','subcategory-page','catalog-page','calculators-page','converter-page','academia-page'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.add('hidden-page');
+        });
+    }
+
+    // Botón volver al inicio
+    if (backBtn) {
+        backBtn.addEventListener('click', () => {
+            window.location.hash = '';
+            academiaPage.classList.add('hidden-page');
+            document.getElementById('landing-page').classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+        });
+    }
+
+    // Link en el menú desplegable
+    const linkAcademia = document.getElementById('link-academia');
+    if (linkAcademia) {
+        linkAcademia.addEventListener('click', (e) => {
+            e.preventDefault();
+            const dropdown = document.getElementById('dropdown-menu');
+            if (dropdown) dropdown.classList.add('hidden-dropdown');
+            ['landing-page','subcategory-page','catalog-page','calculators-page','converter-page'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden-page');
+            });
+            academiaPage.classList.remove('hidden-page');
+            window.scrollTo(0, 0);
+            history.pushState(null, '', '#academia');
+        });
+    }
+
+    // ---- Navegación de pestañas internas ----
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const section = btn.dataset.section;
+            document.querySelectorAll('.academia-section').forEach(s => s.classList.add('hidden-section'));
+            const target = document.getElementById('section-' + section);
+            if (target) target.classList.remove('hidden-section');
+        });
+    });
+
+    // ---- Renderizar Mini-Tutoriales ----
+    function renderTutoriales() {
+        if (!tutGrid) return;
+        tutGrid.innerHTML = '';
+        tutorialesData.forEach((tut, idx) => {
+            const diffClass = `diff-${tut.difficulty}`;
+            const diffLabel = tut.difficulty === 'basico' ? 'Básico' : tut.difficulty === 'medio' ? 'Intermedio' : 'Avanzado';
+
+            const card = document.createElement('div');
+            card.className = 'tutorial-card neon-border';
+            card.innerHTML = `
+                <div class="tutorial-card-header" data-idx="${idx}">
+                    <div class="tutorial-card-icon"><i class="fas ${tut.icon}"></i></div>
+                    <div class="tutorial-card-meta">
+                        <h3>${tut.title} <span class="difficulty-badge ${diffClass}">${diffLabel}</span></h3>
+                        <span>${tut.category}</span>
+                    </div>
+                    <i class="fas fa-chevron-down tutorial-toggle-icon"></i>
+                </div>
+                <div class="tutorial-card-body">
+                    <p>${tut.intro}</p>
+                    <ol class="tutorial-steps">
+                        ${tut.steps.map(s => `<li>${s}</li>`).join('')}
+                    </ol>
+                    <div class="tutorial-tip"><i class="fas fa-lightbulb"></i><span>${tut.tip}</span></div>
+                </div>
+            `;
+
+            // Toggle acordeón
+            card.querySelector('.tutorial-card-header').addEventListener('click', () => {
+                card.classList.toggle('open');
+            });
+
+            tutGrid.appendChild(card);
+        });
+    }
+
+    // ---- Renderizar Glosario ----
+    function renderGlosario(filter = '') {
+        if (!glosGrid) return;
+        glosGrid.innerHTML = '';
+        const filtered = glosarioData.filter(g =>
+            g.term.toLowerCase().includes(filter.toLowerCase()) ||
+            g.def.toLowerCase().includes(filter.toLowerCase()) ||
+            g.tag.toLowerCase().includes(filter.toLowerCase())
+        );
+
+        if (filtered.length === 0) {
+            if (glosNoResults) glosNoResults.style.display = 'block';
+            return;
+        }
+        if (glosNoResults) glosNoResults.style.display = 'none';
+
+        filtered.forEach(g => {
+            const card = document.createElement('div');
+            card.className = 'glosario-card';
+            card.innerHTML = `
+                <div class="glosario-term">
+                    <h4>${g.term}</h4>
+                    <span class="gtag">${g.tag}</span>
+                </div>
+                <p>${g.def}</p>
+            `;
+            glosGrid.appendChild(card);
+        });
+    }
+
+    if (glosSearch) {
+        glosSearch.addEventListener('input', () => renderGlosario(glosSearch.value));
+    }
+
+    // ---- Renderizar Fórmulas ----
+    function renderFormulas() {
+        if (!formulasGrid) return;
+        formulasGrid.innerHTML = '';
+        formulasData.forEach(f => {
+            const card = document.createElement('div');
+            card.className = 'formula-card';
+            card.innerHTML = `
+                <div class="formula-card-title">
+                    <i class="fas ${f.icon}"></i>
+                    <h3>${f.title}</h3>
+                </div>
+                ${f.formulas.map(eq => `<div class="formula-box"><code>${eq}</code></div>`).join('')}
+                <ul class="formula-vars">
+                    ${f.vars.map(v => `<li><strong>${v.sym}</strong>${v.desc}</li>`).join('')}
+                </ul>
+            `;
+            formulasGrid.appendChild(card);
+        });
+    }
+
+    // ---- Inicializar todos los datos ----
+    renderTutoriales();
+    renderGlosario();
+    renderFormulas();
+
+})();
+
+/* =============================================
+   UTILIDADES GLOBALES UX
+   ============================================= */
+
+// ---- Toast de Notificación ----
+function showToast(message, duration = 3000) {
+    // Remover toast existente si hay uno
+    const existing = document.getElementById('ux-toast');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'ux-toast';
+    toast.className = 'ux-toast';
+    toast.innerHTML = `<span>${message}</span>`;
+    document.body.appendChild(toast);
+
+    // Animar entrada
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => toast.classList.add('ux-toast--visible'));
+    });
+
+    // Auto-eliminar
+    setTimeout(() => {
+        toast.classList.remove('ux-toast--visible');
+        setTimeout(() => toast.remove(), 400);
+    }, duration);
+}
+
+/* =============================================
+   TIP DEL DÍA
+   ============================================= */
+(function initTipDelDia() {
+
+    const tips = [
+        { icon: '⚡', text: 'Siempre calcula la resistencia limitadora antes de conectar un LED. R = (Vs − Vled) / Iled. Sin ella, el LED se quema en segundos.', tag: 'Componentes' },
+        { icon: '🔌', text: 'Añade un capacitor de 100nF cerámico cerca de cada pin VCC de un circuito integrado. Esto filtra el ruido de alta frecuencia y previene reinicios inesperados.', tag: 'Buenas Prácticas' },
+        { icon: '🎨', text: 'Truco código de colores: "No Me Río Nunca Al Veces Bajo Violentamente Gritando Bobadas" = Negro, Marrón, Rojo, Naranja, Amarillo, Verde, Azul, Violeta, Gris, Blanco (0-9).', tag: 'Memorización' },
+        { icon: '🔋', text: 'Nunca midas resistencia en un circuito energizado. Los 0.6V que el multímetro inyecta en modo Ω pueden dañar semiconductores sensibles.', tag: 'Seguridad' },
+        { icon: '🌡️', text: 'La temperatura de un soldado de calidad es de 300°C–350°C. Más caliente no es más rápido: daña el flux y los componentes. El tiempo máximo en cada punto: 3 segundos.', tag: 'Soldadura' },
+        { icon: '📊', text: 'Si el osciloscopio muestra una señal inestable, ajusta el nivel de TRIGGER. La señal se estabilizará cuando el trigger coincida con el flanco de la señal.', tag: 'Instrumentación' },
+        { icon: '🔄', text: 'Un diodo flyback (1N4007 en antiparalelo) es obligatorio al controlar un relé o motor con un transistor. Sin él, el pico de voltaje inverso destruye el transistor.', tag: 'Protección' },
+        { icon: '🔢', text: 'Código de 3 dígitos en capacitores cerámicos: los dos primeros son cifras, el tercero es el número de ceros en picofaradios. 104 = 10×10⁴ pF = 100nF.', tag: 'Identificación' },
+        { icon: '📐', text: 'La frecuencia de corte de un filtro RC es: fc = 1 / (2π·R·C). Por encima de esta frecuencia el pasa-bajos atenúa la señal a −3dB (70.7% de la amplitud original).', tag: 'Fórmulas' },
+        { icon: '🛡️', text: 'Para proteger un circuito de polaridad invertida, usa un diodo Schottky 1N5819 en serie con la alimentación. Tiene una caída de solo ~0.3V frente al 0.7V del 1N4007.', tag: 'Protección' },
+        { icon: '⏱️', text: 'El NE555 en modo monoestable genera un pulso de T = 1.1 × R × C segundos. Con R=100kΩ y C=10µF obtienes T ≈ 1.1 segundos.', tag: 'Circuitos' },
+        { icon: '🔍', text: 'Para identificar si un transistor BJT está bien, mide con el multímetro en modo diodo: Base→Colector y Base→Emisor deben marcar ~0.6V (NPN). Si marca cero o infinito, está dañado.', tag: 'Diagnóstico' },
+        { icon: '📡', text: 'I²C usa sólo 2 cables (SDA y SCL) para conectar hasta 127 dispositivos. Cada uno tiene una dirección única de 7 bits. Recuerda añadir resistencias pull-up de 4.7kΩ.', tag: 'Comunicación' },
+        { icon: '🧲', text: 'Aleja los inductores y transformadores de los capacitores electrolíticos. El campo magnético puede calentar el electrolito y reducir la vida útil del capacitor.', tag: 'Diseño' },
+        { icon: '💡', text: 'Un LED blanco o azul cae típicamente 3.0V–3.4V. Un LED rojo o infrarrojo cae 1.8V–2.2V. Esto afecta directamente el cálculo de la resistencia limitadora.', tag: 'Componentes' }
+    ];
+
+    // Elegir tip del día usando la fecha como semilla (cambia cada día)
+    function getTipOfDay() {
+        const now = new Date();
+        const dayIndex = Math.floor(now.getTime() / 86400000); // días desde epoch
+        return tips[dayIndex % tips.length];
+    }
+
+    function injectTipCard() {
+        // Solo inyectar en la landing page
+        const target = document.querySelector('.container.catalog-container') ||
+                       document.querySelector('#landing-page .container') ||
+                       document.querySelector('#landing-page section.container');
+        if (!target) return;
+
+        const tip = getTipOfDay();
+
+        const tipCard = document.createElement('div');
+        tipCard.className = 'tip-del-dia-card';
+        tipCard.id = 'tip-del-dia';
+        tipCard.innerHTML = `
+            <div class="tip-header">
+                <div class="tip-badge">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Tip del Día</span>
+                </div>
+                <span class="tip-tag">${tip.tag}</span>
+                <button class="tip-close-btn" id="tip-close" aria-label="Cerrar tip">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="tip-body">
+                <span class="tip-emoji">${tip.icon}</span>
+                <p class="tip-text">${tip.text}</p>
+            </div>
+            <div class="tip-footer">
+                <button class="tip-next-btn" id="tip-next">
+                    <i class="fas fa-random"></i> Otro consejo
+                </button>
+            </div>
+        `;
+
+        // Insertar al inicio del container
+        target.insertBefore(tipCard, target.firstChild);
+
+        // Comprobar si el usuario ya cerró el tip hoy
+        const closedDate = localStorage.getItem('tipClosedDate');
+        const today = new Date().toDateString();
+        if (closedDate === today) {
+            tipCard.style.display = 'none';
+        }
+
+        // Botón cerrar
+        document.getElementById('tip-close').addEventListener('click', () => {
+            tipCard.classList.add('tip-hiding');
+            setTimeout(() => { tipCard.style.display = 'none'; tipCard.classList.remove('tip-hiding'); }, 400);
+            localStorage.setItem('tipClosedDate', today);
+        });
+
+        // Botón "Otro consejo" (tip aleatorio)
+        let currentIdx = tips.indexOf(tip);
+        document.getElementById('tip-next').addEventListener('click', () => {
+            currentIdx = (currentIdx + 1) % tips.length;
+            const nextTip = tips[currentIdx];
+            const emoji = tipCard.querySelector('.tip-emoji');
+            const text = tipCard.querySelector('.tip-text');
+            const tag = tipCard.querySelector('.tip-tag');
+
+            tipCard.classList.add('tip-changing');
+            setTimeout(() => {
+                emoji.textContent = nextTip.icon;
+                text.textContent = nextTip.text;
+                tag.textContent = nextTip.tag;
+                tipCard.classList.remove('tip-changing');
+            }, 200);
+        });
+    }
+
+    // Inyectar cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectTipCard);
+    } else {
+        // Pequeño delay para que el DOM esté completamente renderizado
+        setTimeout(injectTipCard, 100);
+    }
+
+})();
+
+
