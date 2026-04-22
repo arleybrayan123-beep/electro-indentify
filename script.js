@@ -311,7 +311,7 @@
             mainCategory: "Aparatos Electrónicos",
             desc: "Excelente para laboratorios educativos y aficionados. Muy popular por su hacking potencial.",
             videoUrl: "https://www.youtube.com/watch?v=-fYAJQ9uCUg",
-            imageUrl: "assets/osciloscopios/rigol_ds1054z.png",
+            imageUrl: "./assets/osciloscopios/rigol_ds1054z.png",
             specs: {
                 "Ancho de Banda": "50 MHz",
                 "Canales": "4 análogos",
@@ -378,7 +378,7 @@
             mainCategory: "Aparatos Electrónicos",
             desc: "Instrumento multifunción para servicio técnico de campo.",
             videoUrl: "https://www.youtube.com/watch?v=u2tUSq8z67s",
-            imageUrl: "assets/osciloscopios/hantek_2d42.png",
+            imageUrl: "./assets/osciloscopios/hantek_2d42.png",
             specs: {
                 "Ancho de Banda": "40 MHz",
                 "Canales": "2 análogos",
@@ -422,7 +422,7 @@
             mainCategory: "Aparatos Electrónicos",
             desc: "El estándar de la industria para entornos robustos y señales complejas. Medición de verdadero valor eficaz (True RMS).",
             videoUrl: "https://www.youtube.com/watch?v=Ai3PR9oUO7s",
-            imageUrl: "assets/multimetros/fluke_87v.png",
+            imageUrl: "./assets/multimetros/fluke_87v.png",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "20000 cuentas",
@@ -444,7 +444,7 @@
             mainCategory: "Aparatos Electrónicos",
             desc: "Excelente relación calidad-precio con alta precisión y conexión a PC para adquisición de datos.",
             videoUrl: "https://www.youtube.com/watch?v=zIFYZ5AwDUI",
-            imageUrl: "assets/multimetros/unit_ut61e.jpg",
+            imageUrl: "./assets/multimetros/unit_ut61e.jpg",
             specs: {
                 "Precisión DC": "0.05%",
                 "Resolución": "22000 cuentas",
@@ -642,7 +642,7 @@
             mainCategory: "Aparatos Electr\u00f3nicos",
             desc: "Dispositivo DDS port\u00e1til y accesible que incluye m\u00faltiples funciones como contador de frecuencia y barredor de se\u00f1ales.",
             videoUrl: "https://www.youtube.com/watch?v=ixkh2rXsqRo",
-            imageUrl: "assets/osciloscopios/feelelec_fy6900.png",
+            imageUrl: "./assets/osciloscopios/feelelec_fy6900.png",
             specs: {
                 "Ancho de Banda Max": "60 MHz a 100 MHz (Seg\u00fan modelo)",
                 "Frecuencia de Muestreo": "250 MSa/s",
@@ -732,7 +732,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Son los más utilizados, compactos y con baja resistencia en serie equivalente (ESR). Esenciales para el filtrado de alta frecuencia y desacople de alimentación.",
             videoUrl: "https://www.youtube.com/watch?v=-Qzuj5PHqxs",
-            imageUrl: "assets/capacitores/main_cer_ai.png",
+            imageUrl: "./assets/capacitores/main_cer_ai.png",
             specs: {
                 "Funcionamiento": "Almacena carga sin polaridad fija. Ideal para bypass y alta frecuencia.",
                 "Voltaje": "50V - 100V típicos",
@@ -756,7 +756,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Ofrecen capacitancia muy alta para filtrado en fuentes de alimentación. Su dieléctrico de óxido de aluminio les permite alcanzar miles de microfaradios.",
             videoUrl: "https://www.youtube.com/watch?v=bLE_cJ8Hrpc",
-            imageUrl: "assets/capacitores/main_elec_ai.png",
+            imageUrl: "./assets/capacitores/main_elec_ai.png",
             specs: {
                 "Funcionamiento": "Almacena grandes cargas para suavizar el rizado en fuentes DC.",
                 "Voltaje Max": "Varía según modelo: 6.3V, 16V, 25V, 50V, 100V",
@@ -779,7 +779,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Polarizados con dieléctrico de pentóxido de tantalio. Proporcionan alta estabilidad, mejor respuesta en frecuencia y vida útil superior a los de aluminio.",
             videoUrl: "https://www.youtube.com/watch?v=TYVUeag-Ggk",
-            imageUrl: "assets/capacitores/main_tan_ai.png",
+            imageUrl: "./assets/capacitores/main_tan_ai.png",
             specs: {
                 "Funcionamiento": "Dieléctrico sólido de óxido de tantalio. Ideal para aplicaciones compactas de precisión y filtrado fino.",
                 "Ventaja": "Larga vida útil, bajo ESR y tamaño reducido vs. electrolítico de Al.",
@@ -802,7 +802,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Utilizan una lámina de poliéster (Mylar) o polipropileno como dieléctrico. Son muy estables, resistentes a la humedad y comunes en audio e industriales.",
             videoUrl: "https://www.youtube.com/watch?v=hon7S766jrI",
-            imageUrl: "assets/capacitores/main_poly_ai.png",
+            imageUrl: "./assets/capacitores/main_poly_ai.png",
             specs: {
                 "Funcionamiento": "Alta capacidad de sobretensión, baja pérdida dieléctrica y excelente estabilidad térmica.",
                 "Aplicación": "Filtros de audio, acoplamiento de señal AC y fuentes sin transformador (X2).",
@@ -825,7 +825,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Usan mica natural como dieléctrico. Ofrecen la mayor precisión y estabilidad de todos los capacitores, ideales para circuitos de radiofrecuencia (RF).",
             videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
-            imageUrl: "assets/capacitores/main_mica_ai.png",
+            imageUrl: "./assets/capacitores/main_mica_ai.png",
             specs: {
                 "Funcionamiento": "Mínimas pérdidas dieléctricas (factor Q muy alto) y excelente estabilidad ante temperatura.",
                 "Uso": "Osciladores de RF, circuitos resonantes LC y filtros sintonizados de precisión.",
@@ -848,7 +848,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Condensadores de doble capa eléctrica (EDLC) con capacitancias de 1F a miles de Faradios. Actúan como híbrido entre capacitor y batería para respaldo de energía.",
             videoUrl: "https://www.youtube.com/watch?v=nsX31lOdWoY",
-            imageUrl: "assets/capacitores/main_super_ai.png",
+            imageUrl: "./assets/capacitores/main_super_ai.png",
             specs: {
                 "Funcionamiento": "Almacenan energía por adsorción electrostática de iones, no por reacción química. Carga/descarga muy rápida.",
                 "Capacidad": "1F a 3000F (Faradios). Densidad de potencia muy alta.",
@@ -871,7 +871,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Permiten ajustar su capacitancia manualmente. Fundamentales para la sintonización precisa de circuitos de radio AM/FM y filtros resonantes.",
             videoUrl: "https://www.youtube.com/watch?v=8fGiGl20JCY",
-            imageUrl: "assets/capacitores/main_var_ai.jpg",
+            imageUrl: "./assets/capacitores/main_var_ai.jpg",
             specs: {
                 "Funcionamiento": "Varía el área de placas conductoras enfrentadas mediante un eje giratorio, cambiando la capacitancia.",
                 "Tipos": "Variable de aire (radios) y Trimmer ajustable (cerámico/plástico en PCB)",
@@ -894,7 +894,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "El transistor NPN de propósito general más popular. Ideal para conmutación digital y amplificación de pequeña señal a alta velocidad.",
             videoUrl: "https://www.youtube.com/watch?v=8REH0_N6U2k",
-            imageUrl: "assets/transistores/npn_2n2222_ai.png",
+            imageUrl: "./assets/transistores/npn_2n2222_ai.png",
             specs: {
                 "Funcionamiento": "Transistor BJT NPN de unión. La corriente de Base controla la corriente Colector-Emisor con una ganancia (hFE) de 75 a 300.",
                 "Encapsulado": "TO-92 (plástico) / TO-18 (metal)",
@@ -919,7 +919,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Transistor PNP de pequeña señal para conmutación de carga en el lado positivo (high-side switching) y lógica inversa.",
             videoUrl: "https://www.youtube.com/watch?v=_eB8cFNkCaM",
-            imageUrl: "assets/transistores/pnp_bc557_ai.png",
+            imageUrl: "./assets/transistores/pnp_bc557_ai.png",
             specs: {
                 "Funcionamiento": "Transistor BJT PNP. Conduce cuando la Base está más negativa que el Emisor. Complementario del BC547.",
                 "Encapsulado": "TO-92",
@@ -944,7 +944,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "MOSFET de potencia canal-N controlado por voltaje. Perfecto para conmutar cargas de alta corriente con señales lógicas de 5V o 3.3V.",
             videoUrl: "https://www.youtube.com/watch?v=o4_NeqlJgOs",
-            imageUrl: "assets/transistores/mosfet_premium.png",
+            imageUrl: "./assets/transistores/mosfet_premium.png",
             specs: {
                 "Funcionamiento": "Se activa con voltaje Gate-Source (VGS). No consume corriente de control. Ideal para switching de alta eficiencia.",
                 "Encapsulado": "TO-220",
@@ -970,7 +970,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "MOSFET de potencia canal-P. Complementario del IRF540, úselo para control de carga en el lado positivo (high-side) en puentes H o fuentes conmutadas.",
             videoUrl: "https://www.youtube.com/watch?v=GrvvkYTW_0k",
-            imageUrl: "assets/transistores/mosfet_p_irf9540_ai.png",
+            imageUrl: "./assets/transistores/mosfet_p_irf9540_ai.png",
             specs: {
                 "Funcionamiento": "Conduce cuando VGS es negativo (Gate más bajo que Source). Source se conecta a VCC.",
                 "Encapsulado": "TO-220",
@@ -995,7 +995,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Par Darlington NPN de alta ganancia para control de motores DC, solenoides y cargas de media potencia directamente desde microcontroladores.",
             videoUrl: "https://www.youtube.com/watch?v=sRVvUkK0U80",
-            imageUrl: "assets/transistores/tip120_ai.png",
+            imageUrl: "./assets/transistores/tip120_ai.png",
             specs: {
                 "Funcionamiento": "Combina dos transistores BJT en cascada. Ganancia hFE total superior a 1000. VBE de activación ~1.4V.",
                 "Encapsulado": "TO-220",
@@ -1020,7 +1020,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "El diodo rectificador de propósito general más común. Soporta hasta 1000V de voltaje inverso. Fundamental en fuentes de alimentación.",
             videoUrl: "https://www.youtube.com/watch?v=fXv0j0D2p6A",
-            imageUrl: "assets/diodos/diodo_1n4007_ai.png",
+            imageUrl: "./assets/diodos/diodo_1n4007_ai.png",
             specs: {
                 "Funcionamiento": "Permite el paso de corriente únicamente del Ánodo (+) al Cátodo (-). Bloquea el flujo inverso como una válvula.",
                 "Corriente Promedio": "1 A (IFAV)",
@@ -1044,7 +1044,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Diodo Zener de regulación de voltaje. Mantiene exactamente 5.1V en su terminal en polarización inversa. Esencial para referencias de tensión.",
             videoUrl: "https://www.youtube.com/watch?v=6PmVLNq9cZQ",
-            imageUrl: "assets/diodos/diodo_zener_1n4733a_ai.png",
+            imageUrl: "./assets/diodos/diodo_zener_1n4733a_ai.png",
             specs: {
                 "Funcionamiento": "En polarización inversa, entra en avalancha a su voltaje Zener (VZ) regulando el voltaje. No se destruye si se limita la corriente.",
                 "Voltaje Zener (VZ)": "5.1 V",
@@ -1069,7 +1069,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Diodo Schottky de conmutación ultrarrápida. Su baja caída de voltaje (~0.3V) lo hace ideal para fuentes conmutadas y protección de polaridad.",
             videoUrl: "https://www.youtube.com/watch?v=TFvZ9MaqO6c",
-            imageUrl: "assets/diodos/schottky_1n5819_ai.svg",
+            imageUrl: "./assets/diodos/schottky_1n5819_ai.svg",
             specs: {
                 "Funcionamiento": "Usa unión metal-semiconductor. Sin carga almacenada → recuperación ultrarrápida. Menor disipación de calor.",
                 "Corriente Promedio": "1 A (IFAV)",
@@ -1095,7 +1095,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Puente rectificador monolítico de 4 diodos en un solo encapsulado. Simplifica el diseño de fuentes de alimentación AC/DC.",
             videoUrl: "https://www.youtube.com/watch?v=9csKNnm3UWE",
-            imageUrl: "assets/diodos/puente_kbl410_ai.svg",
+            imageUrl: "./assets/diodos/puente_kbl410_ai.svg",
             specs: {
                 "Funcionamiento": "Rectifica la señal AC completa internamente. Los 4 diodos están preconectados en configuración Puente de Graetz.",
                 "Corriente Promedio": "4 A (IFAV)",
@@ -1238,7 +1238,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "El circuito integrado más vendido en la historia. Genera pulsos, retardos precisos y frecuencias de oscilación configurables con pocos componentes externos.",
             videoUrl: "https://www.youtube.com/watch?v=8jAX6ID_MIc",
-            imageUrl: "assets/circuitos/ne555_ai.png",
+            imageUrl: "./assets/circuitos/ne555_ai.png",
             specs: {
                 "Funcionamiento": "Comparadores internos, flip-flop SR y transistor de descarga. Opera en modo Monoestable (un pulso) o Astable (oscilador).",
                 "Voltaje de Alimentación": "4.5V - 15V (NE555) / 2V - 6V (LMC555 CMOS)",
@@ -1262,7 +1262,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Amplificador Operacional (Op-Amp) dual de propósito general. Opera con una sola fuente de alimentación, ideal para comparadores, amplificadores y filtros activos.",
             videoUrl: "https://www.youtube.com/watch?v=WT9ldolDlTw",
-            imageUrl: "assets/circuitos/lm358_ai.png",
+            imageUrl: "./assets/circuitos/lm358_ai.png",
             specs: {
                 "Funcionamiento": "Amplifica la diferencia entre las entradas (+) y (-). Ganancia abierta muy alta (~100 dB). Se configura con retroalimentación.",
                 "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
@@ -1287,7 +1287,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Regulador de voltaje lineal fijo de 5V. El componente estándar para suministrar 5V estables a partir de cualquier fuente DC de 7V a 35V.",
             videoUrl: "https://www.youtube.com/watch?v=Tv0D2xCrweA",
-            imageUrl: "assets/circuitos/lm7805_ai.png",
+            imageUrl: "./assets/circuitos/lm7805_ai.png",
             specs: {
                 "Funcionamiento": "Regula la tensión de salida disipando el exceso de voltaje en calor. Requiere disipador de calor para corrientes altas.",
                 "Voltaje de Salida": "5 V (fijo)",
@@ -1312,7 +1312,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Driver de doble puente H para controlar la dirección y velocidad de 2 motores DC o 1 motor paso a paso con señales lógicas desde un microcontrolador.",
             videoUrl: "https://www.youtube.com/watch?v=rvJHrpjur6k",
-            imageUrl: "assets/circuitos/l293d_ai.png",
+            imageUrl: "./assets/circuitos/l293d_ai.png",
             specs: {
                 "Funcionamiento": "Cuatro drivers de medio-puente con diodos de protección integrados. Acepta lógica TTL/CMOS. Controla dirección con IN1/IN2 y velocidad con EN1 (PWM).",
                 "Voltaje Lógico (Vcc1)": "5 V",
@@ -1338,7 +1338,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "El cerebro del Arduino UNO. Microcontrolador AVR de 8 bits con 32KB Flash, 2KB SRAM, y periféricos como UART, SPI, I2C, ADC y PWM.",
             videoUrl: "https://www.youtube.com/watch?v=ZacG6vcXGn0",
-            imageUrl: "assets/circuitos/atmega328p_ai.png",
+            imageUrl: "./assets/circuitos/atmega328p_ai.png",
             specs: {
                 "Funcionamiento": "CPU RISC de 8 bits a 16 MHz. Ejecuta la mayoría de instrucciones en 1 ciclo de reloj. Programable con Arduino IDE.",
                 "Memoria Flash": "32 KB (de los que 0.5KB son para el bootloader)",
@@ -1363,7 +1363,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Contiene cuatro amplificadores operacionales independientes en un solo chip DIP-14. Opera con fuente simple de 3V a 32V, ideal para control analógico, comparadores y filtros activos.",
             videoUrl: "https://www.youtube.com/watch?v=1JbU7Lx11uQ",
-            imageUrl: "assets/circuitos/lm324n_ai.png",
+            imageUrl: "./assets/circuitos/lm324n_ai.png",
             specs: {
                 "Funcionamiento": "Cuatro Op-Amps independientes. Amplifica diferencia entre entradas (+) y (-) con ganancia de apertura de ~100 dB.",
                 "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
@@ -1390,7 +1390,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Driver de barra/punto de 10 segmentos LED. Convierte un voltaje analógico en una barra visual de 10 LEDs. Usado en vúmetros, indicadores de batería y nivel de señal.",
             videoUrl: "https://www.youtube.com/watch?v=NRI9dlojngY",
-            imageUrl: "assets/circuitos/lm3914n_ai.png",
+            imageUrl: "./assets/circuitos/lm3914n_ai.png",
             specs: {
                 "Funcionamiento": "Compara el voltaje de entrada con 10 referencias internas. Enciende LEDs en modo DOT (un LED) o BAR (acumulativo).",
                 "Voltaje de Alimentación": "3V a 25V",
@@ -1417,7 +1417,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Interruptor electromecánico controlado por voltaje. Permite a circuitos de bajo voltaje (como microcontroladores) conmutar cargas de alto voltaje (hasta 250V AC).",
             videoUrl: "https://www.youtube.com/watch?v=Knd4zDqYfW0",
-            imageUrl: "assets/reles/sr5vdc_ai.png",
+            imageUrl: "./assets/reles/sr5vdc_ai.png",
             specs: {
                 "Voltaje de Control (Bobina)": "5V DC",
                 "Capacidad Máxima de Carga": "10A 250VAC / 10A 30VDC",
@@ -1439,7 +1439,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Relé sin partes móviles. Utiliza semiconductores ópticos y triacs para conmutar corriente alterna. Ofrece vida útil casi ilimitada y libre de chispas.",
             videoUrl: "https://www.youtube.com/watch?v=KzV_uB48XTo",
-            imageUrl: "assets/reles/ssr_ai.png",
+            imageUrl: "./assets/reles/ssr_ai.png",
             specs: {
                 "Voltaje de Control (Input)": "3 - 32V DC",
                 "Voltaje de Carga (Output)": "24 - 380V AC",
@@ -1461,7 +1461,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Interruptor magnético sellado en un tubo de vidrio. Se activa por la proximidad de un campo magnético externo (imán). Es el componente base para sensores de puertas y relés reed.",
             videoUrl: "https://www.youtube.com/watch?v=T-2HByfndA0",
-            imageUrl: "assets/reles/reed_switch_glass.png",
+            imageUrl: "./assets/reles/reed_switch_glass.png",
             specs: {
                 "Tipo de Contacto": "Normalmente Abierto (SPST-NO)",
                 "Voltaje Máximo": "100V DC",
@@ -1483,7 +1483,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Relé Reed en encapsulado SIP. Combina la velocidad de un interruptor reed con una bobina de control integrada. Muy silencioso y eficiente.",
             videoUrl: "https://www.youtube.com/watch?v=Knd4zDqYfW0",
-            imageUrl: "assets/reles/reed_relay_sip.png",
+            imageUrl: "./assets/reles/reed_relay_sip.png",
             specs: {
                 "Voltaje Bobina": "5V DC",
                 "Resistencia Bobina": "500 Ω",
@@ -1505,7 +1505,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Resistencia variable de tres terminales. Actúa como un divisor de voltaje ajustable, permitiendo regular la intensidad de señales, volumen o potencia en circuitos electrónicos.",
             videoUrl: "https://www.youtube.com/watch?v=Cq5kYaWtNPA",
-            imageUrl: "assets/circuitos/potenciometro_b20k.png",
+            imageUrl: "./assets/circuitos/potenciometro_b20k.png",
             specs: {
                 "Valor de Resistencia": "20K Ω (Ohmios)",
                 "Curva de Respuesta": "Lineal (Tipo B)",
@@ -1527,7 +1527,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Resistencia sensible a la temperatura con coeficiente térmico negativo (NTC). Su resistencia disminuye a medida que aumenta la temperatura. Ideal para medir variaciones térmicas.",
             videoUrl: "https://www.youtube.com/watch?v=8Wry8lwgGtA",
-            imageUrl: "assets/sensores/ntc.svg",
+            imageUrl: "./assets/sensores/ntc.svg",
             specs: {
                 "Tipo": "Coeficiente de Temperatura Negativo (NTC)",
                 "Resistencia Nominal": "10kΩ a 25°C",
@@ -1549,7 +1549,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Sensor de luz (Light Dependent Resistor). Componente electrónico cuya resistencia disminuye de forma logarítmica con el aumento de la intensidad de luz que incide sobre él.",
             videoUrl: "https://www.youtube.com/watch?v=D65Gn-2NONU",
-            imageUrl: "assets/sensores/ldr.svg",
+            imageUrl: "./assets/sensores/ldr.svg",
             specs: {
                 "Resistencia en la Oscuridad": "> 1 MΩ",
                 "Resistencia a Plena Luz": "10kΩ - 20kΩ (aprox)",
@@ -1571,7 +1571,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Sensor transductor acústico que utiliza ondas de sonido de alta frecuencia para determinar la distancia a un obstáculo. Fundamental en robótica para evasión.",
             videoUrl: "https://www.youtube.com/watch?v=mlw3APOUt8U",
-            imageUrl: "assets/sensores/hcsr04.svg",
+            imageUrl: "./assets/sensores/hcsr04.svg",
             specs: {
                 "Voltaje de Operación": "5V DC",
                 "Corriente Estática": "< 2mA",
@@ -1593,7 +1593,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Sensor digital compuesto que calibra y emite datos tanto de humedad relativa como de temperatura ambiental en una sola lectura a través de un bus de datos único.",
             videoUrl: "https://www.youtube.com/watch?v=9Ndak-JaSdg",
-            imageUrl: "assets/sensores/dht11.svg",
+            imageUrl: "./assets/sensores/dht11.svg",
             specs: {
                 "Rango de Humedad": "20-90% RH (±5% RH)",
                 "Rango de Temperatura": "0-50 °C (±2 °C)",
@@ -1615,7 +1615,7 @@
             mainCategory: "Circuitos Integrados",
             desc: "Transductor electroacústico que convierte una señal eléctrica de oscilación en sonido audible. Se usa ampliamente para generar pitidos, alarmas y melodías.",
             videoUrl: "https://www.youtube.com/watch?v=dc6_9VMarjI",
-            imageUrl: "assets/sensores/buzzer.svg",
+            imageUrl: "./assets/sensores/buzzer.svg",
             specs: {
                 "Voltaje de Operación": "3.3V a 5V (típicamente)",
                 "Frecuencia Resonante (Pasivo)": "Controlable (Ej: 2kHz - 4kHz)",

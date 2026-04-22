@@ -1,9 +1,9 @@
 /* =============================================
    SERVICE WORKER — ElectroIdentify PWA
-   Versión: 12.0.0
+   Versión: 13.0.0
    ============================================= */
 
-const CACHE_NAME = 'electroidentify-v12';
+const CACHE_NAME = 'electroidentify-v13';
 
 // Archivos a cachear para modo offline
 const ASSETS_TO_CACHE = [
@@ -23,7 +23,7 @@ const ASSETS_TO_CACHE = [
 
 // ---- Instalación: cachear recursos y activar inmediatamente ----
 self.addEventListener('install', (event) => {
-    console.log('[SW] Instalando ElectroIdentify PWA v12...');
+    console.log('[SW] Instalando ElectroIdentify PWA v13...');
     // skipWaiting fuerza que este SW reemplace al viejo SIN esperar
     self.skipWaiting();
     event.waitUntil(
@@ -42,7 +42,7 @@ self.addEventListener('install', (event) => {
 
 // ---- Activación: limpiar cachés viejos y tomar control inmediatamente ----
 self.addEventListener('activate', (event) => {
-    console.log('[SW] Activando nueva versión v12...');
+    console.log('[SW] Activando nueva versión v13...');
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
