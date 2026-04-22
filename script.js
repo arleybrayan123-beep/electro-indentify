@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     // --- Referencias a Páginas y Elementos Principales ---
     const landingPage = document.getElementById('landing-page');
     const subcategoryPage = document.getElementById('subcategory-page');
@@ -1237,8 +1237,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
             desc: "El circuito integrado más vendido en la historia. Genera pulsos, retardos precisos y frecuencias de oscilación configurables con pocos componentes externos.",
-            videoUrl: "https://www.youtube.com/watch?v=kY6v_A3o8vU",
-            imageUrl: "https://m.media-amazon.com/images/I/61tS7H2pQQL._AC_SL1000_.jpg",
+            videoUrl: "https://www.youtube.com/watch?v=8jAX6ID_MIc",
+            imageUrl: "assets/circuitos/ne555_ai.png",
             specs: {
                 "Funcionamiento": "Comparadores internos, flip-flop SR y transistor de descarga. Opera en modo Monoestable (un pulso) o Astable (oscilador).",
                 "Voltaje de Alimentación": "4.5V - 15V (NE555) / 2V - 6V (LMC555 CMOS)",
@@ -1261,8 +1261,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
             desc: "Amplificador Operacional (Op-Amp) dual de propósito general. Opera con una sola fuente de alimentación, ideal para comparadores, amplificadores y filtros activos.",
-            videoUrl: "https://www.youtube.com/watch?v=tyqRZ-IrFQ0",
-            imageUrl: "https://m.media-amazon.com/images/I/51OAGV7iBqL._AC_SL1000_.jpg",
+            videoUrl: "https://www.youtube.com/watch?v=WT9ldolDlTw",
+            imageUrl: "assets/circuitos/lm358_ai.png",
             specs: {
                 "Funcionamiento": "Amplifica la diferencia entre las entradas (+) y (-). Ganancia abierta muy alta (~100 dB). Se configura con retroalimentación.",
                 "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
@@ -1281,38 +1281,13 @@ document.addEventListener('DOMContentLoaded', () => {
             type: "Amplificador Operacional Dual"
         },
         {
-            name: "Amplificador Operacional Cuádruple LM324N",
-            ref: "LM324N",
-            category: "Amplificadores Operacionales",
-            mainCategory: "Circuitos Integrados",
-            desc: "Circuito integrado que contiene cuatro amplificadores operacionales independientes de propósito general. Ideal para aplicaciones con fuente de alimentación simple.",
-            videoUrl: "https://www.youtube.com/watch?v=tyqRZ-IrFQ0",
-            imageUrl: "assets/circuitos/lm324n_ai.png",
-            specs: {
-                "Funcionamiento": "Amplifica la diferencia entre las entradas (+) y (-). Contiene cuatro operacionales en un solo chip.",
-                "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
-                "Canales": "4 Op-Amps independientes en un DIP-14",
-                "Slew Rate": "0.5 V/µs",
-                "Ancho de Banda": "1.2 MHz (GBW)",
-                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm324.pdf"
-            },
-            usageSteps: [
-                "Pin 4 = VCC, Pin 11 = GND. Op-Amp 1: pines 2(-), 3(+), 1(out).",
-                "Op-Amp 2: 6(-), 5(+), 7(out). Op-Amp 3: 9(-), 10(+), 8(out). Op-Amp 4: 13(-), 12(+), 14(out).",
-                "Se puede usar como filtro activo, comparador, oscilador o amplificador de instrumentación.",
-                "Coloca un capacitor de desacople de 100nF cerca de VCC y GND para reducir el ruido.",
-                "En modo single-supply, ten en cuenta que la salida no llega perfectamente a VCC."
-            ],
-            type: "Amplificador Operacional Cuádruple"
-        },
-        {
             name: "Regulador de Voltaje LM7805",
             ref: "LM7805",
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
             desc: "Regulador de voltaje lineal fijo de 5V. El componente estándar para suministrar 5V estables a partir de cualquier fuente DC de 7V a 35V.",
-            videoUrl: "https://www.youtube.com/watch?v=bDJdZnwEYqI",
-            imageUrl: "https://m.media-amazon.com/images/I/61ixHLNdGFL._AC_SL1001_.jpg",
+            videoUrl: "https://www.youtube.com/watch?v=Tv0D2xCrweA",
+            imageUrl: "assets/circuitos/lm7805_ai.png",
             specs: {
                 "Funcionamiento": "Regula la tensión de salida disipando el exceso de voltaje en calor. Requiere disipador de calor para corrientes altas.",
                 "Voltaje de Salida": "5 V (fijo)",
@@ -1336,8 +1311,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
             desc: "Driver de doble puente H para controlar la dirección y velocidad de 2 motores DC o 1 motor paso a paso con señales lógicas desde un microcontrolador.",
-            videoUrl: "https://www.youtube.com/watch?v=fPLEncYrl4Q",
-            imageUrl: "https://m.media-amazon.com/images/I/61YGMHduwTL._AC_SL1000_.jpg",
+            videoUrl: "https://www.youtube.com/watch?v=rvJHrpjur6k",
+            imageUrl: "assets/circuitos/l293d_ai.png",
             specs: {
                 "Funcionamiento": "Cuatro drivers de medio-puente con diodos de protección integrados. Acepta lógica TTL/CMOS. Controla dirección con IN1/IN2 y velocidad con EN1 (PWM).",
                 "Voltaje Lógico (Vcc1)": "5 V",
@@ -1362,8 +1337,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: "Circuitos Integrados",
             mainCategory: "Circuitos Integrados",
             desc: "El cerebro del Arduino UNO. Microcontrolador AVR de 8 bits con 32KB Flash, 2KB SRAM, y periféricos como UART, SPI, I2C, ADC y PWM.",
-            videoUrl: "https://www.youtube.com/watch?v=k6pKP8eB6pQ",
-            imageUrl: "https://m.media-amazon.com/images/I/61kMxN3HHFL._AC_SL1000_.jpg",
+            videoUrl: "https://www.youtube.com/watch?v=ZacG6vcXGn0",
+            imageUrl: "assets/circuitos/atmega328p_ai.png",
             specs: {
                 "Funcionamiento": "CPU RISC de 8 bits a 16 MHz. Ejecuta la mayoría de instrucciones en 1 ciclo de reloj. Programable con Arduino IDE.",
                 "Memoria Flash": "32 KB (de los que 0.5KB son para el bootloader)",
@@ -1380,6 +1355,60 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Al programar sin bootloader, use la herramienta 'Quemar Bootloader' del Arduino IDE y configure los fusibles correctamente."
             ],
             type: "Microcontrolador AVR 8-bit"
+        },
+        {
+            name: "Amplificador Operacional Cuádruple LM324N",
+            ref: "LM324N",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "Contiene cuatro amplificadores operacionales independientes en un solo chip DIP-14. Opera con fuente simple de 3V a 32V, ideal para control analógico, comparadores y filtros activos.",
+            videoUrl: "https://www.youtube.com/watch?v=1JbU7Lx11uQ",
+            imageUrl: "assets/circuitos/lm324n_ai.png",
+            specs: {
+                "Funcionamiento": "Cuatro Op-Amps independientes. Amplifica diferencia entre entradas (+) y (-) con ganancia de apertura de ~100 dB.",
+                "Voltaje de Alimentación": "3V a 32V (Single) / ±1.5V a ±16V (Dual)",
+                "Canales": "4 Op-Amps en DIP-14",
+                "Slew Rate": "0.5 V/µs",
+                "Ancho de Banda (GBW)": "1.2 MHz",
+                "Corriente de Salida Máx.": "±40 mA",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm324.pdf"
+            },
+            usageSteps: [
+                "Pin 4 = VCC, Pin 11 = GND. Op-Amp 1: pines 2(-), 3(+), 1(out).",
+                "Op-Amp 2: 6(-), 5(+), 7(out). Op-Amp 3: 9(-), 10(+), 8(out). Op-Amp 4: 13(-), 12(+), 14(out).",
+                "Como COMPARADOR: tensión de referencia en (+) y señal en (-). Salida alta si señal < referencia.",
+                "Como AMPLIFICADOR NO INVERSOR: Vout = Vin × (1 + Rf/R1). Rf entre salida y (-), R1 entre (-) y GND.",
+                "Añada 100nF de desacople entre VCC y GND lo más cerca posible al chip.",
+                "En modo single-supply la salida no llega a GND ni a VCC (margen típico de ±1.5V)."
+            ],
+            type: "Amplificador Operacional Cuádruple"
+        },
+        {
+            name: "Driver de Display LM3914N",
+            ref: "LM3914N",
+            category: "Circuitos Integrados",
+            mainCategory: "Circuitos Integrados",
+            desc: "Driver de barra/punto de 10 segmentos LED. Convierte un voltaje analógico en una barra visual de 10 LEDs. Usado en vúmetros, indicadores de batería y nivel de señal.",
+            videoUrl: "https://www.youtube.com/watch?v=NRI9dlojngY",
+            imageUrl: "assets/circuitos/lm3914n_ai.png",
+            specs: {
+                "Funcionamiento": "Compara el voltaje de entrada con 10 referencias internas. Enciende LEDs en modo DOT (un LED) o BAR (acumulativo).",
+                "Voltaje de Alimentación": "3V a 25V",
+                "Rango de Entrada": "0V al voltaje de referencia (pin RHI)",
+                "Corriente por LED": "Ajustable con resistor externo (típico 10mA–30mA)",
+                "Modos de Operación": "DOT (un LED) o BAR (LEDs en cascada)",
+                "Encapsulado": "DIP-18",
+                "Datasheet": "https://www.ti.com/lit/ds/symlink/lm3914.pdf"
+            },
+            usageSteps: [
+                "Pin 3 = V+, Pin 2 = GND, Pin 5 = Señal de entrada analógica (SIG).",
+                "Conecte RHI (pin 6) al voltaje máximo de escala y RLO (pin 4) a GND para definir el rango.",
+                "Conecte resistencia de 1.2kΩ entre pin 7 (Ref Out) y pin 8 (Ref Adj) para ajustar corriente de LEDs.",
+                "Modo BAR: pin 9 a V+. Modo DOT: pin 9 al aire o GND.",
+                "Conecte 10 LEDs: ánodo a V+ y cátodo a cada pin de salida (pines 1 y 10-18).",
+                "Para vúmetro de audio: conecte SIG tras rectificador de pico y ajuste RHI al nivel de señal máximo."
+            ],
+            type: "Driver de Display de Barras LED"
         },
         {
             name: "Relé Electromecánico 5V",
@@ -1664,6 +1693,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="result-image-container">
                     <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
                 </div>` : ''}
+                <div class="result-content-wrapper">
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1673,6 +1703,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn-details" onclick="showDetails('${item.ref}')">
                         <i class="fas fa-eye"></i> Detalles
                     </button>
+                </div>
                 </div>
             `;
             grid.appendChild(card);
@@ -1725,6 +1756,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="result-image-container">
                     <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
                 </div>` : ''}
+                <div class="result-content-wrapper">
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1734,6 +1766,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn-details" onclick="showDetails('${item.ref}')">
                         <i class="fas fa-eye"></i> Detalles
                     </button>
+                </div>
                 </div>
             `;
             resultsGrid.appendChild(card);
@@ -1946,6 +1979,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="result-image-container">
                     <img src="${item.imageUrl}" alt="${item.name}" onerror="this.parentElement.style.display='none'">
                 </div>` : ''}
+                <div class="result-content-wrapper">
                 <div class="result-info">
                     <span class="category-badge">${item.category}</span>
                     <h4>${item.name}</h4>
@@ -1956,6 +1990,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn-details" onclick="showDetails('${item.ref}')">
                         <i class="fas fa-eye"></i> Ver Detalles
                     </button>
+                </div>
                 </div>
             `;
             catalogGrid.appendChild(card);
@@ -3419,5 +3454,7 @@ function showToast(message, duration = 3000) {
     }
 
 })();
+
+
 
 
