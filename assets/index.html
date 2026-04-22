@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>ElectroIdentify | Búsqueda de Aparatos Electrónicos</title>
+    <link rel="stylesheet" href="index.css?v=12.0.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <!-- Librerías de IA para visión computacional -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+
+    <!-- ===== PWA META TAGS ===== -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00f2ff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ElectroIdentify">
+    <link rel="apple-touch-icon" href="icon-512.png">
+    <meta name="description" content="Identifica y explora componentes electrónicos: osciloscopios, circuitos integrados, calculadoras y academia de electrónica.">
+    <!-- ===== /PWA META TAGS ===== -->
+</head>
+
+<body>
+    <header id="header">
+        <a href="#" class="logo" style="text-decoration: none;" onclick="window.location.hash='';">ELECTRO<span>IDENTIFY</span></a>
+        <nav style="display: flex; align-items: center; gap: 0.5rem;">
+            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="menu-toggle" class="theme-toggle" aria-label="Menú principal">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+        
+        <!-- Dropdown Menu -->
+        <div id="dropdown-menu" class="dropdown-menu hidden-dropdown">
+            <a href="#favoritos" class="dropdown-item" id="link-favoritos">
+                <i class="fas fa-star" style="color: gold;"></i> Mis Favoritos
+            </a>
+            <a href="#pinouts" class="dropdown-item" id="link-pinouts">
+                <i class="fas fa-microchip"></i> Visor de Pinouts
+            </a>
+            <a href="#convertidor" class="dropdown-item" id="link-converter">
+                <i class="fas fa-exchange-alt"></i> Convertidor de Unidades
+            </a>
+            <a href="#calculadora" class="dropdown-item">
+                <i class="fas fa-calculator"></i> Calculadoras
+            </a>
+            <a href="#academia" class="dropdown-item" id="link-academia">
+                <i class="fas fa-graduation-cap"></i> Academia
+            </a>
+        </div>
+    </header>
+
+    <div id="landing-page">
+        <main>
+            <section class="hero">
+                <div class="hero-bg">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2670&auto=format&fit=crop"
+                        alt="Laboratorio de Electrónica">
+                </div>
+                <div class="hero-content">
+                    <h1 class="animate" style="animation-delay: 0.2s">Identifica tu Ingeniería</h1>
+                    <p class="hero-subtitle animate" style="animation-delay: 0.4s">
+                        Busca y descubre especificaciones de cualquier aparato electrónico instantáneamente.
+                    </p>
+
+                    <div class="search-container glass animate" style="animation-delay: 0.6s">
+                        <div class="search-tabs">
+                            <button class="tab-btn calc-tab-trigger" id="nav-calculators"
+                                data-tooltip="Calculadoras de ingeniería: Ley de Ohm y Código de Colores">
+                                <i class="fas fa-calculator"></i>
+                            </button>
+                            <button class="tab-btn active" data-tab="name">Nombre</button>
+                            <button class="tab-btn" data-tab="ref">Referencia</button>
+                            <button class="tab-btn" data-tab="photo">Fotografía</button>
+                        </div>
+
+                        <div class="search-input-wrapper" id="search-by-text">
+                            <input type="text" placeholder="Ej: Osciloscopio Digital, Multímetro Fluke..."
+                                id="main-search">
+                            <button class="search-btn neon-border fast" id="search-trigger">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+
+                        <div class="photo-input-wrapper" id="search-by-photo" style="display: none;">
+                            <div class="mobile-camera-ui" id="mobile-camera-section" style="display: none;">
+                                <div class="camera-visor glass neon-border">
+                                    <video id="video-feed" autoplay playsinline></video>
+                                    <div class="scan-line"></div>
+                                    <div id="camera-status-overlay" class="camera-overlay hidden">
+                                        <div class="loader"></div>
+                                        <p id="camera-status-text">Analizando...</p>
+                                    </div>
+                                    <div class="visor-corners"></div>
+                                </div>
+                                <div class="camera-controls">
+                                    <button class="btn-details fast" id="start-camera">
+                                        <i class="fas fa-video"></i> Abrir Cámara
+                                    </button>
+                                    <button class="search-btn neon-border" id="capture-photo" style="display: none;">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </div>
+                                <p class="photo-alt-text">O también puedes:</p>
+                            </div>
+
+                            <label for="photo-upload" class="photo-input-label">
+                                <i class="fas fa-upload fa-2x"></i>
+                                <span>Subir una imagen guardada</span>
+                                <input type="file" id="photo-upload" hidden accept="image/*">
+                            </label>
+
+                            <canvas id="capture-canvas" style="display: none;"></canvas>
+                        </div>
+                    </div>
+
+                    <div id="search-ui-results" class="search-results-overlay" style="display: none;">
+                        <div id="results-grid" class="results-grid">
+                            <!-- Dynamic results will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container">
+                <div class="section-title">
+                    <h2>Explora Instrumentación</h2>
+                    <p>Base de datos completa de aparatos electrónicos de laboratorio.</p>
+                </div>
+
+                <div class="equipment-grid main-categories">
+                    <div class="equipment-card glass neon-border main-category-card"
+                        data-main-category="Aparatos Electrónicos">
+                        <i class="fas fa-microchip"></i>
+                        <h3>Aparatos Electrónicos</h3>
+                        <p>Explora nuestra base de datos de instrumentación de laboratorio: osciloscopios,
+                            multímetros,
+                            fuentes de poder y más.</p>
+                        <span class="subcategory-count">5 subcategorías</span>
+                    </div>
+                    <div class="equipment-card glass neon-border main-category-card"
+                        data-main-category="Circuitos Integrados">
+                        <i class="fas fa-project-diagram"></i>
+                        <h3>Circuitos Integrados</h3>
+                        <p>Aprende sobre componentes pasivos y activos: resistencias, capacitores, transistores y
+                            más.
+                        </p>
+                        <span class="subcategory-count">26 componentes</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Subcategory Page -->
+    <div id="subcategory-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container catalog-container">
+            <button id="back-to-home-from-sub" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1 id="subcategory-title">Categoría</h1>
+                <p id="subcategory-subtitle">Selecciona una subcategoría para explorar.</p>
+            </div>
+            <div class="equipment-grid" id="subcategory-grid">
+                <!-- Dynamic subcategories will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalog Page (Initially Hidden) -->
+    <div id="catalog-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container catalog-container">
+            <button id="back-to-home" class="btn-back neon-border slow">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </button>
+            <button id="back-to-sub" class="btn-back neon-border slow">
+                <i class="fas fa-th-large"></i> Volver a Subcategorías
+            </button>
+            <div class="catalog-header">
+                <h1 id="catalog-title">Catálogo de Equipos</h1>
+                <p id="catalog-subtitle">Explora nuestra base de datos detallada.</p>
+            </div>
+            <div id="catalog-grid" class="results-grid">
+                <!-- Category specific results will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Calculators Page -->
+    <div id="calculators-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container">
+            <button id="back-to-home-from-calc" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1>Calculadoras de Ingeniería</h1>
+                <p>Herramientas de precisión para tus proyectos de electrónica.</p>
+            </div>
+
+            <div class="calculators-grid">
+                <!-- Ohm's Law Calculator -->
+                <div class="calc-card glass neon-border">
+                    <h3><i class="fas fa-bolt"></i> Ley de Ohm</h3>
+                    <p class="calc-desc">Calcula Voltaje, Corriente o Resistencia instantáneamente.</p>
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>Voltaje (V)</label>
+                            <input type="number" id="ohm-v" placeholder="Voltios">
+                        </div>
+                        <div class="input-group">
+                            <label>Corriente (I)</label>
+                            <input type="number" id="ohm-i" placeholder="Amperios">
+                        </div>
+                        <div class="input-group">
+                            <label>Resistencia (R)</label>
+                            <input type="number" id="ohm-r" placeholder="Ohmios">
+                        </div>
+                    </div>
+                    <div id="ohm-result" class="calc-result">Ingresa dos valores para calcular el tercero</div>
+                    <button class="btn-details" id="clear-ohm">Limpiar</button>
+                </div>
+
+                <!-- Resistor Color Code Calculator -->
+                <div class="calc-card glass neon-border">
+                    <h3><i class="fas fa-palette"></i> Código de Colores</h3>
+                    <p class="calc-desc">Identifica el valor de las resistencias por sus bandas.</p>
+
+                    <div class="resistor-visual">
+                        <div class="resistor-body">
+                            <div class="band band-1" id="b1"></div>
+                            <div class="band band-2" id="b2"></div>
+                            <div class="band band-3" id="b3"></div>
+                            <div class="band band-4" id="b4"></div>
+                        </div>
+                    </div>
+
+                    <div class="color-selectors">
+                        <div class="selector-group">
+                            <label>Banda 1</label>
+                            <select id="band1-select"></select>
+                        </div>
+                        <div class="selector-group">
+                            <label>Banda 2</label>
+                            <select id="band2-select"></select>
+                        </div>
+                        <div class="selector-group">
+                            <label>Multiplicador</label>
+                            <select id="band3-select"></select>
+                        </div>
+                        <div class="selector-group">
+                            <label>Tolerancia</label>
+                            <select id="band4-select"></select>
+                        </div>
+                    </div>
+                    <div id="resistor-result" class="calc-result value-display">0 Ω ± 0%</div>
+                </div>
+
+                <!-- LED Resistance Calculator -->
+                <div class="calc-card glass neon-border">
+                    <h3><i class="fas fa-lightbulb"></i> Resistencia para LED</h3>
+                    <p class="calc-desc">Calcula la resistencia ideal y su potencia para no quemar tu LED.</p>
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>Voltaje Fuente (Vs)</label>
+                            <input type="number" id="led-vs" placeholder="Ej: 12">
+                        </div>
+                        <div class="input-group">
+                            <label>Voltaje LED (Vl)</label>
+                            <input type="number" id="led-vl" placeholder="Ej: 2.0" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label>Corriente (mA)</label>
+                            <input type="number" id="led-i" placeholder="Ej: 20">
+                        </div>
+                    </div>
+                    <div id="led-result" class="calc-result">Ingresa los valores del circuito</div>
+                </div>
+
+                <!-- 555 Timer Configurator -->
+                <div class="calc-card glass neon-border">
+                    <h3><i class="fas fa-clock"></i> Timer 555 (Astable)</h3>
+                    <p class="calc-desc">Configura frecuencia y duty cycle para el NE555.</p>
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>R1 (Ω)</label>
+                            <input type="number" id="t555-r1" placeholder="Ej: 1000">
+                        </div>
+                        <div class="input-group">
+                            <label>R2 (Ω)</label>
+                            <input type="number" id="t555-r2" placeholder="Ej: 10000">
+                        </div>
+                        <div class="input-group">
+                            <label>Capacitor (µF)</label>
+                            <input type="number" id="t555-c" placeholder="Ej: 10" step="0.01">
+                        </div>
+                    </div>
+                    <div id="t555-result" class="calc-result">Frecuencia y Duty Cycle esperados</div>
+                </div>
+
+                <!-- Voltage Divider Calculator -->
+                <div class="calc-card glass neon-border">
+                    <h3><i class="fas fa-divide"></i> Divisor de Voltaje</h3>
+                    <p class="calc-desc">Calcula el voltaje de salida entre dos resistencias.</p>
+                    <div class="calc-inputs">
+                        <div class="input-group">
+                            <label>Voltaje Entrada (Vin)</label>
+                            <input type="number" id="div-vin" placeholder="Ej: 5">
+                        </div>
+                        <div class="input-group">
+                            <label>R1 superior (Ω)</label>
+                            <input type="number" id="div-r1" placeholder="Ej: 1000">
+                        </div>
+                        <div class="input-group">
+                            <label>R2 inferior (Ω)</label>
+                            <input type="number" id="div-r2" placeholder="Ej: 1000">
+                        </div>
+                    </div>
+                    <div id="div-result" class="calc-result">Vout: -- V</div>
+                </div>
+
+                <!-- Pinout Viewer (Full Width Card) -->
+                <div class="calc-card glass neon-border pinout-card">
+                    <h3><i class="fas fa-microchip"></i> Identificador de Pinouts</h3>
+                    <p class="calc-desc">Visualiza la distribución de pines de integrados comunes para tus prototipos.</p>
+                    
+                    <div class="pinout-selector-tabs">
+                        <button class="pin-tab active" data-chip="ne555">NE555</button>
+                        <button class="pin-tab" data-chip="lm741">LM741</button>
+                        <button class="pin-tab" data-chip="lm324n">LM324N</button>
+                        <button class="pin-tab" data-chip="lm3914n">LM3914N</button>
+                        <button class="pin-tab" data-chip="atmega328">ATmega328P</button>
+                        <button class="pin-tab" data-chip="esp32">ESP32</button>
+                    </div>
+
+                    <div class="pinout-viewer-container" id="pinout-viewer">
+                        <!-- Dynamic SVG/HTML content will be loaded here -->
+                        <div class="pinout-placeholder">
+                            <i class="fas fa-microchip fa-3x"></i>
+                            <p>Selecciona un componente para ver su pinout</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Converter Page -->
+    <div id="converter-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container">
+            <button id="back-to-home-from-conv" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1>Convertidor de Unidades y Notación</h1>
+                <p>Herramienta rápida para convertir prefijos de ingeniería en el laboratorio.</p>
+            </div>
+            
+            <div class="converter-card glass neon-border">
+                <div class="converter-inputs">
+                    <div class="input-group">
+                        <label>Valor Numérico</label>
+                        <input type="number" step="any" id="conv-value" placeholder="Ej: 1000" value="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Prefijo Actual</label>
+                        <select id="conv-prefix">
+                            <option value="1e-12">pico (p)</option>
+                            <option value="1e-9">nano (n)</option>
+                            <option value="1e-6">micro (µ)</option>
+                            <option value="1e-3">mili (m)</option>
+                            <option value="1" selected>Unidad Base</option>
+                            <option value="1e3">kilo (k)</option>
+                            <option value="1e6">Mega (M)</option>
+                            <option value="1e9">Giga (G)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Magnitud</label>
+                        <select id="conv-unit">
+                            <option value="V">Voltios (V)</option>
+                            <option value="A">Amperios (A)</option>
+                            <option value="Ω">Ohmios (Ω)</option>
+                            <option value="F">Faradios (F)</option>
+                            <option value="Hz">Hertz (Hz)</option>
+                            <option value="W">Vatios (W)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="converter-results">
+                    <div class="conv-res-item"><span class="conv-lbl">pico (p):</span> <span class="conv-val" id="res-p">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">nano (n):</span> <span class="conv-val" id="res-n">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">micro (µ):</span> <span class="conv-val" id="res-u">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">mili (m):</span> <span class="conv-val" id="res-m">--</span></div>
+                    <div class="conv-res-item highlight-res"><span class="conv-lbl">Base:</span> <span class="conv-val" id="res-base">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">kilo (k):</span> <span class="conv-val" id="res-k">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">Mega (M):</span> <span class="conv-val" id="res-M">--</span></div>
+                    <div class="conv-res-item"><span class="conv-lbl">Giga (G):</span> <span class="conv-val" id="res-G">--</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         SECCIÓN EDUCATIVA / ACADEMIA
+         ================================================ -->
+    <div id="academia-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container academia-container">
+            <button id="back-to-home-from-academia" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-graduation-cap" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Academia ElectroIdentify</h1>
+                <p>Aprende electrónica con tutoriales, glosario y fórmulas esenciales.</p>
+            </div>
+
+            <!-- Pestañas de la Academia -->
+            <div class="academia-tabs">
+                <button class="academia-tab-btn active" data-section="tutoriales" id="tab-tutoriales">
+                    <i class="fas fa-book-open"></i> Mini-Tutoriales
+                </button>
+                <button class="academia-tab-btn" data-section="glosario" id="tab-glosario">
+                    <i class="fas fa-spell-check"></i> Glosario
+                </button>
+                <button class="academia-tab-btn" data-section="formulas" id="tab-formulas">
+                    <i class="fas fa-square-root-alt"></i> Fórmulas
+                </button>
+            </div>
+
+            <!-- ===== MINI-TUTORIALES ===== -->
+            <div id="section-tutoriales" class="academia-section">
+                <div class="tutorials-grid" id="tutorials-grid">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+
+            <!-- ===== GLOSARIO ===== -->
+            <div id="section-glosario" class="academia-section hidden-section">
+                <div class="glosario-search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="glosario-search" placeholder="Buscar término... (ej: condensador, transistor)" autocomplete="off">
+                </div>
+                <div class="glosario-grid" id="glosario-grid">
+                    <!-- Generado por JS -->
+                </div>
+                <p id="glosario-no-results" class="no-results" style="display:none">No se encontraron términos para tu búsqueda.</p>
+            </div>
+
+            <!-- ===== FÓRMULAS ===== -->
+            <div id="section-formulas" class="academia-section hidden-section">
+                <div class="formulas-grid" id="formulas-grid">
+                    <!-- Generado por JS -->
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PÁGINA MIS FAVORITOS
+         ================================================ -->
+    <div id="favorites-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container favorites-container">
+            <button id="back-to-home-from-favorites" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-star" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Mis Favoritos</h1>
+                <p>Componentes y calculadoras guardados para acceso rápido.</p>
+            </div>
+            <!-- Grid de favoritos -->
+            <div class="catalog-grid" id="favorites-grid">
+                <!-- Se poblará con JS -->
+                <div class="no-favorites-msg" style="display: none;text-align:center;width:100%;grid-column:1/-1;">
+                    <i class="fas fa-box-open" style="font-size:3rem;color:var(--text-muted);margin-bottom:1rem;"></i>
+                    <h3>Aún no tienes favoritos</h3>
+                    <p>Busca aparatos y toca la estrella para guardarlos aquí.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================
+         PÁGINA VISOR DE PINOUTS
+         ================================================ -->
+    <div id="pinouts-page" class="hidden-page">
+        <div class="catalog-bg"></div>
+        <div class="catalog-overlay"></div>
+        <div class="container pinouts-container">
+            <button id="back-to-home-from-pinouts" class="btn-back neon-border slow">
+                <i class="fas fa-arrow-left"></i> Volver al Inicio
+            </button>
+            <div class="catalog-header">
+                <h1><i class="fas fa-microchip" style="color:var(--accent);font-size:2.5rem;margin-right:0.75rem"></i>Visor de Pinouts</h1>
+                <p>Referencia técnica para patillaje de integrados y controladores populares.</p>
+            </div>
+            
+            <div class="pinout-section">
+                <div class="pinout-tabs">
+                    <button class="pin-tab active" data-chip="ne555">NE555</button>
+                    <button class="pin-tab" data-chip="lm741">LM741</button>
+                    <button class="pin-tab" data-chip="lm324n">LM324N</button>
+                    <button class="pin-tab" data-chip="lm3914n">LM3914N</button>
+                    <button class="pin-tab" data-chip="atmega328">ATmega328</button>
+                    <button class="pin-tab" data-chip="esp32">ESP32</button>
+                </div>
+                <div class="pinout-viewer-container" id="pinout-viewer">
+                    <!-- Se renderiza por JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================================================
+         ANTIGRAVITY AI CHAT ASSISTANT
+         ================================================ -->
+
+    <!-- Botón Flotante (FAB) -->
+    <button id="ai-chat-fab" class="ai-chat-fab" aria-label="Abrir Asistente de IA">
+        <div class="fab-icon-wrapper">
+            <i class="fas fa-robot fab-icon-open"></i>
+            <i class="fas fa-times fab-icon-close"></i>
+        </div>
+        <span class="fab-pulse-ring"></span>
+    </button>
+
+    <!-- Contenedor Principal del Chat -->
+    <div id="ai-chat-container" class="ai-chat-container" aria-hidden="true">
+        <!-- Header del Chat -->
+        <div class="ai-chat-header">
+            <div class="ai-chat-avatar">
+                <i class="fas fa-robot"></i>
+                <span class="ai-status-dot"></span>
+            </div>
+            <div class="ai-chat-title">
+                <strong>Antigravity AI</strong>
+                <span class="ai-chat-subtitle">Asistente de Electrónica • En línea</span>
+            </div>
+            <button id="ai-chat-close" class="ai-chat-close-btn" aria-label="Cerrar chat">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Área de Mensajes -->
+        <div id="ai-chat-messages" class="ai-chat-messages">
+            <!-- Los mensajes se inyectan dinámicamente -->
+        </div>
+
+        <!-- Sugerencias Rápidas -->
+        <div id="ai-quick-suggestions" class="ai-quick-suggestions">
+            <button class="ai-suggestion-chip" data-query="¿Qué componentes tienes?">📦 Ver catálogo</button>
+            <button class="ai-suggestion-chip" data-query="¿Cómo mido resistencia?">🔌 Medir resistencia</button>
+            <button class="ai-suggestion-chip" data-query="¿Qué sensor usar para temperatura?">🌡️ Sensor temperatura</button>
+            <button class="ai-suggestion-chip" data-query="Ley de Ohm">⚡ Ley de Ohm</button>
+        </div>
+
+        <!-- Input Area -->
+        <div class="ai-chat-input-area">
+            <div class="ai-input-wrapper">
+                <input
+                    type="text"
+                    id="ai-chat-input"
+                    class="ai-chat-input"
+                    placeholder="Pregúntame sobre electrónica..."
+                    autocomplete="off"
+                    maxlength="200"
+                >
+                <button id="ai-chat-send" class="ai-chat-send-btn" aria-label="Enviar mensaje">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <p class="ai-chat-footer-text">Powered by ElectroIdentify AI</p>
+        </div>
+    </div>
+
+    <script src="script.js?v=12.0.0"></script>
+
+    <!-- ===== PWA: Registro del Service Worker e Install Banner ===== -->
+    <div id="pwa-install-banner" class="pwa-install-banner hidden-pwa-banner" role="dialog" aria-label="Instalar aplicación">
+        <div class="pwa-banner-icon">
+            <img src="icon-512.png" alt="ElectroIdentify" width="44" height="44">
+        </div>
+        <div class="pwa-banner-text">
+            <strong>Instalar ElectroIdentify</strong>
+            <span>Úsala sin internet desde tu dispositivo</span>
+        </div>
+        <div class="pwa-banner-actions">
+            <button id="pwa-install-btn" class="pwa-btn-install">
+                <i class="fas fa-download"></i> Instalar
+            </button>
+            <button id="pwa-dismiss-btn" class="pwa-btn-dismiss" aria-label="Cerrar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Registro del Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('[PWA] Service Worker registrado:', reg.scope))
+                    .catch(err => console.warn('[PWA] Error al registrar SW:', err));
+            });
+        }
+
+        // Prompt de instalación
+        let deferredPrompt = null;
+        const installBanner = document.getElementById('pwa-install-banner');
+        const installBtn   = document.getElementById('pwa-install-btn');
+        const dismissBtn   = document.getElementById('pwa-dismiss-btn');
+
+        // Comprobar si el usuario ya descartó el banner
+        const pwaDismissed = localStorage.getItem('pwa-banner-dismissed');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Solo mostrar si no fue descartado
+            if (!pwaDismissed) {
+                setTimeout(() => {
+                    installBanner.classList.remove('hidden-pwa-banner');
+                    installBanner.classList.add('pwa-banner-visible');
+                }, 2500); // Aparece 2.5s después de cargar
+            }
+        });
+
+        installBtn && installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) return;
+            installBanner.classList.remove('pwa-banner-visible');
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log('[PWA] Respuesta del usuario:', outcome);
+            deferredPrompt = null;
+            if (outcome === 'accepted') {
+                localStorage.setItem('pwa-banner-dismissed', 'true');
+            }
+        });
+
+        dismissBtn && dismissBtn.addEventListener('click', () => {
+            installBanner.classList.remove('pwa-banner-visible');
+            setTimeout(() => installBanner.classList.add('hidden-pwa-banner'), 400);
+            localStorage.setItem('pwa-banner-dismissed', 'true');
+        });
+
+        // Cuando ya está instalada
+        window.addEventListener('appinstalled', () => {
+            console.log('[PWA] ¡ElectroIdentify instalada correctamente!');
+            installBanner.classList.remove('pwa-banner-visible');
+            showToast('🎉 ¡ElectroIdentify instalada en tu dispositivo!');
+        });
+    </script>
+</body>
+
+</html>
