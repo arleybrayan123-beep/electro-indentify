@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a2540;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#0a0f1e;stop-opacity:1"/>
+    </radialGradient>
+    <radialGradient id="beadGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" style="stop-color:#e8c97a"/>
+      <stop offset="40%" style="stop-color:#b8860b"/>
+      <stop offset="100%" style="stop-color:#6b4f0a"/>
+    </radialGradient>
+    <radialGradient id="shineGrad" cx="35%" cy="30%" r="40%">
+      <stop offset="0%" style="stop-color:#fff8e1;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#fff8e1;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="wireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#a0a0a0"/>
+      <stop offset="50%" style="stop-color:#e0e0e0"/>
+      <stop offset="100%" style="stop-color:#a0a0a0"/>
+    </linearGradient>
+    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a3a60"/>
+      <stop offset="100%" style="stop-color:#1a2540"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="300" height="300" fill="url(#bgGrad)" rx="18"/>
+
+  <!-- Partículas decorativas de fondo -->
+  <circle cx="30" cy="40" r="1.5" fill="#4ecdc4" opacity="0.4"/>
+  <circle cx="260" cy="80" r="1" fill="#f7b731" opacity="0.3"/>
+  <circle cx="50" cy="260" r="2" fill="#4ecdc4" opacity="0.2"/>
+  <circle cx="270" cy="230" r="1.5" fill="#e056da" opacity="0.3"/>
+  <circle cx="150" cy="20" r="1" fill="#45aaf2" opacity="0.4"/>
+
+  <!-- Cables/Leads - izquierda -->
+  <rect x="20" y="147" width="90" height="6" fill="url(#wireGrad)" rx="3"/>
+  <!-- Cables/Leads - derecha -->
+  <rect x="190" y="147" width="90" height="6" fill="url(#wireGrad)" rx="3"/>
+
+  <!-- Sombra del cuerpo -->
+  <ellipse cx="153" cy="168" rx="48" ry="20" fill="#000" opacity="0.4"/>
+
+  <!-- Cuerpo principal del termistor (vidrio ámbar/dorado) -->
+  <ellipse cx="150" cy="150" rx="52" ry="35" fill="url(#beadGrad)" filter="url(#glow)"/>
+  <ellipse cx="150" cy="150" rx="52" ry="35" fill="url(#shineGrad)"/>
+
+  <!-- Highlight superior -->
+  <ellipse cx="138" cy="133" rx="22" ry="10" fill="#fff9e6" opacity="0.18"/>
+
+  <!-- Anillo negro NTC característico -->
+  <ellipse cx="150" cy="150" rx="52" ry="35" fill="none" stroke="#5a3800" stroke-width="2.5"/>
+
+  <!-- Marca NTC en el cuerpo -->
+  <text x="150" y="146" text-anchor="middle" font-family="'Courier New', monospace" font-size="11" font-weight="bold" fill="#3b2000" opacity="0.85">NTC</text>
+  <text x="150" y="161" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#5a3800" opacity="0.7">10K</text>
+
+  <!-- Etiqueta inferior -->
+  <rect x="75" y="210" width="150" height="52" rx="8" fill="url(#labelGrad)" stroke="#2a3a60" stroke-width="1"/>
+  <text x="150" y="230" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffd700">Termistor NTC</text>
+  <text x="150" y="247" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#a0b4d0">MF52-103 · 10kΩ a 25°C</text>
+  <text x="150" y="260" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#607090">Sensor Analógico de Temperatura</text>
+
+  <!-- Icono de temperatura -->
+  <text x="150" y="195" text-anchor="middle" font-size="16" fill="#ffd700" opacity="0.8">🌡</text>
+</svg>

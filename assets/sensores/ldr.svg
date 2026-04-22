@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a2540"/>
+      <stop offset="100%" style="stop-color:#0a0f1e"/>
+    </radialGradient>
+    <radialGradient id="bodyGrad" cx="40%" cy="35%" r="60%">
+      <stop offset="0%" style="stop-color:#f5c518"/>
+      <stop offset="50%" style="stop-color:#d4a000"/>
+      <stop offset="100%" style="stop-color:#8b6400"/>
+    </radialGradient>
+    <radialGradient id="faceGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#c8a000"/>
+      <stop offset="100%" style="stop-color:#7a5a00"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="wireGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#909090"/>
+      <stop offset="50%" style="stop-color:#e0e0e0"/>
+      <stop offset="100%" style="stop-color:#909090"/>
+    </linearGradient>
+    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a3a60"/>
+      <stop offset="100%" style="stop-color:#1a2540"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="300" height="300" fill="url(#bgGrad)" rx="18"/>
+
+  <!-- Partículas decorativas -->
+  <circle cx="30" cy="50" r="1.5" fill="#ffd700" opacity="0.3"/>
+  <circle cx="270" cy="60" r="1" fill="#4ecdc4" opacity="0.3"/>
+  <circle cx="40" cy="250" r="2" fill="#f7b731" opacity="0.2"/>
+  <circle cx="260" cy="240" r="1.5" fill="#4ecdc4" opacity="0.2"/>
+
+  <!-- Cables -->
+  <rect x="18" y="145" width="70" height="5" fill="url(#wireGrad)" rx="2.5"/>
+  <rect x="212" y="145" width="70" height="5" fill="url(#wireGrad)" rx="2.5"/>
+
+  <!-- Sombra -->
+  <ellipse cx="152" cy="172" rx="55" ry="22" fill="#000" opacity="0.35"/>
+
+  <!-- Cuerpo redondo de la LDR -->
+  <circle cx="150" cy="148" r="58" fill="url(#bodyGrad)" filter="url(#glow)"/>
+  <circle cx="150" cy="148" r="58" fill="none" stroke="#8b6400" stroke-width="2"/>
+
+  <!-- Cara frontal con patrón serpentín (característica visial de LDR) -->
+  <circle cx="150" cy="148" r="46" fill="url(#faceGrad)"/>
+
+  <!-- Pistas serpentín de la LDR -->
+  <g stroke="#f5d060" stroke-width="3.5" fill="none" stroke-linecap="round">
+    <!-- Línea 1 -->
+    <path d="M 118 125 Q 118 120 126 120 L 174 120 Q 182 120 182 128"/>
+    <!-- Línea 2 -->
+    <path d="M 182 128 Q 182 136 174 136 L 126 136 Q 118 136 118 144"/>
+    <!-- Línea 3 -->
+    <path d="M 118 144 Q 118 152 126 152 L 174 152 Q 182 152 182 160"/>
+    <!-- Línea 4 -->
+    <path d="M 182 160 Q 182 168 174 168 L 126 168 Q 118 168 118 176"/>
+  </g>
+
+  <!-- Shine -->
+  <ellipse cx="135" cy="132" rx="18" ry="12" fill="#fff8e0" opacity="0.12"/>
+
+  <!-- Etiqueta -->
+  <rect x="72" y="214" width="156" height="52" rx="8" fill="url(#labelGrad)" stroke="#2a3a60" stroke-width="1"/>
+  <text x="150" y="234" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#ffd700">Fotorresistencia LDR</text>
+  <text x="150" y="250" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#a0b4d0">GL5516 · 5mm · 10kΩ-1MΩ</text>
+  <text x="150" y="263" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9" fill="#607090">Sensor Óptico de Luz</text>
+
+  <!-- Icono sol -->
+  <text x="150" y="204" text-anchor="middle" font-size="14" fill="#ffd700" opacity="0.7">☀</text>
+</svg>

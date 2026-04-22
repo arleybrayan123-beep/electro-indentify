@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#1a2540"/>
+      <stop offset="100%" style="stop-color:#0a0f1e"/>
+    </radialGradient>
+    <linearGradient id="pcbGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e7a3c"/>
+      <stop offset="100%" style="stop-color:#0d4a22"/>
+    </linearGradient>
+    <radialGradient id="transducerGrad" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" style="stop-color:#d0d0d0"/>
+      <stop offset="60%" style="stop-color:#909090"/>
+      <stop offset="100%" style="stop-color:#5a5a5a"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="labelGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a3a60"/>
+      <stop offset="100%" style="stop-color:#1a2540"/>
+    </linearGradient>
+    <linearGradient id="pinGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d0d0d0"/>
+      <stop offset="100%" style="stop-color:#888"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="300" height="300" fill="url(#bgGrad)" rx="18"/>
+
+  <!-- Partículas decorativas -->
+  <circle cx="25" cy="35" r="1.5" fill="#4ecdc4" opacity="0.4"/>
+  <circle cx="275" cy="270" r="1" fill="#f7b731" opacity="0.3"/>
+  <circle cx="268" cy="45" r="2" fill="#4ecdc4" opacity="0.2"/>
+  <circle cx="32" cy="265" r="1.5" fill="#e056da" opacity="0.3"/>
+
+  <!-- PCB Principal (placa verde) -->
+  <rect x="55" y="72" width="190" height="120" rx="6" fill="url(#pcbGrad)" stroke="#0d4a22" stroke-width="2" filter="url(#glow)"/>
+
+  <!-- Detalles PCB: pistas de cobre -->
+  <line x1="70" y1="176" x2="230" y2="176" stroke="#c8860a" stroke-width="1.5" opacity="0.5"/>
+  <line x1="70" y1="82" x2="230" y2="82" stroke="#c8860a" stroke-width="1.5" opacity="0.5"/>
+
+  <!-- Letras en la PCB -->
+  <text x="150" y="158" text-anchor="middle" font-family="'Courier New', monospace" font-size="9" fill="#c8e6c9" opacity="0.7">HC-SR04</text>
+  <text x="150" y="170" text-anchor="middle" font-family="'Courier New', monospace" font-size="7.5" fill="#a5d6a7" opacity="0.5">ULTRASONIC MODULE</text>
+
+  <!-- Transductor izquierdo (emisor) -->
+  <ellipse cx="100" cy="125" rx="30" ry="30" fill="url(#transducerGrad)" stroke="#5a5a5a" stroke-width="2.5"/>
+  <ellipse cx="100" cy="125" rx="22" ry="22" fill="#808080" stroke="#666" stroke-width="1.5"/>
+  <ellipse cx="100" cy="125" rx="14" ry="14" fill="#5a5a5a" stroke="#444" stroke-width="1"/>
+  <ellipse cx="100" cy="125" rx="6" ry="6" fill="#3a3a3a"/>
+  <!-- Shine transductor izq -->
+  <ellipse cx="92" cy="116" rx="7" ry="5" fill="#fff" opacity="0.12"/>
+  <!-- Label T -->
+  <text x="100" y="129" text-anchor="middle" font-family="monospace" font-size="8" fill="#d0d0d0" opacity="0.8">T</text>
+
+  <!-- Transductor derecho (receptor) -->
+  <ellipse cx="200" cy="125" rx="30" ry="30" fill="url(#transducerGrad)" stroke="#5a5a5a" stroke-width="2.5"/>
+  <ellipse cx="200" cy="125" rx="22" ry="22" fill="#808080" stroke="#666" stroke-width="1.5"/>
+  <ellipse cx="200" cy="125" rx="14" ry="14" fill="#5a5a5a" stroke="#444" stroke-width="1"/>
+  <ellipse cx="200" cy="125" rx="6" ry="6" fill="#3a3a3a"/>
+  <ellipse cx="192" cy="116" rx="7" ry="5" fill="#fff" opacity="0.12"/>
+  <text x="200" y="129" text-anchor="middle" font-family="monospace" font-size="8" fill="#d0d0d0" opacity="0.8">R</text>
+
+  <!-- Onda sonora animada (ondas de ultrasonido) -->
+  <g opacity="0.5" stroke="#4ecdc4" stroke-width="1.5" fill="none">
+    <path d="M 240 118 Q 253 125 240 132"/>
+    <path d="M 246 112 Q 264 125 246 138"/>
+    <path d="M 252 106 Q 275 125 252 144"/>
+  </g>
+
+  <!-- Pines de conexión -->
+  <rect x="73" y="192" width="9" height="28" rx="2" fill="url(#pinGrad)"/>
+  <rect x="92" y="192" width="9" height="28" rx="2" fill="url(#pinGrad)"/>
+  <rect x="111" y="192" width="9" height="28" rx="2" fill="url(#pinGrad)"/>
+  <rect x="130" y="192" width="9" height="28" rx="2" fill="url(#pinGrad)"/>
+
+  <!-- Labels pines -->
+  <text x="77" y="228" text-anchor="middle" font-family="monospace" font-size="7" fill="#90caf9">VCC</text>
+  <text x="96" y="228" text-anchor="middle" font-family="monospace" font-size="7" fill="#90caf9">TRG</text>
+  <text x="115" y="228" text-anchor="middle" font-family="monospace" font-size="7" fill="#90caf9">ECH</text>
+  <text x="134" y="228" text-anchor="middle" font-family="monospace" font-size="7" fill="#90caf9">GND</text>
+
+  <!-- Etiqueta inferior -->
+  <rect x="55" y="235" width="190" height="45" rx="8" fill="url(#labelGrad)" stroke="#2a3a60" stroke-width="1"/>
+  <text x="150" y="253" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="12" font-weight="bold" fill="#4ecdc4">Sensor Ultrasónico</text>
+  <text x="150" y="267" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="9.5" fill="#a0b4d0">HC-SR04 · 2–400 cm · 5V</text>
+  <text x="150" y="278" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="8.5" fill="#607090">Sensor de Medición de Distancia</text>
+</svg>
