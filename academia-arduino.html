@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia Arduino | ElectroIdentify</title>
+<link rel="stylesheet" href="academia-arduino.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<nav class="aa-topbar">
+  <a href="index.html" class="aa-back-btn"><i class="fas fa-arrow-left"></i> Volver a ElectroIdentify</a>
+  <div class="aa-topbar-title"><i class="fas fa-robot" style="color:#00f2ff"></i> Academia Arduino <span class="aa-badge">NUEVO</span></div>
+</nav>
+
+<div class="aa-hero">
+  <h1>Carrito Robot<br>Inteligente</h1>
+  <p>Guia completa paso a paso para construir y programar tu Smart Robot Car con Arduino, Bluetooth, sensor ultrasonico y seguidor de linea.</p>
+  <div class="aa-hero-tags">
+    <span class="aa-tag"><i class="fas fa-bluetooth"></i> Bluetooth</span>
+    <span class="aa-tag"><i class="fas fa-wave-square"></i> Ultrasonico</span>
+    <span class="aa-tag"><i class="fas fa-minus"></i> Seguidor de Linea</span>
+    <span class="aa-tag"><i class="fab fa-android"></i> App Android</span>
+    <span class="aa-tag">Nivel: Basico-Intermedio</span>
+  </div>
+</div>
+
+<div class="aa-container">
+
+  <!-- PROGRESO -->
+  <div class="aa-progress">
+    <div class="aa-progress-step active"><div class="aa-step-circle">1</div><div class="aa-step-label">Componentes</div></div>
+    <div class="aa-progress-step active"><div class="aa-step-circle">2</div><div class="aa-step-label">Ensamble</div></div>
+    <div class="aa-progress-step active"><div class="aa-step-circle">3</div><div class="aa-step-label">Conexiones</div></div>
+    <div class="aa-progress-step active"><div class="aa-step-circle">4</div><div class="aa-step-label">Codigo</div></div>
+    <div class="aa-progress-step active"><div class="aa-step-circle">5</div><div class="aa-step-label">Bluetooth</div></div>
+  </div>
+
+  <!-- SECCION 1: COMPONENTES -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">1</div>
+      <div><h2>Lista de Componentes</h2><p>Todo lo que necesitas antes de empezar</p></div>
+    </div>
+    <div class="aa-components-grid">
+      <div class="aa-component-card"><div class="aa-comp-icon blue">🤖</div><div class="aa-comp-name">Arduino UNO / Nano</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">El cerebro del robot. Controla motores y sensores.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon orange">⚡</div><div class="aa-comp-name">Driver L298N</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">Puente H para controlar 2 motores DC con PWM.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon green">⚙️</div><div class="aa-comp-name">Motores DC + Ruedas</div><div class="aa-comp-qty">x4</div><div class="aa-comp-desc">Motores de 3-6V con caja reductora y llanta amarilla.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon purple">📡</div><div class="aa-comp-name">HC-SR04 Ultrasonico</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">Mide distancia de 2cm a 400cm con ondas de sonido.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon red">➖</div><div class="aa-comp-name">Sensores IR TCRT5000</div><div class="aa-comp-qty">x3</div><div class="aa-comp-desc">Detectan la linea negra en el suelo (izq, centro, der).</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon blue">📶</div><div class="aa-comp-name">Bluetooth HC-05/06</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">Comunicacion inalambrica con tu celular Android.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon yellow">🔋</div><div class="aa-comp-name">Bateria 7.4V-9V</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">LiPo 7.4V o paquete de 6xAA (9V). Alimenta motores.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon green">🏗️</div><div class="aa-comp-name">Chasis Acrilico</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">Base del robot: plataforma 2WD o 4WD con tornillos.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon orange">🔌</div><div class="aa-comp-name">Cables Jumper</div><div class="aa-comp-qty">x20+</div><div class="aa-comp-desc">Macho-Macho y Macho-Hembra para las conexiones.</div></div>
+      <div class="aa-component-card"><div class="aa-comp-icon red">🔲</div><div class="aa-comp-name">Protoboard Mini</div><div class="aa-comp-qty">x1</div><div class="aa-comp-desc">Para conexiones auxiliares de 5V y GND.</div></div>
+    </div>
+    <div class="aa-callout warning"><div class="aa-callout-icon">⚠️</div><div>Verifica que el HC-05 o HC-06 sea de 3.3V logica. El pin RX del modulo Bluetooth NO tolera 5V directamente del Arduino. Usa un divisor de voltaje (resistencias 1k y 2k) para protegerlo.</div></div>
+  </div>
+
+  <!-- SECCION 2: ENSAMBLE -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">2</div>
+      <div><h2>Ensamble Mecanico</h2><p>Arma el chasis antes de hacer ninguna conexion electrica</p></div>
+    </div>
+    <div class="aa-steps-list">
+      <div class="aa-step-card"><div class="aa-step-num">1</div><div class="aa-step-content"><h3>Montar los motores al chasis</h3><p>Fija los 4 motores DC a los soportes laterales del chasis acrilico usando los tornillos M3 incluidos. Los cables del motor deben quedar hacia adentro. Si tienes chasis 2WD, usa solo los motores traseros y agrega la rueda loca adelante.</p><div class="aa-tip"><span>💡</span> Aprieta bien los tornillos pero sin pasarte. El acrilico se puede partir si aplicas demasiada fuerza.</div></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">2</div><div class="aa-step-content"><h3>Instalar las ruedas</h3><p>Presiona las ruedas amarillas sobre los ejes de los motores. Si no encajan bien, usa una gota de pegamento caliente por dentro de la rueda (no en el eje metalico).</p></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">3</div><div class="aa-step-content"><h3>Fijar la placa superior y el Arduino</h3><p>Une las dos placas del chasis con los soportes de columna. Luego monta el Arduino UNO en la placa superior usando cinta doble faz o tornillos M2. Deja espacio para el L298N al lado.</p></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">4</div><div class="aa-step-content"><h3>Colocar el L298N (Driver de Motores)</h3><p>Fija el modulo L298N al chasis. El disipador de calor (aluminio plateado) debe quedar hacia afuera para ventilarse. Conecta los cables de los 4 motores a los terminales OUT1, OUT2, OUT3 y OUT4.</p><div class="aa-tip"><span>💡</span> Motores del lado IZQUIERDO van a OUT1/OUT2. Motores del lado DERECHO van a OUT3/OUT4.</div></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">5</div><div class="aa-step-content"><h3>Montar el sensor ultrasonico</h3><p>Instala el HC-SR04 al frente del robot apuntando hacia adelante. Muchos kits incluyen un soporte de servomotor para que gire. Si no tienes el servo, fijalo fijo al centro apuntando de frente.</p></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">6</div><div class="aa-step-content"><h3>Instalar los sensores de linea</h3><p>Los 3 sensores TCRT5000 van en la PARTE INFERIOR del chasis, apuntando al suelo. El espacio ideal entre el sensor y el suelo es de 5 a 10mm. Coloca uno en el centro, uno a la izquierda y uno a la derecha.</p><div class="aa-tip"><span>💡</span> Ajusta el potenciometro azul de cada sensor hasta que el LED indicador se apague sobre la superficie blanca y se encienda sobre la linea negra.</div></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">7</div><div class="aa-step-content"><h3>Ubicar el modulo Bluetooth</h3><p>El HC-05/06 puede ir en la protoboard mini o directamente en el chasis. Ubica donde pueda recibir buena senal (no lo tapes con metales). Los pines que usaras son VCC, GND, TX y RX.</p></div></div>
+    </div>
+  </div>
+
+  <!-- SECCION 3: CONEXIONES -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">3</div>
+      <div><h2>Diagrama de Conexiones</h2><p>Conecta cada modulo al Arduino segun estas tablas</p></div>
+    </div>
+    <div class="aa-callout info"><div class="aa-callout-icon">ℹ️</div><div>Siempre conecta PRIMERO todos los cables con la alimentacion DESCONECTADA. Verifica dos veces antes de encender.</div></div>
+
+    <div class="aa-table-section">
+      <div class="aa-table-title">⚡ Driver de Motores L298N → Arduino</div>
+      <table class="aa-connections-table">
+        <tr><th>Pin L298N</th><th>Pin Arduino</th><th>Cable</th><th>Funcion</th></tr>
+        <tr><td><span class="aa-pin">IN1</span></td><td><span class="aa-pin">D2</span></td><td class="aa-cable-amarillo">Amarillo</td><td>Motor Izq. Adelante</td></tr>
+        <tr><td><span class="aa-pin">IN2</span></td><td><span class="aa-pin">D3</span></td><td class="aa-cable-azul">Azul</td><td>Motor Izq. Atras</td></tr>
+        <tr><td><span class="aa-pin">ENA</span></td><td><span class="aa-pin">D5 (PWM)</span></td><td class="aa-cable-verde">Verde</td><td>Velocidad Motor Izq.</td></tr>
+        <tr><td><span class="aa-pin">IN3</span></td><td><span class="aa-pin">D4</span></td><td class="aa-cable-naranja">Naranja</td><td>Motor Der. Adelante</td></tr>
+        <tr><td><span class="aa-pin">IN4</span></td><td><span class="aa-pin">D7</span></td><td class="aa-cable-morado">Morado</td><td>Motor Der. Atras</td></tr>
+        <tr><td><span class="aa-pin">ENB</span></td><td><span class="aa-pin">D6 (PWM)</span></td><td class="aa-cable-blanco">Blanco</td><td>Velocidad Motor Der.</td></tr>
+        <tr><td><span class="aa-pin">+12V</span></td><td>Bateria (+)</td><td class="aa-cable-rojo">Rojo</td><td>Alimentacion motores</td></tr>
+        <tr><td><span class="aa-pin">GND</span></td><td><span class="aa-pin">GND</span></td><td class="aa-cable-negro">Negro</td><td>Tierra comun</td></tr>
+        <tr><td><span class="aa-pin">5V Out</span></td><td><span class="aa-pin">5V (Vin)</span></td><td class="aa-cable-rojo">Rojo</td><td>Alimenta el Arduino</td></tr>
+      </table>
+    </div>
+
+    <div class="aa-table-section">
+      <div class="aa-table-title">📡 Sensor Ultrasonico HC-SR04 → Arduino</div>
+      <table class="aa-connections-table">
+        <tr><th>Pin HC-SR04</th><th>Pin Arduino</th><th>Cable</th><th>Funcion</th></tr>
+        <tr><td><span class="aa-pin">VCC</span></td><td><span class="aa-pin">5V</span></td><td class="aa-cable-rojo">Rojo</td><td>Alimentacion 5V</td></tr>
+        <tr><td><span class="aa-pin">GND</span></td><td><span class="aa-pin">GND</span></td><td class="aa-cable-negro">Negro</td><td>Tierra</td></tr>
+        <tr><td><span class="aa-pin">TRIG</span></td><td><span class="aa-pin">D9</span></td><td class="aa-cable-amarillo">Amarillo</td><td>Disparo de pulso</td></tr>
+        <tr><td><span class="aa-pin">ECHO</span></td><td><span class="aa-pin">D8</span></td><td class="aa-cable-verde">Verde</td><td>Recepcion de eco</td></tr>
+      </table>
+    </div>
+
+    <div class="aa-table-section">
+      <div class="aa-table-title">➖ Sensores de Linea TCRT5000 → Arduino</div>
+      <table class="aa-connections-table">
+        <tr><th>Sensor</th><th>Pin Arduino</th><th>Cable</th><th>Posicion</th></tr>
+        <tr><td>OUT Sensor Izquierdo</td><td><span class="aa-pin">A0</span></td><td class="aa-cable-azul">Azul</td><td>Lado izquierdo del chasis</td></tr>
+        <tr><td>OUT Sensor Central</td><td><span class="aa-pin">A1</span></td><td class="aa-cable-blanco">Blanco</td><td>Centro del chasis</td></tr>
+        <tr><td>OUT Sensor Derecho</td><td><span class="aa-pin">A2</span></td><td class="aa-cable-naranja">Naranja</td><td>Lado derecho del chasis</td></tr>
+        <tr><td>VCC (todos)</td><td><span class="aa-pin">5V</span></td><td class="aa-cable-rojo">Rojo</td><td>—</td></tr>
+        <tr><td>GND (todos)</td><td><span class="aa-pin">GND</span></td><td class="aa-cable-negro">Negro</td><td>—</td></tr>
+      </table>
+    </div>
+
+    <div class="aa-table-section">
+      <div class="aa-table-title">📶 Bluetooth HC-05 o HC-06 → Arduino</div>
+      <table class="aa-connections-table">
+        <tr><th>Pin Bluetooth</th><th>Pin Arduino</th><th>Cable</th><th>Nota</th></tr>
+        <tr><td><span class="aa-pin">VCC</span></td><td><span class="aa-pin">5V</span></td><td class="aa-cable-rojo">Rojo</td><td>Alimentacion 5V</td></tr>
+        <tr><td><span class="aa-pin">GND</span></td><td><span class="aa-pin">GND</span></td><td class="aa-cable-negro">Negro</td><td>Tierra</td></tr>
+        <tr><td><span class="aa-pin">TX</span></td><td><span class="aa-pin">D10 (RX)</span></td><td class="aa-cable-verde">Verde</td><td>Directo sin divisor</td></tr>
+        <tr><td><span class="aa-pin">RX</span></td><td><span class="aa-pin">D11 (TX)</span></td><td class="aa-cable-amarillo">Amarillo</td><td>⚠️ Usar divisor 1k/2k</td></tr>
+      </table>
+    </div>
+    <div class="aa-callout warning"><div class="aa-callout-icon">⚠️</div><div><strong>Divisor de voltaje para el RX del Bluetooth:</strong> Conecta una resistencia de 1kΩ entre D11 del Arduino y el RX del HC-05. Luego conecta una resistencia de 2kΩ entre el RX del HC-05 y GND. Esto baja los 5V del Arduino a ~3.3V seguros para el modulo.</div></div>
+  </div>
+
+  <!-- SECCION 4: CODIGO -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">4</div>
+      <div><h2>Codigo Arduino</h2><p>Codigo completo con los 3 modos de operacion</p></div>
+    </div>
+
+    <div class="aa-modes-grid">
+      <div class="aa-mode-card">
+        <div class="aa-mode-icon">📱</div>
+        <h3>Modo Manual (Bluetooth)</h3>
+        <p>Controla el carrito desde tu celular enviando comandos por la app. Activo por defecto al encender.</p>
+        <div class="aa-cmd-list">
+          <span class="aa-cmd">F</span><span class="aa-cmd">B</span><span class="aa-cmd">L</span><span class="aa-cmd">R</span><span class="aa-cmd">S</span>
+          <span class="aa-cmd">0-4</span>
+        </div>
+      </div>
+      <div class="aa-mode-card">
+        <div class="aa-mode-icon">🔊</div>
+        <h3>Modo Obstaculo (HC-SR04)</h3>
+        <p>El robot navega solo. Cuando detecta un objeto a menos de 20cm, retrocede y gira automaticamente.</p>
+        <div class="aa-cmd-list"><span class="aa-cmd">O</span> <span style="font-size:0.78rem;color:#7a9ab0">para activar</span></div>
+      </div>
+      <div class="aa-mode-card">
+        <div class="aa-mode-icon">➖</div>
+        <h3>Modo Linea (TCRT5000)</h3>
+        <p>El robot sigue una linea negra en superficie blanca usando 3 sensores IR. Se corrige automaticamente.</p>
+        <div class="aa-cmd-list"><span class="aa-cmd">N</span> <span style="font-size:0.78rem;color:#7a9ab0">para activar</span></div>
+      </div>
+    </div>
+
+    <div class="aa-download-section">
+      <h3>📥 Descarga el Codigo Fuente</h3>
+      <p>Archivo .ino listo para abrir en el IDE de Arduino. Incluye comentarios en español explicando cada linea.</p>
+      <a href="codigo_carrito_arduino.ino" download="ElectroIdentify_SmartCar.ino" class="aa-download-btn">
+        <i class="fas fa-download"></i> Descargar codigo .ino
+      </a>
+      <div class="aa-download-meta">
+        <span><i class="fas fa-file-code"></i> Arduino .ino</span>
+        <span><i class="fas fa-weight"></i> ~8 KB</span>
+        <span><i class="fas fa-check-circle"></i> Probado en Arduino UNO</span>
+        <span><i class="fas fa-language"></i> Comentarios en Español</span>
+      </div>
+    </div>
+
+    <div class="aa-callout info"><div class="aa-callout-icon">💡</div><div><strong>Libreria requerida:</strong> El codigo usa SoftwareSerial que viene incluida en el IDE de Arduino. No necesitas instalar librerias adicionales. Si usas un shield de motores diferente, ajusta los numeros de pin segun tu hardware.</div></div>
+  </div>
+
+  <!-- SECCION 5: APP BLUETOOTH -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">5</div>
+      <div><h2>Configurar App Bluetooth</h2><p>Conecta tu celular Android al carrito</p></div>
+    </div>
+    <div class="aa-steps-list">
+      <div class="aa-step-card"><div class="aa-step-num">1</div><div class="aa-step-content"><h3>Instala la app en tu Android</h3><p>Descarga <strong>"Arduino Bluetooth Controller"</strong> de la Play Store (de Giumig Apps). Es gratuita y muy facil de usar. Tambien puedes usar <strong>"Bluetooth RC Controller"</strong>.</p></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">2</div><div class="aa-step-content"><h3>Empareja el modulo HC-05</h3><p>Enciende el robot. El LED del HC-05 debe parpadear rapido (no emparejado). En tu celular, ve a Ajustes &gt; Bluetooth, busca <strong>"HC-05"</strong> o <strong>"HC-06"</strong> y empareja con el PIN <strong>1234</strong> o <strong>0000</strong>.</p><div class="aa-tip"><span>💡</span> El HC-06 se empareja solo como esclavo. El HC-05 puede ser maestro o esclavo. Para este proyecto, el modo esclavo es el correcto.</div></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">3</div><div class="aa-step-content"><h3>Conecta desde la app</h3><p>Abre la app, toca "Conectar" y selecciona tu modulo HC-05/06 de la lista. El LED del modulo debe quedar fijo (sin parpadear) cuando la conexion sea exitosa.</p></div></div>
+      <div class="aa-step-card"><div class="aa-step-num">4</div><div class="aa-step-content"><h3>Configura los botones</h3><p>En la app, configura los botones con los comandos del codigo: boton Adelante = <code>F</code>, Atras = <code>B</code>, Izquierda = <code>L</code>, Derecha = <code>R</code>, Stop = <code>S</code>, Modo Obstaculo = <code>O</code>, Modo Linea = <code>N</code>, Modo Manual = <code>M</code>.</p></div></div>
+    </div>
+
+    <div class="aa-callout success"><div class="aa-callout-icon">✅</div><div><strong>Verificacion final:</strong> Levanta el robot (ruedas en el aire), conecta la app y presiona Adelante. Las 4 ruedas deben girar hacia adelante. Si alguna gira al reves, invierte los dos cables de ese motor en el L298N.</div></div>
+  </div>
+
+  <!-- SOLUCION DE PROBLEMAS -->
+  <div class="aa-section">
+    <div class="aa-section-header">
+      <div class="aa-section-num">?</div>
+      <div><h2>Solucion de Problemas</h2><p>Errores comunes y como resolverlos</p></div>
+    </div>
+    <div class="aa-faq-item"><div class="aa-faq-q" onclick="toggleFaq(this)">El robot no se mueve aunque envio comandos <span>+</span></div><div class="aa-faq-a">Verifica que ENA y ENB esten conectados a pines PWM (D5 y D6). Si estan en HIGH fijo, los motores corren a velocidad maxima pero sin control de PWM. Tambien confirma que la bateria tenga suficiente carga (min 6V).</div></div>
+    <div class="aa-faq-item"><div class="aa-faq-q" onclick="toggleFaq(this)">El Bluetooth no aparece en mi celular <span>+</span></div><div class="aa-faq-a">El modulo debe estar encendido y parpadeando. Si no parpadea, revisa la conexion VCC y GND. El HC-06 se detecta inmediatamente. El HC-05 a veces requiere poner el celular muy cerca la primera vez.</div></div>
+    <div class="aa-faq-item"><div class="aa-faq-q" onclick="toggleFaq(this)">El carrito gira siempre en un sentido en modo obstaculo <span>+</span></div><div class="aa-faq-a">El codigo siempre gira a la derecha al encontrar obstaculo. Puedes modificar la funcion modoObstaculo() para que gire aleatoriamente: reemplaza girarDerecha() por una condicion random(2)==0 que alterne entre girarDerecha() y girarIzquierda().</div></div>
+    <div class="aa-faq-item"><div class="aa-faq-q" onclick="toggleFaq(this)">El seguidor de linea va recto pero no dobla <span>+</span></div><div class="aa-faq-a">Ajusta el potenciometro de cada sensor TCRT5000 con un destornillador pequeño hasta calibrarlo correctamente. Pon el robot sobre la linea y ajusta hasta que el LED indicador cambie de estado exactamente sobre el borde de la linea.</div></div>
+    <div class="aa-faq-item"><div class="aa-faq-q" onclick="toggleFaq(this)">El ultrasonico da lecturas de 0 o valores extraños <span>+</span></div><div class="aa-faq-a">Verifica que TRIG este en D9 y ECHO en D8. El sensor necesita al menos 5ms entre lecturas. Si el codigo lee muy rapido, agrega un delay(50) dentro de la funcion modoObstaculo(). Tambien revisa que no haya objetos muy cerca (menos de 2cm).</div></div>
+  </div>
+
+</div>
+
+<footer class="aa-footer">
+  <p>Academia Arduino | <a href="index.html">ElectroIdentify</a> &copy; 2024 &mdash; Construido con ❤️ para estudiantes de electronica</p>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  const item = el.parentElement;
+  item.classList.toggle('open');
+  el.querySelector('span').textContent = item.classList.contains('open') ? '−' : '+';
+}
+</script>
+</body>
+</html>
